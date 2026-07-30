@@ -1,4 +1,11 @@
-const LoginModal = ({ loginOpen, setLoginOpen }) => {
+import React from "react";
+import { Eye, Lock, X } from "lucide-react";
+
+const LoginModal = ({
+  loginOpen,
+  setLoginOpen,
+  setSignupOpen,
+}) => {
   return (
     <>
       {/* Overlay */}
@@ -11,13 +18,11 @@ const LoginModal = ({ loginOpen, setLoginOpen }) => {
         }`}
       />
 
-
       {/* Modal */}
       <div
         className={`fixed
         left-1/2
         top-1/2
-
         -translate-x-1/2
         -translate-y-1/2
 
@@ -37,7 +42,6 @@ const LoginModal = ({ loginOpen, setLoginOpen }) => {
         shadow-[0_0_40px_rgba(0,200,255,.35)]
 
         z-50
-
         duration-300
 
         ${
@@ -46,239 +50,238 @@ const LoginModal = ({ loginOpen, setLoginOpen }) => {
             : "scale-90 opacity-0 pointer-events-none"
         }`}
       >
-
-
-        {/* Close */}
+        {/* Close Button */}
         <button
           onClick={() => setLoginOpen(false)}
           className="
-          absolute
-          right-3
-          top-3
+            absolute
+            top-3
+            right-3
 
-          w-9
-          h-9
+            w-9
+            h-9
 
-          rounded-full
+            rounded-full
 
-          bg-black/40
+            bg-black/40
 
-          text-white
+            flex
+            items-center
+            justify-center
 
-          text-lg
+            text-white
 
-          hover:bg-cyan-600
-          duration-300
+            hover:bg-cyan-600
+
+            duration-300
           "
         >
-          ✕
+          <X size={20} />
         </button>
 
-
-
-        {/* Tabs */}
+        {/* Header */}
         <div
           className="
-          flex
-          justify-center
-          gap-10
-          pt-8
+            relative
+            h-28
+
+            bg-gradient-to-br
+            from-[#0ea5e9]
+            via-[#075985]
+            to-[#020617]
+
+            rounded-t-[25px]
           "
         >
-
-          <button
+          {/* Tabs */}
+          <div
             className="
-            text-white
-            text-2xl
-            font-serif
-
-            border-b-4
-            border-cyan-400
-
-            pb-2
+              flex
+              justify-center
+              gap-10
+              pt-8
             "
           >
-            Log In
-          </button>
+            {/* Login */}
+            <button
+              className="
+                relative
 
+                text-2xl
+                font-serif
 
-          <button
-            className="
-            text-cyan-400
-            text-2xl
-            font-serif
-            "
-          >
-            Sign Up
-          </button>
+                text-white
+              "
+            >
+              Log In
 
+              <div
+                className="
+                  absolute
+                  left-1/2
+                  -translate-x-1/2
+
+                  mt-2
+
+                  w-0
+                  h-0
+
+                  border-l-[12px]
+                  border-r-[12px]
+                  border-t-[12px]
+
+                  border-l-transparent
+                  border-r-transparent
+
+                  border-t-cyan-400
+                "
+              />
+            </button>
+
+            {/* Signup */}
+            <button
+              onClick={() => {
+                setLoginOpen(false);
+                setSignupOpen(true);
+              }}
+              className="
+                text-2xl
+                font-serif
+
+                text-cyan-300/60
+
+                hover:text-white
+
+                duration-300
+              "
+            >
+              Sign Up
+            </button>
+          </div>
         </div>
-
-
-
-        {/* Form */}
+                {/* Form */}
         <div
           className="
-          p-5
-          space-y-4
+            p-5
+            space-y-4
           "
         >
-
-
           {/* Phone */}
           <div
             className="
-            flex
-            items-center
+              flex
+              items-center
 
-            bg-[#020617]
+              h-14
 
-            rounded-xl
+              bg-[#020617]
 
-            h-14
+              border
+              border-cyan-700
 
-            px-3
+              rounded-xl
 
-            border
-            border-cyan-700
+              px-3
             "
           >
-
-            <span className="mr-2 text-xl">
+            <span className="text-lg">
               🇵🇰
             </span>
 
-
-            <span
-              className="
-              text-white
-              mr-2
-              text-sm
-              "
-            >
+            <span className="mx-2 text-white text-sm">
               +92
             </span>
 
+            <div className="w-px h-6 bg-gray-500 mr-3"></div>
 
             <input
               type="text"
               placeholder="Phone Number"
               className="
-              flex-1
-
-              bg-transparent
-
-              outline-none
-
-              text-white
-
-              text-sm
-
-              placeholder:text-gray-400
+                flex-1
+                bg-transparent
+                outline-none
+                text-white
+                text-sm
+                placeholder:text-gray-400
               "
             />
-
           </div>
-
-
-
 
           {/* Password */}
           <div
             className="
-            flex
-            items-center
+              flex
+              items-center
 
-            bg-[#020617]
+              h-14
 
-            rounded-xl
+              bg-[#020617]
 
-            h-14
+              border
+              border-cyan-700
 
-            px-3
+              rounded-xl
 
-            border
-            border-cyan-700
+              px-3
             "
           >
-
-            <span className="mr-3 text-lg">
-              🔒
-            </span>
-
+            <Lock
+              size={20}
+              className="text-cyan-400 mr-3"
+            />
 
             <input
               type="password"
               placeholder="Password"
               className="
-              flex-1
-
-              bg-transparent
-
-              outline-none
-
-              text-white
-
-              text-sm
-
-              placeholder:text-gray-400
+                flex-1
+                bg-transparent
+                outline-none
+                text-white
+                text-sm
+                placeholder:text-gray-400
               "
             />
 
-
-            <span className="text-lg cursor-pointer">
-              👁
-            </span>
-
-
+            <Eye
+              size={20}
+              className="text-cyan-400 cursor-pointer"
+            />
           </div>
-
-
-
 
           {/* Login Button */}
           <button
             className="
-            w-full
+              w-full
+              h-14
 
-            h-14
+              rounded-xl
 
-            rounded-xl
+              bg-gradient-to-r
+              from-cyan-400
+              via-blue-500
+              to-blue-700
 
-            bg-gradient-to-r
+              border
+              border-cyan-300
 
-            from-cyan-400
+              text-white
+              text-lg
+              font-bold
 
-            via-blue-500
+              shadow-[0_0_20px_rgba(0,200,255,.5)]
 
-            to-blue-700
-
-            text-white
-
-            font-bold
-
-            text-lg
-
-            shadow-[0_0_20px_rgba(0,200,255,.5)]
-
-            hover:scale-105
-
-            duration-300
+              hover:scale-105
+              duration-300
             "
           >
             Log In
           </button>
-
-
         </div>
-
-
       </div>
-
-
     </>
   );
 };
-
 
 export default LoginModal;

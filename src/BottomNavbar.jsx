@@ -1,239 +1,120 @@
 import React from "react";
+import {
+  House,
+  Wallet,
+  Gift,
+  User,
+  CircleDollarSign,
+} from "lucide-react";
 
-
-const BottomNavbar = ({ setLoginOpen }) => {
-
+const BottomNavbar = ({
+  setLoginOpen,
+  currentPage,
+  setCurrentPage,
+}) => {
   return (
-
-    <div
-      className="
-      absolute
-      bottom-0
-      left-0
-      w-full
-      z-50
-      "
-    >
-
-
+    <div className="fixed bottom-0 left-0 w-full flex justify-center z-50">
       <div
         className="
+        w-full
+        max-w-[430px]
         bg-gradient-to-t
         from-[#020617]
         via-[#071426]
         to-[#061b3a]
-
         border-t
         border-cyan-700
-
         rounded-t-3xl
-
         shadow-[0_-5px_25px_rgba(0,200,255,.4)]
         "
       >
+        <div className="flex justify-around items-end h-24">
 
-
-        <div
-          className="
-          flex
-          justify-around
-          items-end
-          h-24
-          "
-        >
-
-
-
-
-          {/* HOME */}
-
-          <div
-            className="
-            flex
-            flex-col
-            items-center
-            text-cyan-300
-            cursor-pointer
-            "
+          {/* Home */}
+          <button
+            onClick={() => setCurrentPage("home")}
+            className={`flex flex-col items-center duration-300 ${
+              currentPage === "home"
+                ? "text-cyan-300"
+                : "text-gray-500"
+            }`}
           >
+            <House size={28} />
+            <p className="text-xs mt-1">Home</p>
+          </button>
 
-            <span className="text-3xl">
-              🏠
-            </span>
-
-            <p className="text-sm">
-              Home
-            </p>
-
-          </div>
-
-
-
-
-
-
-
-          {/* DEPOSIT */}
-
-          <div
-            className="
-            flex
-            flex-col
-            items-center
-            text-blue-400
-            cursor-pointer
-            "
+          {/* Deposit */}
+          <button
+            className="flex flex-col items-center text-gray-500"
           >
+            <Wallet size={28} />
+            <p className="text-xs mt-1">Deposit</p>
+          </button>
 
-            <span className="text-3xl">
-              👛
-            </span>
-
-            <p className="text-sm">
-              Deposit
-            </p>
-
-          </div>
-
-
-
-
-
-
-
-
-          {/* CENTER BUTTON */}
-
-          <div
+          {/* Agency */}
+          <button
             className="
             relative
             -mt-10
+            flex
+            flex-col
+            items-center
             "
           >
-
             <div
               className="
               w-20
               h-20
-
               rounded-full
-
               bg-gradient-to-b
               from-cyan-300
               via-blue-500
               to-blue-800
-
               border-4
               border-cyan-400
-
               flex
               items-center
               justify-center
-
               shadow-[0_0_30px_rgba(0,200,255,.8)]
               "
             >
-
-              <span className="text-4xl">
-                💸
-              </span>
-
-
+              <CircleDollarSign
+                size={42}
+                className="text-white"
+              />
             </div>
 
-
-
-            <p
-              className="
-              text-center
-              text-cyan-300
-              text-sm
-              "
-            >
+            <p className="text-cyan-300 text-xs mt-1">
               Agency
             </p>
+          </button>
 
-
-          </div>
-
-
-
-
-
-
-
-          {/* ACTIVITY */}
-
-          <div
-            className="
-            flex
-            flex-col
-            items-center
-            text-blue-400
-            cursor-pointer
-            "
+          {/* Activity */}
+          <button
+            onClick={() => setCurrentPage("activity")}
+            className={`flex flex-col items-center duration-300 ${
+              currentPage === "activity"
+                ? "text-cyan-300"
+                : "text-gray-500"
+            }`}
           >
+            <Gift size={28} />
+            <p className="text-xs mt-1">Activity</p>
+          </button>
 
-            <span className="text-3xl">
-              🎁
-            </span>
-
-
-            <p className="text-sm">
-              Activity
-            </p>
-
-
-          </div>
-
-
-
-
-
-
-
-          {/* ME */}
-
-          <div
-
+          {/* Me */}
+          <button
             onClick={() => setLoginOpen(true)}
-
-            className="
-            flex
-            flex-col
-            items-center
-            text-blue-400
-            cursor-pointer
-            "
+            className="flex flex-col items-center text-gray-500"
           >
-
-            <span className="text-3xl">
-              👤
-            </span>
-
-
-            <p className="text-sm">
-              Me
-            </p>
-
-
-          </div>
-
-
-
-
+            <User size={28} />
+            <p className="text-xs mt-1">Me</p>
+          </button>
 
         </div>
-
-
       </div>
-
-
     </div>
-
   );
-
 };
-
 
 export default BottomNavbar;
