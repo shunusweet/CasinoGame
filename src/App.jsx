@@ -11,6 +11,10 @@ import LoginModal from "./LoginModal";
 import SignupModal from "./SignupModal";
 
 import Activity from "./Activity";
+import AnnouncementBar from "./AnnouncementBar";
+import GameCategories from "./GameCategories";
+import HotGameHeader from "./HotGameHeader";
+import GameGridCard from "./GameGridCard"
 
 function App() {
   const [openMenu, setOpenMenu] = useState(false);
@@ -55,6 +59,10 @@ function App() {
           <div className="pb-28 overflow-y-auto h-full">
             <HeroSection />
             <PromoCards />
+            <AnnouncementBar/>
+            <GameCategories/>
+            <HotGameHeader/>
+            <GameGridCard/>
           </div>
         </>
       )}
