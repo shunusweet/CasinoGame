@@ -2,8 +2,12 @@ import { useState } from "react";
 
 import Header from "./Header";
 import Sidebar from "./Sidebar";
-import HeroSection from "./HeroSectoin";
+import HeroSectoin from "./HeroSectoin";
 import PromoCards from "./PromoCards";
+import AnnouncementBar from "./AnnouncementBar";
+import GameCategories from "./GameCategories";
+import HotGameHeader from "./HotGameHeader";
+import GameGridCard from "./GameGridCard";
 
 import BottomNavbar from "./BottomNavbar";
 
@@ -11,19 +15,19 @@ import LoginModal from "./LoginModal";
 import SignupModal from "./SignupModal";
 
 import Activity from "./Activity";
-import AnnouncementBar from "./AnnouncementBar";
-import GameCategories from "./GameCategories";
-import HotGameHeader from "./HotGameHeader";
-import GameGridCard from "./GameGridCard"
+import DepositPage from "./DepositPage";
+import JiliHeader from "./JiliHeader";
+import JiliFeatureCards from "./JiliFeatureCards";
+import PGHeader from "./PGHeader";
+import PlayNgoHeader from "./PlayNgoHeader"
+import Sports from "./Sports"
 
 function App() {
   const [openMenu, setOpenMenu] = useState(false);
-
   const [loginOpen, setLoginOpen] = useState(false);
-
   const [signupOpen, setSignupOpen] = useState(false);
 
-  // Screen Change
+  // Screen Routing
   const [currentPage, setCurrentPage] = useState("home");
 
   return (
@@ -39,9 +43,7 @@ function App() {
       overflow-hidden
       "
     >
-      {/* ===========================
-          HOME PAGE
-      ============================ */}
+      {/* ================= HOME ================= */}
 
       {currentPage === "home" && (
         <>
@@ -56,20 +58,23 @@ function App() {
             setOpenMenu={setOpenMenu}
           />
 
-          <div className="pb-28 overflow-y-auto h-full">
-            <HeroSection />
+          <div className="h-full overflow-y-auto pb-28">
+            <HeroSectoin />
             <PromoCards />
-            <AnnouncementBar/>
-            <GameCategories/>
-            <HotGameHeader/>
-            <GameGridCard/>
+            <AnnouncementBar />
+            <GameCategories />
+            <HotGameHeader />
+            <GameGridCard />
+            <JiliHeader/>
+            <JiliFeatureCards/>
+            <PGHeader/>
+            <PlayNgoHeader/>
+            <Sports/>
           </div>
         </>
       )}
 
-      {/* ===========================
-          ACTIVITY PAGE
-      ============================ */}
+      {/* ================= ACTIVITY ================= */}
 
       {currentPage === "activity" && (
         <Activity
@@ -77,9 +82,15 @@ function App() {
         />
       )}
 
-      {/* ===========================
-          LOGIN MODAL
-      ============================ */}
+      {/* ================= DEPOSIT ================= */}
+
+      {currentPage === "deposit" && (
+        <DepositPage
+          setCurrentPage={setCurrentPage}
+        />
+      )}
+
+      {/* ================= LOGIN ================= */}
 
       <LoginModal
         loginOpen={loginOpen}
@@ -87,9 +98,7 @@ function App() {
         setSignupOpen={setSignupOpen}
       />
 
-      {/* ===========================
-          SIGNUP MODAL
-      ============================ */}
+      {/* ================= SIGNUP ================= */}
 
       <SignupModal
         signupOpen={signupOpen}
@@ -97,14 +106,12 @@ function App() {
         setLoginOpen={setLoginOpen}
       />
 
-      {/* ===========================
-          BOTTOM NAVBAR
-      ============================ */}
+      {/* ================= BOTTOM NAVBAR ================= */}
 
       <BottomNavbar
-        setLoginOpen={setLoginOpen}
         currentPage={currentPage}
         setCurrentPage={setCurrentPage}
+        setLoginOpen={setLoginOpen}
       />
     </div>
   );
