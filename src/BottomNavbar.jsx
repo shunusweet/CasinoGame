@@ -31,97 +31,137 @@ const BottomNavbar = ({
         <div className="flex justify-around items-end h-24">
 
           {/* ================= HOME ================= */}
+
           <button
             onClick={() => setCurrentPage("home")}
-            className={`flex flex-col items-center duration-300 ${
-              currentPage === "home"
-                ? "text-cyan-300"
-                : "text-gray-500"
-            }`}
+            className={`
+              flex
+              flex-col
+              items-center
+              duration-300
+              ${
+                currentPage === "home"
+                  ? "text-cyan-300"
+                  : "text-gray-500"
+              }
+            `}
           >
             <House size={28} />
+
             <p className="text-xs mt-1 font-medium">
               Home
             </p>
           </button>
 
+
           {/* ================= DEPOSIT ================= */}
+
           <button
             onClick={() => setCurrentPage("deposit")}
-            className={`flex flex-col items-center duration-300 ${
-              currentPage === "deposit"
-                ? "text-cyan-300"
-                : "text-gray-500"
-            }`}
+            className={`
+              flex
+              flex-col
+              items-center
+              duration-300
+              ${
+                currentPage === "deposit"
+                  ? "text-cyan-300"
+                  : "text-gray-500"
+              }
+            `}
           >
             <Wallet size={28} />
+
             <p className="text-xs mt-1 font-medium">
               Deposit
             </p>
           </button>
 
+
           {/* ================= AGENCY ================= */}
+
+
+<button
+  onClick={() => setCurrentPage("agency")}
+  className="
+    relative
+    -mt-10
+    flex
+    flex-col
+    items-center
+  "
+>
+  <div
+    className="
+      w-20
+      h-20
+      rounded-full
+      bg-gradient-to-b
+      from-cyan-300
+      via-blue-500
+      to-blue-800
+      border-4
+      border-cyan-400
+      flex
+      items-center
+      justify-center
+      shadow-[0_0_30px_rgba(0,200,255,.80)]
+      hover:scale-105
+      transition-all
+      duration-300
+    "
+  >
+    <CircleDollarSign
+      size={42}
+      className="text-white"
+    />
+  </div>
+
+  <p className="text-cyan-300 text-xs mt-1 font-semibold">
+    Agency
+  </p>
+</button>
+
+
+          {/* ================= ACTIVITY ================= */}
+
           <button
-            className="
-              relative
-              -mt-10
+            onClick={() => setCurrentPage("activity")}
+            className={`
               flex
               flex-col
               items-center
-            "
-          >
-            <div
-              className="
-                w-20
-                h-20
-                rounded-full
-                bg-gradient-to-b
-                from-cyan-300
-                via-blue-500
-                to-blue-800
-                border-4
-                border-cyan-400
-                flex
-                items-center
-                justify-center
-                shadow-[0_0_30px_rgba(0,200,255,.80)]
-                hover:scale-105
-                transition-all
-                duration-300
-              "
-            >
-              <CircleDollarSign
-                size={42}
-                className="text-white"
-              />
-            </div>
-
-            <p className="text-cyan-300 text-xs mt-1 font-semibold">
-              Agency
-            </p>
-          </button>
-
-          {/* ================= ACTIVITY ================= */}
-          <button
-            onClick={() => setCurrentPage("activity")}
-            className={`flex flex-col items-center duration-300 ${
-              currentPage === "activity"
-                ? "text-cyan-300"
-                : "text-gray-500"
-            }`}
+              duration-300
+              ${
+                currentPage === "activity"
+                  ? "text-cyan-300"
+                  : "text-gray-500"
+              }
+            `}
           >
             <Gift size={28} />
+
             <p className="text-xs mt-1 font-medium">
               Activity
             </p>
           </button>
 
+
           {/* ================= ME ================= */}
+
           <button
             onClick={() => setLoginOpen(true)}
-            className="flex flex-col items-center text-gray-500 hover:text-cyan-300 duration-300"
+            className="
+              flex
+              flex-col
+              items-center
+              text-gray-500
+              hover:text-cyan-300
+              duration-300
+            "
           >
             <User size={28} />
+
             <p className="text-xs mt-1 font-medium">
               Me
             </p>

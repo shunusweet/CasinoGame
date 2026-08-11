@@ -14,42 +14,54 @@ import BottomNavbar from "./BottomNavbar";
 import LoginModal from "./LoginModal";
 import SignupModal from "./SignupModal";
 
+import AgencyHeader from "./AgencyHeader";
+
 import Activity from "./Activity";
 import DepositPage from "./DepositPage";
+
 import JiliHeader from "./JiliHeader";
 import JiliFeatureCards from "./JiliFeatureCards";
 import PGHeader from "./PGHeader";
-import PlayNgoHeader from "./PlayNgoHeader"
-import Sports from "./Sports"
+import PlayNgoHeader from "./PlayNgoHeader";
+import Sports from "./Sports";
 import JDBHeader from "./JDBHeader";
 import PPGames from "./PPGames";
 import TopPlayer from "./TopPlayer";
 import DBGames from "./DBGames";
 import FishGames from "./FishGames";
-import Footer from "./Footer"
+import Footer from "./Footer";
 
 function App() {
   const [openMenu, setOpenMenu] = useState(false);
+
   const [loginOpen, setLoginOpen] = useState(false);
+
   const [signupOpen, setSignupOpen] = useState(false);
 
-  // Screen Routing
+  // ================= SCREEN ROUTING =================
   const [currentPage, setCurrentPage] = useState("home");
 
   return (
     <div
       className="
-      max-w-[430px]
-      h-screen
-      mx-auto
-      bg-[#020617]
-      border-4
-      border-cyan-600
-      relative
-      overflow-hidden
+        max-w-[430px]
+        h-screen
+        mx-auto
+
+        bg-[#020617]
+
+        border-4
+        border-cyan-600
+
+        relative
+
+        overflow-hidden
       "
     >
-      {/* ================= HOME ================= */}
+
+      {/* ================================================= */}
+      {/* HOME */}
+      {/* ================================================= */}
 
       {currentPage === "home" && (
         <>
@@ -64,29 +76,54 @@ function App() {
             setOpenMenu={setOpenMenu}
           />
 
-          <div className="h-full overflow-y-auto pb-28">
+          <div
+            className="
+              h-full
+              overflow-y-auto
+              pb-28
+            "
+          >
             <HeroSectoin />
+
             <PromoCards />
+
             <AnnouncementBar />
+
             <GameCategories />
+
             <HotGameHeader />
+
             <GameGridCard />
-            <JiliHeader/>
-            <JiliFeatureCards/>
-            <PGHeader/>
-            <PlayNgoHeader/>
-            <Sports/>
-            <JDBHeader/>
-            <PPGames/>
+
+            <JiliHeader />
+
+            <JiliFeatureCards />
+
+            <PGHeader />
+
+            <PlayNgoHeader />
+
+            <Sports />
+
+            <JDBHeader />
+
+            <PPGames />
+
             <TopPlayer />
+
             <DBGames />
+
             <FishGames />
-            <Footer/>
+
+            <Footer />
           </div>
         </>
       )}
 
-      {/* ================= ACTIVITY ================= */}
+
+      {/* ================================================= */}
+      {/* ACTIVITY */}
+      {/* ================================================= */}
 
       {currentPage === "activity" && (
         <Activity
@@ -94,7 +131,10 @@ function App() {
         />
       )}
 
-      {/* ================= DEPOSIT ================= */}
+
+      {/* ================================================= */}
+      {/* DEPOSIT */}
+      {/* ================================================= */}
 
       {currentPage === "deposit" && (
         <DepositPage
@@ -102,7 +142,21 @@ function App() {
         />
       )}
 
-      {/* ================= LOGIN ================= */}
+
+      {/* ================================================= */}
+      {/* AGENCY */}
+      {/* ================================================= */}
+
+      {currentPage === "agency" && (
+        <AgencyHeader
+          setCurrentPage={setCurrentPage}
+        />
+      )}
+
+
+      {/* ================================================= */}
+      {/* LOGIN MODAL */}
+      {/* ================================================= */}
 
       <LoginModal
         loginOpen={loginOpen}
@@ -110,7 +164,10 @@ function App() {
         setSignupOpen={setSignupOpen}
       />
 
-      {/* ================= SIGNUP ================= */}
+
+      {/* ================================================= */}
+      {/* SIGNUP MODAL */}
+      {/* ================================================= */}
 
       <SignupModal
         signupOpen={signupOpen}
@@ -118,13 +175,17 @@ function App() {
         setLoginOpen={setLoginOpen}
       />
 
-      {/* ================= BOTTOM NAVBAR ================= */}
+
+      {/* ================================================= */}
+      {/* BOTTOM NAVBAR */}
+      {/* ================================================= */}
 
       <BottomNavbar
         currentPage={currentPage}
         setCurrentPage={setCurrentPage}
         setLoginOpen={setLoginOpen}
       />
+
     </div>
   );
 }
