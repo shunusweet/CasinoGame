@@ -1,9 +1,9 @@
 import React from "react";
-import Footboll from "./assets/Footboll.png";
-import SportsItems from "./SportsItems"
+import JDBLOGO from "./assets/JDBLOGO.png";
+import JDBFeatureCards from "./JDBFeatureCards"
 
 
-export default function Sport() {
+export default function JDBHeader() {
   return (
     <div className="px-3 mt-3">
 
@@ -35,7 +35,7 @@ export default function Sport() {
         <div className="flex items-center gap-3">
 
           <img
-            src={Footboll}
+            src={JDBLOGO}
             alt="PG"
             className="
             w-14
@@ -50,7 +50,7 @@ export default function Sport() {
             text-cyan-100
             "
           >
-            SPORT
+            JDB
           </h2>
 
         </div>
@@ -79,7 +79,7 @@ export default function Sport() {
             duration-300
             "
           >
-            All 2
+            All 64
           </button>
 
           <button
@@ -108,10 +108,8 @@ export default function Sport() {
         </div>
 
       </div>
-      <SportsItems/>
+      <JDBFeatureCards/>
 
     </div>
   );
 }
-
-

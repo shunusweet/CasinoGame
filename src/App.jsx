@@ -21,6 +21,12 @@ import JiliFeatureCards from "./JiliFeatureCards";
 import PGHeader from "./PGHeader";
 import PlayNgoHeader from "./PlayNgoHeader"
 import Sports from "./Sports"
+import JDBHeader from "./JDBHeader";
+import PPGames from "./PPGames";
+import TopPlayer from "./TopPlayer";
+import DBGames from "./DBGames";
+import FishGames from "./FishGames";
+import Footer from "./Footer"
 
 function App() {
   const [openMenu, setOpenMenu] = useState(false);
@@ -70,6 +76,12 @@ function App() {
             <PGHeader/>
             <PlayNgoHeader/>
             <Sports/>
+            <JDBHeader/>
+            <PPGames/>
+            <TopPlayer />
+            <DBGames />
+            <FishGames />
+            <Footer/>
           </div>
         </>
       )}
