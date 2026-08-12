@@ -13,7 +13,9 @@ import Cq from "./Cq"
 import FcGame from "./FcGame"
 import BBGames from "./BBGames"
 import MgGame from "./MgGame"
-import Evoplay from "./Evoplay"
+import Evoplay from "./Evoplay";
+import Gg_bg from "./Gg_bg";
+import Spinomenal from "./Spinomenal"
 
 export default function Footer() {
   const [showMore, setShowMore] = useState(false);
@@ -144,6 +146,18 @@ export default function Footer() {
       {showMore && (
         <div className="relative z-10 mt-4">
           <Evoplay />
+        </div>
+      )}
+
+      {showMore && (
+        <div className="relative z-10 mt-4">
+          <Gg_bg />
+        </div>
+      )}
+
+      {showMore && (
+        <div className="relative z-10 mt-4">
+          <Spinomenal />
         </div>
       )}
 
