@@ -15,7 +15,9 @@ import BBGames from "./BBGames"
 import MgGame from "./MgGame"
 import Evoplay from "./Evoplay";
 import Gg_bg from "./Gg_bg";
-import Spinomenal from "./Spinomenal"
+import Spinomenal from "./Spinomenal";
+import GgUgGames from "./GgUgGames";
+import GgRelax from "./GgRelax";
 
 export default function Footer() {
   const [showMore, setShowMore] = useState(false);
@@ -158,6 +160,18 @@ export default function Footer() {
       {showMore && (
         <div className="relative z-10 mt-4">
           <Spinomenal />
+        </div>
+      )}
+
+      {showMore && (
+        <div className="relative z-10 mt-4">
+          <GgUgGames />
+        </div>
+      )}
+
+      {showMore && (
+        <div className="relative z-10 mt-4">
+          <GgRelax />
         </div>
       )}
 
