@@ -18,6 +18,9 @@ import Gg_bg from "./Gg_bg";
 import Spinomenal from "./Spinomenal";
 import GgUgGames from "./GgUgGames";
 import GgRelax from "./GgRelax";
+import GgRedTigerGames from "./GgRedTigerGames";
+import PlayTech from "./PlayTech"
+import KagaGames from "./kagaGames"
 
 export default function Footer() {
   const [showMore, setShowMore] = useState(false);
@@ -174,6 +177,28 @@ export default function Footer() {
           <GgRelax />
         </div>
       )}
+
+      {showMore && (
+        <div className="relative z-10 mt-4">
+          <GgRedTigerGames />
+        </div>
+      )}
+
+      {showMore && (
+        <div className="relative z-10 mt-4">
+          <PlayTech />
+        </div>
+      )}
+
+      {showMore && (
+        <div className="relative z-10 mt-4">
+          <KagaGames />
+        </div>
+      )}
+
+      
+
+      
 
       {/* ================= CHICKEN ================= */}
 
