@@ -20,7 +20,8 @@ import GgUgGames from "./GgUgGames";
 import GgRelax from "./GgRelax";
 import GgRedTigerGames from "./GgRedTigerGames";
 import PlayTech from "./PlayTech"
-import KagaGames from "./kagaGames"
+import KagaGames from "./kagaGames";
+import AskMe from "./AskMe"
 
 export default function Footer() {
   const [showMore, setShowMore] = useState(false);
@@ -195,6 +196,16 @@ export default function Footer() {
           <KagaGames />
         </div>
       )}
+
+       {showMore && (
+        <div className="relative z-10 mt-4">
+          <AskMe />
+        </div>
+      )}
+
+
+
+      AskMe
 
       
 
