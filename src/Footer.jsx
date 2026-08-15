@@ -22,6 +22,9 @@ import GgRedTigerGames from "./GgRedTigerGames";
 import PlayTech from "./PlayTech"
 import KagaGames from "./kagaGames";
 import AskMe from "./AskMe"
+import PopokGames from "./PopakGames"
+import HacksawGames from "./HacksawGames";
+import Habanero from "./Habanero"
 
 export default function Footer() {
   const [showMore, setShowMore] = useState(false);
@@ -203,13 +206,29 @@ export default function Footer() {
         </div>
       )}
 
+      {showMore && (
+        <div className="relative z-10 mt-4">
+          <PopokGames />
+        </div>
+      )}
+
+      {showMore && (
+        <div className="relative z-10 mt-4">
+          <HacksawGames />
+        </div>
+      )}
 
 
-      AskMe
+        {showMore && (
+        <div className="relative z-10 mt-4">
+          <Habanero />
+        </div>
+      )}
 
       
 
-      
+
+ 
 
       {/* ================= CHICKEN ================= */}
 
