@@ -24,7 +24,10 @@ import KagaGames from "./kagaGames";
 import AskMe from "./AskMe"
 import PopokGames from "./PopakGames"
 import HacksawGames from "./HacksawGames";
-import Habanero from "./Habanero"
+import Habanero from "./Habanero";
+import BetSoft from "./BetSoft";
+import  RichGames from "./RichGames";
+import AmigoGames from "./AmigoGames"
 
 export default function Footer() {
   const [showMore, setShowMore] = useState(false);
@@ -225,7 +228,26 @@ export default function Footer() {
         </div>
       )}
 
+       {showMore && (
+        <div className="relative z-10 mt-4">
+          <BetSoft />
+        </div>
+      )}
+
+       {showMore && (
+        <div className="relative z-10 mt-4">
+          <RichGames />
+        </div>
+      )}
       
+      {showMore && (
+        <div className="relative z-10 mt-4">
+          <AmigoGames />
+        </div>
+      )}
+
+     
+
 
 
  
