@@ -9,12 +9,12 @@ import WestWorld from "./assets/WestWorld.jpg";
 import MayanTemple from "./assets/MayanTemple.jpg";
 
 import MermaidSecrets from "./assets/MermaidSecrets.jpg";
-import DragonsFortune from "./assets/DragonsFortune.jpg"
+import DragonsFortune from "./assets/DragonsFortune.jpg";
 import FortuneArara from "./assets/FortuneArara.jpg";
 import JogoDoBicho from "./assets/JogoDoBicho.jpg";
 
 import CaptainsTreasure from "./assets/CaptainsTreasure.jpg";
-import WrathOfOlympus from "./assets/WrathOfOlympus.jpg"
+import WrathOfOlympus from "./assets/WrathOfOlympus.jpg";
 import SweetMelee from "./assets/SweetMelee.jpg";
 import PuppyLove from "./assets/PuppyLove.jpg";
 
@@ -63,7 +63,7 @@ export default function GgUgGamesFeature() {
 
     {
       id: 3,
-      image: WestWorld ,
+      image: WestWorld,
       title: "West World",
     },
 
@@ -162,6 +162,7 @@ export default function GgUgGamesFeature() {
                 h-[115px]
                 object-cover
                 rounded-xl
+                animate-[imageFadeIn_0.8s_ease-out]
               "
             />
 
@@ -204,10 +205,6 @@ export default function GgUgGamesFeature() {
         ))}
 
       </div>
-
-      {/* ================= BOTTOM SPACE ================= */}
-
-      <div className="mt-4"></div>
 
     </div>
 

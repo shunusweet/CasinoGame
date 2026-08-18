@@ -100,24 +100,74 @@ export default function CqFeature() {
 
     <div className="bg-[#020617] px-3 py-3">
 
+      {/* ================= ANIMATION CSS ================= */}
+
+      <style>{`
+
+        @keyframes gameFadeIn {
+          0% {
+            opacity: 0;
+            transform: translateY(35px) scale(0.94);
+          }
+
+          60% {
+            opacity: 0.8;
+            transform: translateY(-3px) scale(1.01);
+          }
+
+          100% {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+          }
+        }
+
+        .game-card-animation {
+          opacity: 0;
+          animation: gameFadeIn 0.7s ease-out forwards;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+          .game-card-animation {
+            opacity: 1;
+            animation: none;
+          }
+        }
+
+      `}</style>
+
       {/* ================= CARD GRID ================= */}
 
       <div className="grid grid-cols-4 gap-3">
 
-        {games.map((game) => (
+        {games.map((game, index) => (
 
           <div
             key={game.id}
+
+            style={{
+              animationDelay: `${index * 0.12}s`,
+            }}
+
             className="
+              game-card-animation
+
               relative
               overflow-hidden
               rounded-xl
+
               border
               border-yellow-500
+
               bg-[#061b3a]
+
               shadow-[0_0_15px_rgba(255,200,0,.30)]
+
               cursor-pointer
+
               hover:scale-105
+
+              hover:shadow-[0_0_25px_rgba(255,200,0,.55)]
+
               transition-all
               duration-300
             "
@@ -143,19 +193,27 @@ export default function CqFeature() {
                 e.stopPropagation();
                 toggleFavorite(game.id);
               }}
+
               className="
                 absolute
                 top-1
                 right-1
+
                 w-7
                 h-7
+
                 rounded-full
                 bg-black/60
+
                 flex
                 items-center
                 justify-center
+
                 hover:bg-black/80
-                transition
+                hover:scale-110
+
+                transition-all
+                duration-200
               "
             >
 
@@ -175,10 +233,6 @@ export default function CqFeature() {
         ))}
 
       </div>
-
-      {/* ================= BOTTOM SPACE ================= */}
-
-      <div className="mt-4"></div>
 
     </div>
 

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Heart } from "lucide-react";
 
 // ================= IMAGES =================
@@ -13,134 +13,274 @@ import OlymPic from "./assets/OlymPic.png";
 import Golaifu from "./assets/Golaifu.png";
 
 export default function JDBGames() {
+
   const [favorite, setFavorite] = useState([]);
 
+  // ================= IMAGE ANIMATION =================
+
+  const [visibleImages, setVisibleImages] = useState([]);
+
+  const imageRefs = useRef([]);
+
+  // ================= FAVORITE =================
+
   const toggleFavorite = (id) => {
+
     if (favorite.includes(id)) {
-      setFavorite(favorite.filter((item) => item !== id));
+
+      setFavorite(
+        favorite.filter((item) => item !== id)
+      );
+
     } else {
-      setFavorite([...favorite, id]);
+
+      setFavorite([
+        ...favorite,
+        id
+      ]);
+
     }
+
   };
-    // ================= GAMES =================
+
+  // ================= GAMES =================
 
   const games = [
+
     {
       id: 1,
       image: TreasureBowl,
       title: "Treasure Bowl",
     },
+
     {
       id: 2,
       image: SuperNiubi,
       title: "Super Niubi",
     },
+
     {
       id: 3,
       image: OlympianTemple,
       title: "Olympian Temple",
     },
+
     {
       id: 4,
       image: Lucky777,
       title: "Lucky 777",
     },
+
     {
       id: 5,
       image: FortuneJewel,
       title: "Fortune Jewel",
     },
+
     {
       id: 6,
       image: ElementalLinkFire,
       title: "Elemental Link Fire",
     },
+
     {
       id: 7,
       image: OlymPic,
       title: "Olympic",
     },
+
     {
       id: 8,
       image: Golaifu,
       title: "Golaifu",
     },
+
   ];
-    return (
-    <div className="bg-[#020617] px-3 py-3">
 
-      {/* ================= CARD GRID ================= */}
+  // ================= SCROLL ANIMATION =================
 
-      <div className="grid grid-cols-4 gap-3">
+  useEffect(() => {
 
-        {games.map((game) => (
+    const observer = new IntersectionObserver(
 
-          <div
-            key={game.id}
-            className="
-              relative
-              overflow-hidden
-              rounded-xl
-              border
-              border-yellow-500
-              bg-[#061b3a]
-              shadow-[0_0_15px_rgba(255,200,0,.30)]
-              cursor-pointer
-              hover:scale-105
-              transition-all
-              duration-300
-            "
-          >
+      (entries) => {
 
-            {/* Game Image */}
+        entries.forEach((entry) => {
 
-            <img
-              src={game.image}
-              alt={game.title}
+          if (entry.isIntersecting) {
+
+            const index = Number(
+              entry.target.dataset.index
+            );
+
+            setVisibleImages((prev) => {
+
+              if (prev.includes(index)) {
+                return prev;
+              }
+
+              return [
+                ...prev,
+                index
+              ];
+
+            });
+
+            // Animation sirf ek baar chalegi
+            observer.unobserve(entry.target);
+
+          }
+
+        });
+
+      },
+
+      {
+        threshold: 0.2,
+      }
+
+    );
+
+    imageRefs.current.forEach((image) => {
+
+      if (image) {
+        observer.observe(image);
+      }
+
+    });
+
+    return () => {
+      observer.disconnect();
+    };
+
+  }, []);
+
+  return (
+    <>
+      {/* ================= IMAGE ANIMATION ================= */}
+
+      <style>{`
+
+        @keyframes jdbImageFadeUp {
+
+          0% {
+            opacity: 0;
+            transform: translateY(45px) scale(0.96);
+          }
+
+          100% {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+          }
+
+        }
+
+        .jdb-game-image {
+
+          opacity: 0;
+          transform: translateY(45px) scale(0.96);
+
+        }
+
+        .jdb-game-image.show {
+
+          animation:
+            jdbImageFadeUp
+            0.9s
+            cubic-bezier(0.22, 1, 0.36, 1)
+            forwards;
+
+        }
+
+      `}</style>
+
+      <div className="bg-[#020617] px-3 py-3">
+
+        {/* ================= CARD GRID ================= */}
+
+        <div className="grid grid-cols-4 gap-3">
+
+          {games.map((game, index) => (
+
+            <div
+              key={game.id}
               className="
-                w-full
-                h-[115px]
-                object-cover
-              "
-            />
-
-            {/* Heart Button */}
-
-            <button
-              onClick={() => toggleFavorite(game.id)}
-              className="
-                absolute
-                top-1
-                right-1
-
-                w-7
-                h-7
-
-                rounded-full
-
-                bg-black/60
-
-                flex
-                items-center
-                justify-center
+                relative
+                overflow-hidden
+                rounded-xl
+                border
+                border-yellow-500
+                bg-[#061b3a]
+                shadow-[0_0_15px_rgba(255,200,0,.30)]
+                cursor-pointer
+                hover:scale-105
+                transition-all
+                duration-300
               "
             >
-              <Heart
-                size={16}
-                className={
-                  favorite.includes(game.id)
-                    ? "fill-red-500 text-red-500"
-                    : "text-white"
-                }
+
+              {/* ================= GAME IMAGE ================= */}
+
+              <img
+                ref={(element) => {
+                  imageRefs.current[index] = element;
+                }}
+                data-index={index}
+                src={game.image}
+                alt={game.title}
+                className={`
+                  jdb-game-image
+
+                  ${
+                    visibleImages.includes(index)
+                      ? "show"
+                      : ""
+                  }
+
+                  w-full
+                  h-[115px]
+                  object-cover
+                `}
               />
-            </button>
 
-          </div>
+              {/* ================= HEART BUTTON ================= */}
 
-        ))}
+              <button
+                onClick={() =>
+                  toggleFavorite(game.id)
+                }
+                className="
+                  absolute
+                  top-1
+                  right-1
+                  w-7
+                  h-7
+                  rounded-full
+                  bg-black/60
+                  flex
+                  items-center
+                  justify-center
+                "
+              >
+
+                <Heart
+                  size={16}
+                  className={
+                    favorite.includes(game.id)
+                      ? "fill-red-500 text-red-500"
+                      : "text-white"
+                  }
+                />
+
+              </button>
+
+            </div>
+
+          ))}
+
+        </div>
 
       </div>
-
-    </div>
+    </>
   );
 }

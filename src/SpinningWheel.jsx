@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import  { useState } from "react";
 import { ArrowLeft, Share2, WalletCards } from "lucide-react";
 
 export default function SpinningWheel({ setCurrentPage }) {

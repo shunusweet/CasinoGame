@@ -3,14 +3,14 @@ import { ArrowLeft } from "lucide-react";
 import ActivityCard from "./ActivityCard";
 import LuckyWheelCard from "./LuckyWheelCard";
 import SiteWideRebateCard from "./SiteWideRebateCard";
-import SignInBonusCard from "./SignInBonusCard"
+import SignInBonusCard from "./SignInBonusCard";
 import DailyReliefFundCard from "./DailyReliefFundCard";
-import AgentCommissionCard from "./AgentCommissionCard"
-import RedemptionCodeCard from "./RedemptionCodeCard"
-import WeeklyCompensationCard from "./WeeklyCompensationCard"
-import CashRainCard from "./CashRainCard"
-import BetChallengeCard from "./BetChallengeCard"
-import DailySignInBonusCard from "./DailySignInBonusCard"
+import AgentCommissionCard from "./AgentCommissionCard";
+import RedemptionCodeCard from "./RedemptionCodeCard";
+import WeeklyCompensationCard from "./WeeklyCompensationCard";
+import CashRainCard from "./CashRainCard";
+import BetChallengeCard from "./BetChallengeCard";
+import DailySignInBonusCard from "./DailySignInBonusCard";
 
 const activities = [
   {
@@ -62,74 +62,234 @@ const activities = [
 const Activity = ({ setCurrentPage }) => {
   return (
     <div className="h-full overflow-y-auto bg-[#020617] pb-28">
-      {/* Header */}
+
+      {/* ================= HEADER ================= */}
+
       <div
         className="
-        sticky
-        top-0
-        z-50
-        bg-gradient-to-b
-        from-[#061b3a]
-        via-[#071426]
-        to-[#020617]
-        border-b
-        border-cyan-700
-        shadow-lg
-      "
+          sticky
+          top-0
+          z-50
+          bg-gradient-to-b
+          from-[#061b3a]
+          via-[#071426]
+          to-[#020617]
+          border-b
+          border-cyan-700
+          shadow-lg
+
+          animate-[fadeDown_0.6s_ease-out]
+        "
       >
         <div className="h-16 flex items-center justify-between px-4">
+
           <button
             onClick={() => setCurrentPage("home")}
             className="
-            w-10
-            h-10
-            rounded-full
-            border
-            border-cyan-500
-            flex
-            items-center
-            justify-center
-            text-cyan-300
-            hover:bg-cyan-500/20
-            duration-300
-          "
+              w-10
+              h-10
+              rounded-full
+              border
+              border-cyan-500
+              flex
+              items-center
+              justify-center
+              text-cyan-300
+              hover:bg-cyan-500/20
+              hover:scale-110
+              duration-300
+              transition-all
+            "
           >
             <ArrowLeft size={22} />
           </button>
 
-          <h1 className="text-white text-lg font-bold">
+          <h1
+            className="
+              text-white
+              text-lg
+              font-bold
+              animate-[fadeIn_0.8s_ease-out]
+            "
+          >
             Limited-Time Activities
           </h1>
 
           <div className="w-10"></div>
+
         </div>
       </div>
 
-      {/* Activity Cards */}
+
+      {/* ================= ACTIVITY CARDS ================= */}
+
       <div className="p-3 space-y-5">
-        {activities.map((item) => (
-          <ActivityCard
+
+        {activities.map((item, index) => (
+          <div
             key={item.id}
-            banner={item.banner}
-            icon={item.icon}
-            title={item.title}
-            subtitle={item.subtitle}
-            reward={item.reward}
-            button={item.button}
-          />
+            className="
+              opacity-0
+              animate-[slideUp_0.7s_ease-out_forwards]
+            "
+            style={{
+              animationDelay: `${index * 150}ms`,
+            }}
+          >
+            <ActivityCard
+              banner={item.banner}
+              icon={item.icon}
+              title={item.title}
+              subtitle={item.subtitle}
+              reward={item.reward}
+              button={item.button}
+            />
+          </div>
         ))}
 
-        <LuckyWheelCard />
-        <SiteWideRebateCard/>
-        <SignInBonusCard/>
-        <DailyReliefFundCard/>
-        <AgentCommissionCard/>
-        <RedemptionCodeCard/>
-        <WeeklyCompensationCard/>
-        <CashRainCard/>
-        <BetChallengeCard/>
-        <DailySignInBonusCard/>
+
+        {/* ================= OTHER CARDS ================= */}
+
+        <div
+          className="
+            opacity-0
+            animate-[slideUp_0.7s_ease-out_600ms_forwards]
+          "
+        >
+          <LuckyWheelCard />
+        </div>
+
+
+        <div
+          className="
+            opacity-0
+            animate-[slideUp_0.7s_ease-out_700ms_forwards]
+          "
+        >
+          <SiteWideRebateCard />
+        </div>
+
+
+        <div
+          className="
+            opacity-0
+            animate-[slideUp_0.7s_ease-out_800ms_forwards]
+          "
+        >
+          <SignInBonusCard />
+        </div>
+
+
+        <div
+          className="
+            opacity-0
+            animate-[slideUp_0.7s_ease-out_900ms_forwards]
+          "
+        >
+          <DailyReliefFundCard />
+        </div>
+
+
+        <div
+          className="
+            opacity-0
+            animate-[slideUp_0.7s_ease-out_1000ms_forwards]
+          "
+        >
+          <AgentCommissionCard />
+        </div>
+
+
+        <div
+          className="
+            opacity-0
+            animate-[slideUp_0.7s_ease-out_1100ms_forwards]
+          "
+        >
+          <RedemptionCodeCard />
+        </div>
+
+
+        <div
+          className="
+            opacity-0
+            animate-[slideUp_0.7s_ease-out_1200ms_forwards]
+          "
+        >
+          <WeeklyCompensationCard />
+        </div>
+
+
+        <div
+          className="
+            opacity-0
+            animate-[slideUp_0.7s_ease-out_1300ms_forwards]
+          "
+        >
+          <CashRainCard />
+        </div>
+
+
+        <div
+          className="
+            opacity-0
+            animate-[slideUp_0.7s_ease-out_1400ms_forwards]
+          "
+        >
+          <BetChallengeCard />
+        </div>
+
+
+        <div
+          className="
+            opacity-0
+            animate-[slideUp_0.7s_ease-out_1500ms_forwards]
+          "
+        >
+          <DailySignInBonusCard />
+        </div>
+
       </div>
+
+
+      {/* ================= ANIMATION CSS ================= */}
+
+      <style>{`
+        @keyframes fadeIn {
+          from {
+            opacity: 0;
+          }
+
+          to {
+            opacity: 1;
+          }
+        }
+
+        @keyframes fadeDown {
+          from {
+            opacity: 0;
+            transform: translateY(-25px);
+          }
+
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+
+        @keyframes slideUp {
+          from {
+            opacity: 0;
+            transform: translateY(45px);
+          }
+
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+      `}</style>
+
     </div>
   );
 };

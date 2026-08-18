@@ -9,14 +9,14 @@ import BuffaloStackSync from "./assets/BuffaloStackSync.png";
 import StackEm from "./assets/StackEm.png";
 
 import WildDie from "./assets/WildDie.png";
-import Hack_Mystery_Motel from "./assets/Hack_Mystery_Motel.jpg"
+import Hack_Mystery_Motel from "./assets/Hack_Mystery_Motel.jpg";
 import StickEm from "./assets/StickEm.png";
 
 import OmoM from "./assets/OmoM.png";
 
 import MiaMiMultiplier from "./assets/MiaMiMultiplier.png";
-import Cubes from "./assets/Cubes.png"
-import CashMpass from "./assets/CashMpass.png"
+import Cubes from "./assets/Cubes.png";
+import CashMpass from "./assets/CashMpass.png";
 import Respinner from "./assets/Respinner.png";
 
 // ================= COMPONENT =================
@@ -48,81 +48,81 @@ export default function HacksawGamesFeature() {
 
   // ================= GAMES =================
 
- const games = [
- 
-     {
-       id: 1,
-       image: LeBandit,
-       title: "Bon Bon Game",
-     },
- 
-     {
-       id: 2,
-       image: WantedDeadOrAWild,
-       title: "Wanted Dead Or AWild",
-     },
- 
-     {
-       id: 3,
-       image: BuffaloStackSync,
-       title: "Kingdom Z",
-     },
- 
-     {
-       id: 4,
-       image: StackEm,
-       title: "Ka Luck88",
-     },
- 
-     {
-       id: 5,
-       image: WildDie,
-       title: "Wild Die",
-     },
- 
-     {
-       id: 6,
-       image: Hack_Mystery_Motel,
-       title: "Hack Mystery Motel",
-     },
- 
-     {
-       id: 7,
-       image: StickEm,
-       title: "Stick Em",
-     },
- 
-     {
-       id: 8,
-       image: OmoM,
-       title: "Omo M",
-     },
- 
-     {
-       id: 9,
-       image: MiaMiMultiplier,
-       title: "MiaMiMultiplier",
-     },
- 
-     {
-       id: 10,
-       image:  Cubes,
-       title: " Cubes",
-     },
- 
-     {
-       id: 11,
-       image: CashMpass,
-       title: "Cash M pass",
-     },
- 
-     {
-       id: 12,
-       image: Respinner,
-       title: "Respinner",
-     },
- 
-   ];
+  const games = [
+
+    {
+      id: 1,
+      image: LeBandit,
+      title: "Bon Bon Game",
+    },
+
+    {
+      id: 2,
+      image: WantedDeadOrAWild,
+      title: "Wanted Dead Or AWild",
+    },
+
+    {
+      id: 3,
+      image: BuffaloStackSync,
+      title: "Kingdom Z",
+    },
+
+    {
+      id: 4,
+      image: StackEm,
+      title: "Ka Luck88",
+    },
+
+    {
+      id: 5,
+      image: WildDie,
+      title: "Wild Die",
+    },
+
+    {
+      id: 6,
+      image: Hack_Mystery_Motel,
+      title: "Hack Mystery Motel",
+    },
+
+    {
+      id: 7,
+      image: StickEm,
+      title: "Stick Em",
+    },
+
+    {
+      id: 8,
+      image: OmoM,
+      title: "Omo M",
+    },
+
+    {
+      id: 9,
+      image: MiaMiMultiplier,
+      title: "MiaMiMultiplier",
+    },
+
+    {
+      id: 10,
+      image: Cubes,
+      title: "Cubes",
+    },
+
+    {
+      id: 11,
+      image: CashMpass,
+      title: "Cash M pass",
+    },
+
+    {
+      id: 12,
+      image: Respinner,
+      title: "Respinner",
+    },
+
+  ];
 
   // ================= RETURN =================
 
@@ -163,6 +163,7 @@ export default function HacksawGamesFeature() {
                 h-[115px]
                 object-cover
                 rounded-xl
+                animate-[imageFadeIn_0.8s_ease-out]
               "
             />
 

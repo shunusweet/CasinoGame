@@ -1,9 +1,37 @@
 @import "tailwindcss";
-.no-scrollbar::-webkit-scrollbar{
-    display:none;
+
+/* ================= HIDE SCROLLBAR ================= */
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
 }
 
-.no-scrollbar{
-    -ms-overflow-style:none;
-    scrollbar-width:none;
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* ================= GLOBAL ================= */
+
+* {
+  box-sizing: border-box;
+}
+
+/* ================= FADE IN ANIMATION ================= */
+
+@keyframes gameFadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(25px) scale(0.95);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.game-fade-in {
+  animation: gameFadeIn 0.7s ease-out forwards;
+  opacity: 0;
 }

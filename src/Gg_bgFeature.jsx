@@ -9,12 +9,12 @@ import BG_Elvis_Frog_Trueways from "./assets/BG_Elvis_Frog_Trueways.jpg";
 import BG_Joker_Queen from "./assets/BG_Joker_Queen.jpg";
 
 import BG_Panda_Luck from "./assets/BG_Panda_Luck.jpg";
-import BG_Forty_Fruity_Million from "./assets/BG_Forty_Fruity_Million.jpg"
+import BG_Forty_Fruity_Million from "./assets/BG_Forty_Fruity_Million.jpg";
 import BG_Secret_Bar_Multidice_X from "./assets/BG_Secret_Bar_Multidice_X.jpg";
 import BG_Gold_Magnate from "./assets/BG_Gold_Magnate.jpg";
 
 import BG_Alien_Fruits from "./assets/BG_Alien_Fruits.jpg";
-import BG_Gold_Of_Minos from "./assets/BG_Gold_Of_Minos.jpg"
+import BG_Gold_Of_Minos from "./assets/BG_Gold_Of_Minos.jpg";
 import BG_Chicken_Rush from "./assets/BG_Chicken_Rush.jpg";
 import BG_OOF_The_Goldmine_Planet from "./assets/BG_OOF_The_Goldmine_Planet.jpg";
 
@@ -129,15 +129,72 @@ export default function Gg_bgFeature() {
 
     <div className="bg-[#020617] px-3 py-3">
 
+      {/* ================= CUSTOM ANIMATION CSS ================= */}
+
+      <style>{`
+
+        @keyframes gameCardFadeIn {
+
+          0% {
+            opacity: 0;
+            transform: translateY(40px) scale(0.92);
+          }
+
+          60% {
+            opacity: 0.8;
+            transform: translateY(-5px) scale(1.01);
+          }
+
+          100% {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+          }
+
+        }
+
+        .game-card-animation {
+
+          opacity: 0;
+
+          animation-name: gameCardFadeIn;
+          animation-duration: 700ms;
+          animation-timing-function: ease-out;
+          animation-fill-mode: forwards;
+
+        }
+
+        .game-card-animation:hover {
+
+          transform: scale(1.05);
+
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+
+          .game-card-animation {
+
+            animation: none;
+            opacity: 1;
+
+          }
+
+        }
+
+      `}</style>
+
       {/* ================= CARD GRID ================= */}
 
       <div className="grid grid-cols-4 gap-3">
 
-        {games.map((game) => (
+        {games.map((game, index) => (
 
           <div
             key={game.id}
+            style={{
+              animationDelay: `${index * 100}ms`,
+            }}
             className="
+              game-card-animation
               relative
               overflow-hidden
               rounded-xl
@@ -147,7 +204,7 @@ export default function Gg_bgFeature() {
               shadow-[0_0_15px_rgba(255,200,0,.30)]
               cursor-pointer
               hover:scale-105
-              transition-all
+              transition-transform
               duration-300
             "
           >
@@ -205,9 +262,6 @@ export default function Gg_bgFeature() {
 
       </div>
 
-      {/* ================= BOTTOM SPACE ================= */}
-
-      <div className="mt-4"></div>
 
     </div>
 

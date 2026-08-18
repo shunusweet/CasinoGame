@@ -133,6 +133,8 @@ export default function InoutFeature() {
                 h-[115px]
                 object-cover
                 rounded-xl
+
+                animate-[imageFadeIn_0.8s_ease-out]
               "
             />
 
@@ -178,7 +180,7 @@ export default function InoutFeature() {
 
       {/* ================= BOTTOM SPACE ================= */}
 
-      <div className="mt-4"></div>
+      
 
     </div>
 

@@ -104,20 +104,36 @@ export default function Gg2JGamesFeature() {
 
       <div className="grid grid-cols-4 gap-3">
 
-        {games.map((game) => (
+        {games.map((game, index) => (
 
           <div
             key={game.id}
+
+            // ================= STAGGER DELAY =================
+            style={{
+              animationDelay: `${index * 100}ms`,
+            }}
+
             className="
               relative
               overflow-hidden
               rounded-xl
+
               border
               border-yellow-500
+
               bg-[#061b3a]
+
               shadow-[0_0_15px_rgba(255,200,0,.30)]
+
               cursor-pointer
+
+              opacity-0
+
+              animate-[fadeInUp_0.6s_ease-out_forwards]
+
               hover:scale-105
+
               transition-all
               duration-300
             "
@@ -128,11 +144,18 @@ export default function Gg2JGamesFeature() {
             <img
               src={game.image}
               alt={game.title}
+
               className="
                 w-full
                 h-[115px]
+
                 object-cover
                 rounded-xl
+
+                transition-transform
+                duration-500
+
+                hover:scale-110
               "
             />
 
@@ -143,29 +166,45 @@ export default function Gg2JGamesFeature() {
                 e.stopPropagation();
                 toggleFavorite(game.id);
               }}
+
               className="
                 absolute
                 top-1
                 right-1
+
                 w-7
                 h-7
+
                 rounded-full
+
                 bg-black/60
+
                 flex
                 items-center
                 justify-center
+
                 hover:bg-black/80
-                transition
+
+                transition-all
+                duration-300
+
+                hover:scale-110
               "
             >
 
               <Heart
                 size={16}
-                className={
-                  favorite.includes(game.id)
-                    ? "fill-red-500 text-red-500"
-                    : "text-white"
-                }
+
+                className={`
+                  transition-all
+                  duration-300
+
+                  ${
+                    favorite.includes(game.id)
+                      ? "fill-red-500 text-red-500 scale-125"
+                      : "text-white"
+                  }
+                `}
               />
 
             </button>
@@ -175,10 +214,25 @@ export default function Gg2JGamesFeature() {
         ))}
 
       </div>
+      {/* ================= CUSTOM ANIMATION ================= */}
 
-      {/* ================= BOTTOM SPACE ================= */}
+      <style>{`
 
-      <div className="mt-4"></div>
+        @keyframes fadeInUp {
+
+          from {
+            opacity: 0;
+            transform: translateY(30px) scale(0.96);
+          }
+
+          to {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+          }
+
+        }
+
+      `}</style>
 
     </div>
 

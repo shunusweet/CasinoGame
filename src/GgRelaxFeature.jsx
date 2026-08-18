@@ -9,46 +9,38 @@ import QuackinReels from "./assets/QuackinReels.png";
 import TheTumbles from "./assets/TheTumbles.png";
 
 import BoneRaiders from "./assets/BoneRaiders.png";
-import SpaceAttack from "./assets/SpaceAttack.png"
+import SpaceAttack from "./assets/SpaceAttack.png";
 import AtlantisCrush from "./assets/AtlantisCrush.png";
 import GreatPigsby from "./assets/GreatPigsby.png";
 
 import MonkeysGoWild from "./assets/MonkeysGoWild.png";
-import FatBox from "./assets/FatBox.png"
+import FatBox from "./assets/FatBox.png";
 import MummyMoltiplier from "./assets/MummyMoltiplier.png";
 import BumbleTumble from "./assets/BumbleTumble.png";
 
 // ================= COMPONENT =================
 
 export default function GgRelaxFeature() {
-
   const [favorite, setFavorite] = useState([]);
 
   // ================= FAVORITE =================
 
   const toggleFavorite = (id) => {
-
     if (favorite.includes(id)) {
-
       setFavorite(
         favorite.filter((item) => item !== id)
       );
-
     } else {
-
       setFavorite([
         ...favorite,
         id
       ]);
-
     }
-
   };
 
   // ================= GAMES =================
 
   const games = [
-
     {
       id: 1,
       image: MoneySleigh,
@@ -120,33 +112,43 @@ export default function GgRelaxFeature() {
       image: BumbleTumble,
       title: "Bumble Tumble",
     },
-
   ];
 
   // ================= RETURN =================
 
   return (
-
     <div className="bg-[#020617] px-3 py-3">
 
       {/* ================= CARD GRID ================= */}
 
       <div className="grid grid-cols-4 gap-3">
 
-        {games.map((game) => (
+        {games.map((game, index) => (
 
           <div
             key={game.id}
+            style={{
+              animationDelay: `${index * 100}ms`,
+            }}
             className="
               relative
               overflow-hidden
               rounded-xl
+
               border
               border-yellow-500
+
               bg-[#061b3a]
+
               shadow-[0_0_15px_rgba(255,200,0,.30)]
+
               cursor-pointer
+
+              opacity-0
+              animate-[fadeInUp_0.6s_ease-out_forwards]
+
               hover:scale-105
+
               transition-all
               duration-300
             "
@@ -162,6 +164,11 @@ export default function GgRelaxFeature() {
                 h-[115px]
                 object-cover
                 rounded-xl
+
+                transition-transform
+                duration-500
+
+                hover:scale-110
               "
             />
 
@@ -176,25 +183,38 @@ export default function GgRelaxFeature() {
                 absolute
                 top-1
                 right-1
+
                 w-7
                 h-7
+
                 rounded-full
+
                 bg-black/60
+
                 flex
                 items-center
                 justify-center
+
                 hover:bg-black/80
-                transition
+
+                transition-all
+                duration-300
+
+                hover:scale-110
               "
             >
 
               <Heart
                 size={16}
-                className={
-                  favorite.includes(game.id)
-                    ? "fill-red-500 text-red-500"
-                    : "text-white"
-                }
+                className={`
+                  transition-all
+                  duration-300
+                  ${
+                    favorite.includes(game.id)
+                      ? "fill-red-500 text-red-500 scale-125"
+                      : "text-white"
+                  }
+                `}
               />
 
             </button>
@@ -205,11 +225,23 @@ export default function GgRelaxFeature() {
 
       </div>
 
-      {/* ================= BOTTOM SPACE ================= */}
 
-      <div className="mt-4"></div>
+      {/* ================= ANIMATION ================= */}
+
+      <style>{`
+        @keyframes fadeInUp {
+          from {
+            opacity: 0;
+            transform: translateY(30px) scale(0.96);
+          }
+
+          to {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+          }
+        }
+      `}</style>
 
     </div>
-
   );
 }

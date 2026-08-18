@@ -2,6 +2,7 @@ import { useState } from "react";
 
 import Header from "./Header";
 import Sidebar from "./Sidebar";
+
 import HeroSectoin from "./HeroSectoin";
 import PromoCards from "./PromoCards";
 import AnnouncementBar from "./AnnouncementBar";
@@ -31,33 +32,56 @@ import DBGames from "./DBGames";
 import FishGames from "./FishGames";
 import Footer from "./Footer";
 
+
 function App() {
+
+  // =====================================================
+  // SIDEBAR
+  // =====================================================
+
   const [openMenu, setOpenMenu] = useState(false);
+
+
+  // =====================================================
+  // LOGIN / SIGNUP
+  // =====================================================
 
   const [loginOpen, setLoginOpen] = useState(false);
 
   const [signupOpen, setSignupOpen] = useState(false);
 
-  // ================= SCREEN ROUTING =================
+
+  // =====================================================
+  // PAGE ROUTING
+  // =====================================================
+
   const [currentPage, setCurrentPage] = useState("home");
 
+
   return (
+
     <div
       className="
+        relative
+
+        w-full
         max-w-[430px]
+
         h-screen
+
         mx-auto
+
+        overflow-hidden
 
         bg-[#020617]
 
         border-4
         border-cyan-600
 
-        relative
-
-        overflow-hidden
+        shadow-[0_0_30px_rgba(0,200,255,.15)]
       "
     >
+
 
       {/* ================================================= */}
       {/* HOME */}
@@ -65,24 +89,41 @@ function App() {
 
       {currentPage === "home" && (
         <>
+
+          {/* ================= HEADER ================= */}
+
           <Header
             setOpenMenu={setOpenMenu}
             setLoginOpen={setLoginOpen}
             setSignupOpen={setSignupOpen}
           />
 
+
+          {/* ================= SIDEBAR ================= */}
+
           <Sidebar
             openMenu={openMenu}
             setOpenMenu={setOpenMenu}
           />
 
+
+          {/* ================================================= */}
+          {/* MAIN GAME CONTENT */}
+          {/* ================================================= */}
+
           <div
             className="
+              relative
+
               h-full
+
               overflow-y-auto
+              overflow-x-hidden
+
               pb-28
             "
           >
+
             <HeroSectoin />
 
             <PromoCards />
@@ -116,9 +157,12 @@ function App() {
             <FishGames />
 
             <Footer />
+
           </div>
+
         </>
       )}
+
 
 
       {/* ================================================= */}
@@ -126,10 +170,13 @@ function App() {
       {/* ================================================= */}
 
       {currentPage === "activity" && (
+
         <Activity
           setCurrentPage={setCurrentPage}
         />
+
       )}
+
 
 
       {/* ================================================= */}
@@ -137,10 +184,13 @@ function App() {
       {/* ================================================= */}
 
       {currentPage === "deposit" && (
+
         <DepositPage
           setCurrentPage={setCurrentPage}
         />
+
       )}
+
 
 
       {/* ================================================= */}
@@ -148,10 +198,13 @@ function App() {
       {/* ================================================= */}
 
       {currentPage === "agency" && (
+
         <AgencyHeader
           setCurrentPage={setCurrentPage}
         />
+
       )}
+
 
 
       {/* ================================================= */}
@@ -165,6 +218,7 @@ function App() {
       />
 
 
+
       {/* ================================================= */}
       {/* SIGNUP MODAL */}
       {/* ================================================= */}
@@ -174,6 +228,7 @@ function App() {
         setSignupOpen={setSignupOpen}
         setLoginOpen={setLoginOpen}
       />
+
 
 
       {/* ================================================= */}
@@ -187,7 +242,9 @@ function App() {
       />
 
     </div>
+
   );
 }
+
 
 export default App;

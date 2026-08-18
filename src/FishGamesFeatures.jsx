@@ -100,15 +100,67 @@ export default function FishGamesFeatures() {
 
     <div className="bg-[#020617] px-3 py-3">
 
+      {/* ================= CUSTOM ANIMATION CSS ================= */}
+
+      <style>{`
+
+        @keyframes fishGameFadeIn {
+
+          0% {
+            opacity: 0;
+            transform: translateY(40px) scale(0.92);
+          }
+
+          60% {
+            opacity: 0.85;
+            transform: translateY(-5px) scale(1.01);
+          }
+
+          100% {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+          }
+
+        }
+
+        .fish-game-animation {
+
+          opacity: 0;
+
+          animation-name: fishGameFadeIn;
+          animation-duration: 700ms;
+          animation-timing-function: ease-out;
+          animation-fill-mode: forwards;
+
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+
+          .fish-game-animation {
+
+            animation: none;
+            opacity: 1;
+
+          }
+
+        }
+
+      `}</style>
+
       {/* ================= CARD GRID ================= */}
 
       <div className="grid grid-cols-4 gap-3">
 
-        {games.map((game) => (
+        {games.map((game, index) => (
 
           <div
             key={game.id}
+            style={{
+              animationDelay: `${index * 100}ms`,
+            }}
             className="
+              fish-game-animation
+
               relative
               overflow-hidden
               rounded-xl
@@ -117,7 +169,9 @@ export default function FishGamesFeatures() {
               bg-[#061b3a]
               shadow-[0_0_15px_rgba(255,200,0,.30)]
               cursor-pointer
+
               hover:scale-105
+
               transition-all
               duration-300
             "
@@ -147,14 +201,20 @@ export default function FishGamesFeatures() {
                 absolute
                 top-1
                 right-1
+
                 w-7
                 h-7
+
                 rounded-full
+
                 bg-black/60
+
                 flex
                 items-center
                 justify-center
+
                 hover:bg-black/80
+
                 transition
               "
             >
@@ -175,10 +235,6 @@ export default function FishGamesFeatures() {
         ))}
 
       </div>
-
-      {/* ================= BOTTOM SPACE ================= */}
-
-      <div className="mt-4"></div>
 
     </div>
 

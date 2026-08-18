@@ -9,7 +9,7 @@ import TombOfDragonEmperor from "./assets/TombOfDragonEmperor.png";
 import BbinAllStar from "./assets/BbinAllStar.png";
 
 import RichHarvest from "./assets/RichHarvest.png";
-import PiggyBank from "./assets/PiggyBank.jpg"
+import PiggyBank from "./assets/PiggyBank.jpg";
 
 import JiuWeiHu from "./assets/JiuWeiHu.png";
 import GrapTurnDragon from "./assets/GrapTurnDragon.png";
@@ -105,11 +105,16 @@ export default function BbGamesFeatures() {
 
       <div className="grid grid-cols-4 gap-3">
 
-        {games.map((game) => (
+        {games.map((game, index) => (
 
           <div
             key={game.id}
+            style={{
+              animationDelay: `${index * 0.12}s`,
+            }}
             className="
+              animate-gameCard
+
               relative
               overflow-hidden
               rounded-xl
@@ -118,7 +123,10 @@ export default function BbGamesFeatures() {
               bg-[#061b3a]
               shadow-[0_0_15px_rgba(255,200,0,.30)]
               cursor-pointer
+
               hover:scale-105
+              hover:-translate-y-1
+
               transition-all
               duration-300
             "
@@ -176,10 +184,42 @@ export default function BbGamesFeatures() {
         ))}
 
       </div>
+{/* ================= ANIMATION CSS ================= */}
 
-      {/* ================= BOTTOM SPACE ================= */}
+      <style>{`
+        @keyframes gameCardFadeIn {
+          0% {
+            opacity: 0;
+            transform: translateY(35px) scale(0.92);
+          }
 
-      <div className="mt-4"></div>
+          60% {
+            opacity: 1;
+          }
+
+          100% {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+          }
+        }
+
+        .animate-gameCard {
+          opacity: 0;
+          animation-name: gameCardFadeIn;
+          animation-duration: 0.7s;
+          animation-timing-function: ease-out;
+          animation-fill-mode: forwards;
+          animation-iteration-count: 1;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+          .animate-gameCard {
+            opacity: 1;
+            animation: none;
+            transform: none;
+          }
+        }
+      `}</style>
 
     </div>
 

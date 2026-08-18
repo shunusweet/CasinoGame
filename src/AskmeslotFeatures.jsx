@@ -9,12 +9,12 @@ import KingdomZ from "./assets/KingdomZ.png";
 import BlessingTiger from "./assets/BlessingTiger.png";
 
 import MafiaWays from "./assets/MafiaWays.png";
-import AztecLegend from "./assets/AztecLegend.png"
+import AztecLegend from "./assets/AztecLegend.png";
 import MahjongOfThePhoenix from "./assets/MahjongOfThePhoenix.png";
 import GovernmentDisco from "./assets/GovernmentDisco.png";
 
 import SuperAceX from "./assets/SuperAceX.png";
-import MarketKing from "./assets/MarketKing.png"
+import MarketKing from "./assets/MarketKing.png";
 import MoeMoeCute from "./assets/MoeMoeCute.png";
 import BlessingDragon from "./assets/BlessingDragon.png";
 
@@ -133,11 +133,16 @@ export default function AskmeslotFeatures() {
 
       <div className="grid grid-cols-4 gap-3">
 
-        {games.map((game) => (
+        {games.map((game, index) => (
 
           <div
             key={game.id}
+            style={{
+              animationDelay: `${index * 0.12}s`,
+            }}
             className="
+              game-card-animation
+
               relative
               overflow-hidden
               rounded-xl
@@ -146,7 +151,10 @@ export default function AskmeslotFeatures() {
               bg-[#061b3a]
               shadow-[0_0_15px_rgba(255,200,0,.30)]
               cursor-pointer
+
               hover:scale-105
+              hover:-translate-y-1
+
               transition-all
               duration-300
             "
@@ -185,6 +193,7 @@ export default function AskmeslotFeatures() {
                 justify-center
                 hover:bg-black/80
                 transition
+                z-10
               "
             >
 
@@ -205,9 +214,53 @@ export default function AskmeslotFeatures() {
 
       </div>
 
-      {/* ================= BOTTOM SPACE ================= */}
+      {/* ================= ANIMATION CSS ================= */}
 
-      <div className="mt-4"></div>
+      <style>{`
+
+        @keyframes gameFadeIn {
+
+          0% {
+            opacity: 0;
+            transform: translateY(35px) scale(0.92);
+          }
+
+          50% {
+            opacity: 0.6;
+          }
+
+          100% {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+          }
+
+        }
+
+        .game-card-animation {
+
+          opacity: 0;
+
+          animation-name: gameFadeIn;
+          animation-duration: 0.7s;
+          animation-timing-function: ease-out;
+          animation-fill-mode: forwards;
+          animation-iteration-count: 1;
+
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+
+          .game-card-animation {
+
+            opacity: 1;
+            animation: none;
+            transform: none;
+
+          }
+
+        }
+
+      `}</style>
 
     </div>
 

@@ -9,15 +9,14 @@ import Habanero_Panda_Panda from "./assets/Habanero_Panda_Panda.jpg";
 import Habanero_Lucky_Lucky from "./assets/Habanero_Lucky_Lucky.jpg";
 
 import Habanero_Legendary_Beasts from "./assets/Habanero_Legendary_Beasts.jpg";
-import Habanero_Taberna_DeLos_Muertos from "./assets/Habanero_Taberna_DeLos_Muertos.jpg"
+import Habanero_Taberna_DeLos_Muertos from "./assets/Habanero_Taberna_DeLos_Muertos.jpg";
 import Habanero_Safari_Rumble from "./assets/Habanero_Safari_Rumble.jpg";
 import Habanero_Mummy_Hunter from "./assets/Habanero_Mummy_Hunter.jpg";
 
 import Habanero_Mystic_Rings from "./assets/Habanero_Mystic_Rings.jpg";
-import Habanero_Mystic_Ring from "./assets/Habanero_Mystic_Ring.jpg"
+import Habanero_Mystic_Ring from "./assets/Habanero_Mystic_Ring.jpg";
 import Habanero_Love_And_Riches_Eldorado from "./assets/Habanero_Love_And_Riches_Eldorado.jpg";
 import Habanero_Carnival_Cove from "./assets/Habanero_Carnival_Cove.jpg";
-
 
 // ================= COMPONENT =================
 
@@ -48,83 +47,81 @@ export default function HabaneroFeature() {
 
   // ================= GAMES =================
 
-   const games = [
-  
-      {
-        id: 1,
-        image: Habanero_Gold_Rush,
-        title: "Habanero Gold Rush",
-      },
-  
-      {
-        id: 2,
-        image: Habanero_Tower_Of_Pizza,
-        title: "Habanero Tower Of Pizza",
-      },
-  
-      {
-        id: 3,
-        image: Habanero_Panda_Panda,
-        title: "Habanero Panda Panda",
-      },
-  
-      {
-        id: 4,
-        image: Habanero_Lucky_Lucky,
-        title: "Habanero Lucky Lucky",
-      },
-  
-      {
-        id: 5,
-        image: Habanero_Legendary_Beasts,
-        title: "Habanero Legendary Beasts",
-      },
-  
-      {
-        id: 6,
-        image: Habanero_Taberna_DeLos_Muertos,
-        title: "Habanero Taberna DeLos Muertos",
-      },
-  
-      {
-        id: 7,
-        image: Habanero_Safari_Rumble,
-        title: "Stick Em",
-      },
-  
-      {
-        id: 8,
-        image: Habanero_Mummy_Hunter,
-        title: "Omo M",
-      },
-  
-      {
-        id: 9,
-        image: Habanero_Mystic_Rings,
-        title: "MiaMiMultiplier",
-      },
-  
-      {
-        id: 10,
-        image:  Habanero_Mystic_Ring,
-        title: " Cubes",
-      },
-  
-      {
-        id: 11,
-        image: Habanero_Love_And_Riches_Eldorado,
-        title: "Cash M pass",
-      },
-  
-      {
-        id: 12,
-        image: Habanero_Carnival_Cove,
-        title: "Respinner",
-      },
-  
-    ];
+  const games = [
 
-  
+    {
+      id: 1,
+      image: Habanero_Gold_Rush,
+      title: "Habanero Gold Rush",
+    },
+
+    {
+      id: 2,
+      image: Habanero_Tower_Of_Pizza,
+      title: "Habanero Tower Of Pizza",
+    },
+
+    {
+      id: 3,
+      image: Habanero_Panda_Panda,
+      title: "Habanero Panda Panda",
+    },
+
+    {
+      id: 4,
+      image: Habanero_Lucky_Lucky,
+      title: "Habanero Lucky Lucky",
+    },
+
+    {
+      id: 5,
+      image: Habanero_Legendary_Beasts,
+      title: "Habanero Legendary Beasts",
+    },
+
+    {
+      id: 6,
+      image: Habanero_Taberna_DeLos_Muertos,
+      title: "Habanero Taberna DeLos Muertos",
+    },
+
+    {
+      id: 7,
+      image: Habanero_Safari_Rumble,
+      title: "Stick Em",
+    },
+
+    {
+      id: 8,
+      image: Habanero_Mummy_Hunter,
+      title: "Omo M",
+    },
+
+    {
+      id: 9,
+      image: Habanero_Mystic_Rings,
+      title: "MiaMiMultiplier",
+    },
+
+    {
+      id: 10,
+      image: Habanero_Mystic_Ring,
+      title: "Cubes",
+    },
+
+    {
+      id: 11,
+      image: Habanero_Love_And_Riches_Eldorado,
+      title: "Cash M pass",
+    },
+
+    {
+      id: 12,
+      image: Habanero_Carnival_Cove,
+      title: "Respinner",
+    },
+
+  ];
 
   // ================= RETURN =================
 
@@ -165,6 +162,7 @@ export default function HabaneroFeature() {
                 h-[115px]
                 object-cover
                 rounded-xl
+                animate-[imageFadeIn_0.8s_ease-out]
               "
             />
 
@@ -207,10 +205,6 @@ export default function HabaneroFeature() {
         ))}
 
       </div>
-
-      {/* ================= BOTTOM SPACE ================= */}
-
-      <div className="mt-4"></div>
 
     </div>
 

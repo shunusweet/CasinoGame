@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Heart } from "lucide-react";
 
 // ================= IMAGES =================
@@ -9,12 +9,12 @@ import SP_777_Flamingo_Fever from "./assets/SP_777_Flamingo_Fever.jpg";
 import SP_Book_of_majestic_wild_buffalo from "./assets/SP_Book_of_majestic_wild_buffalo.jpg";
 
 import SP_777_Fruits_Fire_Blaze from "./assets/SP_777_Fruits_Fire_Blaze.jpg";
-import SP_Buffalo_Rampage_Hold_Hit from "./assets/SP_Buffalo_Rampage_Hold_Hit.jpg"
+import SP_Buffalo_Rampage_Hold_Hit from "./assets/SP_Buffalo_Rampage_Hold_Hit.jpg";
 import SP_777_Dragons_Rage from "./assets/SP_777_Dragons_Rage.jpg";
 import SP_Joker_Wild_Ride_Halloween from "./assets/SP_Joker_Wild_Ride_Halloween.jpg";
 
 import SP_Book_Of_Ocean_Outlaws from "./assets/SP_Book_Of_Ocean_Outlaws.jpg";
-import SP_TroutTreasure_Egyptian_Catch from "./assets/SP_TroutTreasure_Egyptian_Catch.jpg"
+import SP_TroutTreasure_Egyptian_Catch from "./assets/SP_TroutTreasure_Egyptian_Catch.jpg";
 import SP_777_Havana_Nights from "./assets/SP_777_Havana_Nights.jpg";
 import SP_Baba_Yaga_Tales_Haunted_Hollows from "./assets/SP_Baba_Yaga_Tales_Haunted_Hollows.jpg";
 
@@ -23,6 +23,9 @@ import SP_Baba_Yaga_Tales_Haunted_Hollows from "./assets/SP_Baba_Yaga_Tales_Haun
 export default function SpinomenalFeature() {
 
   const [favorite, setFavorite] = useState([]);
+  const [visibleImages, setVisibleImages] = useState([]);
+
+  const imageRefs = useRef([]);
 
   // ================= FAVORITE =================
 
@@ -123,93 +126,201 @@ export default function SpinomenalFeature() {
 
   ];
 
+  // ================= IMAGE SCROLL ANIMATION =================
+
+  useEffect(() => {
+
+    const observer = new IntersectionObserver(
+
+      (entries) => {
+
+        entries.forEach((entry) => {
+
+          if (entry.isIntersecting) {
+
+            const index = Number(
+              entry.target.dataset.index
+            );
+
+            setVisibleImages((prev) => {
+
+              if (prev.includes(index)) {
+                return prev;
+              }
+
+              return [
+                ...prev,
+                index
+              ];
+
+            });
+
+            // Animation sirf ek baar chalegi
+            observer.unobserve(entry.target);
+
+          }
+
+        });
+
+      },
+
+      {
+        threshold: 0.2,
+      }
+
+    );
+
+    imageRefs.current.forEach((image) => {
+
+      if (image) {
+        observer.observe(image);
+      }
+
+    });
+
+    return () => {
+      observer.disconnect();
+    };
+
+  }, []);
+
   // ================= RETURN =================
 
   return (
 
-    <div className="bg-[#020617] px-3 py-3">
+    <>
+      {/* ================= IMAGE ANIMATION ================= */}
 
-      {/* ================= CARD GRID ================= */}
+      <style>{`
 
-      <div className="grid grid-cols-4 gap-3">
+        @keyframes spinomenalImageFadeUp {
 
-        {games.map((game) => (
+          0% {
+            opacity: 0;
+            transform: translateY(45px) scale(0.96);
+          }
 
-          <div
-            key={game.id}
-            className="
-              relative
-              overflow-hidden
-              rounded-xl
-              border
-              border-yellow-500
-              bg-[#061b3a]
-              shadow-[0_0_15px_rgba(255,200,0,.30)]
-              cursor-pointer
-              hover:scale-105
-              transition-all
-              duration-300
-            "
-          >
+          100% {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+          }
 
-            {/* ================= GAME IMAGE ================= */}
+        }
 
-            <img
-              src={game.image}
-              alt={game.title}
+        .spinomenal-game-image {
+
+          opacity: 0;
+          transform: translateY(45px) scale(0.96);
+
+        }
+
+        .spinomenal-game-image.show {
+
+          animation:
+            spinomenalImageFadeUp
+            0.9s
+            cubic-bezier(0.22, 1, 0.36, 1)
+            forwards;
+
+        }
+
+      `}</style>
+
+      <div className="bg-[#020617] px-3 py-3">
+
+        {/* ================= CARD GRID ================= */}
+
+        <div className="grid grid-cols-4 gap-3">
+
+          {games.map((game, index) => (
+
+            <div
+              key={game.id}
               className="
-                w-full
-                h-[115px]
-                object-cover
+                relative
+                overflow-hidden
                 rounded-xl
-              "
-            />
-
-            {/* ================= HEART BUTTON ================= */}
-
-            <button
-              onClick={(e) => {
-                e.stopPropagation();
-                toggleFavorite(game.id);
-              }}
-              className="
-                absolute
-                top-1
-                right-1
-                w-7
-                h-7
-                rounded-full
-                bg-black/60
-                flex
-                items-center
-                justify-center
-                hover:bg-black/80
-                transition
+                border
+                border-yellow-500
+                bg-[#061b3a]
+                shadow-[0_0_15px_rgba(255,200,0,.30)]
+                cursor-pointer
+                hover:scale-105
+                transition-all
+                duration-300
               "
             >
 
-              <Heart
-                size={16}
-                className={
-                  favorite.includes(game.id)
-                    ? "fill-red-500 text-red-500"
-                    : "text-white"
-                }
+              {/* ================= GAME IMAGE ================= */}
+
+              <img
+                ref={(element) => {
+                  imageRefs.current[index] = element;
+                }}
+                data-index={index}
+                src={game.image}
+                alt={game.title}
+                className={`
+                  spinomenal-game-image
+                  ${
+                    visibleImages.includes(index)
+                      ? "show"
+                      : ""
+                  }
+
+                  w-full
+                  h-[115px]
+                  object-cover
+                  rounded-xl
+                `}
               />
 
-            </button>
+              {/* ================= HEART BUTTON ================= */}
 
-          </div>
+              <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  toggleFavorite(game.id);
+                }}
+                className="
+                  absolute
+                  top-1
+                  right-1
+                  w-7
+                  h-7
+                  rounded-full
+                  bg-black/60
+                  flex
+                  items-center
+                  justify-center
+                  hover:bg-black/80
+                  transition
+                "
+              >
 
-        ))}
+                <Heart
+                  size={16}
+                  className={
+                    favorite.includes(game.id)
+                      ? "fill-red-500 text-red-500"
+                      : "text-white"
+                  }
+                />
+
+              </button>
+
+            </div>
+
+          ))}
+
+        </div>
+
+       
 
       </div>
 
-      {/* ================= BOTTOM SPACE ================= */}
-
-      <div className="mt-4"></div>
-
-    </div>
+    </>
 
   );
+
 }
