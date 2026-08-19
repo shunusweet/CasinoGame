@@ -8,161 +8,294 @@ const ActivityCard = ({
   button,
 }) => {
   return (
+
     <div
       className="
-      overflow-hidden
-      rounded-[24px]
+        w-full
+        max-w-[540px]
+        min-w-0
+        mx-auto
 
-      border
-      border-cyan-500/70
+        overflow-hidden
+        rounded-[20px]
+        sm:rounded-[24px]
 
-      bg-gradient-to-b
-      from-[#061b3a]
-      via-[#071426]
-      to-[#020617]
+        border
+        border-cyan-500/70
 
-      shadow-[0_0_25px_rgba(0,255,255,.18)]
+        bg-gradient-to-b
+        from-[#061b3a]
+        via-[#071426]
+        to-[#020617]
 
-      hover:scale-[1.01]
-      duration-300
+        shadow-[0_0_25px_rgba(0,255,255,.18)]
+
+        hover:scale-[1.01]
+
+        transition-all
+        duration-300
       "
     >
-      {/* Banner */}
-      <div className="relative h-[180px] overflow-hidden">
+
+      {/* ================================================= */}
+      {/* BANNER */}
+      {/* ================================================= */}
+
+      <div
+        className="
+          relative
+          w-full
+
+          h-[150px]
+          sm:h-[180px]
+
+          overflow-hidden
+        "
+      >
 
         <img
           src={banner}
           alt={title}
           className="
-          w-full
-          h-full
-          object-cover
+            w-full
+            h-full
+
+            object-cover
+
+            block
           "
         />
 
-        {/* Dark Overlay */}
+        {/* ================= DARK OVERLAY ================= */}
+
         <div
           className="
-          absolute
-          inset-0
+            absolute
+            inset-0
 
-          bg-gradient-to-r
-          from-[#020617]/70
-          via-[#061b3a]/20
-          to-[#020617]/50
+            bg-gradient-to-r
+            from-[#020617]/80
+            via-[#061b3a]/30
+            to-[#020617]/60
           "
         />
 
-        {/* Text */}
+        {/* ================= TEXT ================= */}
+
         <div
           className="
-          absolute
-          inset-0
+            absolute
+            inset-0
 
-          flex
-          flex-col
-          justify-center
+            flex
+            flex-col
+            justify-center
 
-          px-6
+            px-4
+            sm:px-6
+
+            min-w-0
           "
         >
+
+          {/* Limited Event */}
+
           <p
             className="
-            text-cyan-300
-            uppercase
-            tracking-widest
-            text-xs
+              text-cyan-300
+
+              uppercase
+              tracking-[2px]
+              sm:tracking-widest
+
+              text-[9px]
+              sm:text-xs
+
+              font-semibold
+
+              truncate
             "
           >
             Limited Event
           </p>
 
+          {/* Title */}
+
           <h2
             className="
-            text-white
-            text-3xl
-            font-black
-            leading-tight
+              text-white
+
+              text-xl
+              sm:text-3xl
+
+              font-black
+
+              leading-tight
+
+              max-w-full
+
+              truncate
             "
           >
             {title}
           </h2>
 
+          {/* Subtitle */}
+
           <p
             className="
-            mt-2
-            text-cyan-200
-            text-sm
+              mt-1
+              sm:mt-2
+
+              text-cyan-200
+
+              text-[10px]
+              sm:text-sm
+
+              leading-tight
+
+              max-w-[85%]
+
+              truncate
             "
           >
             Invite friends and complete missions
           </p>
 
+          {/* Reward */}
+
           <h1
             className="
-            mt-3
+              mt-2
+              sm:mt-3
 
-            text-yellow-300
+              text-yellow-300
 
-            text-4xl
+              text-2xl
+              sm:text-4xl
 
-            font-black
+              font-black
+
+              leading-none
+
+              truncate
             "
           >
             {reward}
           </h1>
+
         </div>
+
       </div>
 
-      {/* Bottom */}
+
+      {/* ================================================= */}
+      {/* BOTTOM SECTION */}
+      {/* ================================================= */}
+
       <div
         className="
-        flex
-        items-center
-        justify-between
+          w-full
 
-        p-4
+          flex
+          items-center
+          justify-between
+
+          gap-2
+
+          p-3
+          sm:p-4
+
+          min-w-0
         "
       >
-        {/* Left */}
-        <div className="flex items-center gap-3">
+
+        {/* ================================================= */}
+        {/* LEFT SECTION */}
+        {/* ================================================= */}
+
+        <div
+          className="
+            flex
+            items-center
+
+            gap-2
+            sm:gap-3
+
+            min-w-0
+            flex-1
+          "
+        >
+
+          {/* ================= ICON ================= */}
 
           <div
             className="
-            w-16
-            h-16
+              shrink-0
 
-            rounded-2xl
+              w-12
+              h-12
 
-            bg-gradient-to-br
-            from-cyan-400
-            via-blue-500
-            to-blue-700
+              sm:w-16
+              sm:h-16
 
-            border
-            border-cyan-300
+              rounded-xl
+              sm:rounded-2xl
 
-            flex
-            items-center
-            justify-center
+              bg-gradient-to-br
+              from-cyan-400
+              via-blue-500
+              to-blue-700
 
-            shadow-[0_0_15px_rgba(0,255,255,.35)]
+              border
+              border-cyan-300
+
+              flex
+              items-center
+              justify-center
+
+              shadow-[0_0_15px_rgba(0,255,255,.35)]
             "
           >
+
             <img
               src={icon}
               alt=""
-              className="w-9 h-9 object-contain"
+              className="
+                w-7
+                h-7
+
+                sm:w-9
+                sm:h-9
+
+                object-contain
+              "
             />
+
           </div>
 
-          <div>
+
+          {/* ================= TITLE INFO ================= */}
+
+          <div
+            className="
+              min-w-0
+              flex-1
+            "
+          >
 
             <h3
               className="
-              text-white
-              font-bold
-              text-lg
+                text-white
+
+                font-bold
+
+                text-sm
+                sm:text-lg
+
+                leading-tight
+
+                truncate
               "
             >
               {title}
@@ -170,8 +303,16 @@ const ActivityCard = ({
 
             <p
               className="
-              text-cyan-300
-              text-xs
+                mt-1
+
+                text-cyan-300
+
+                text-[9px]
+                sm:text-xs
+
+                leading-tight
+
+                truncate
               "
             >
               Complete activity & earn rewards
@@ -181,38 +322,55 @@ const ActivityCard = ({
 
         </div>
 
-        {/* Button */}
+
+        {/* ================================================= */}
+        {/* BUTTON */}
+        {/* ================================================= */}
+
         <button
           className="
-          px-5
-          py-2.5
+            shrink-0
 
-          rounded-xl
+            px-3
+            sm:px-5
 
-          bg-gradient-to-r
-          from-cyan-400
-          via-blue-500
-          to-blue-700
+            py-2
+            sm:py-2.5
 
-          border
-          border-cyan-300
+            rounded-lg
+            sm:rounded-xl
 
-          text-white
-          text-sm
-          font-bold
+            bg-gradient-to-r
+            from-cyan-400
+            via-blue-500
+            to-blue-700
 
-          shadow-[0_0_15px_rgba(0,255,255,.35)]
+            border
+            border-cyan-300
 
-          hover:brightness-110
-          hover:scale-105
+            text-white
 
-          duration-300
+            text-[10px]
+            sm:text-sm
+
+            font-bold
+
+            whitespace-nowrap
+
+            shadow-[0_0_15px_rgba(0,255,255,.35)]
+
+            hover:brightness-110
+            hover:scale-105
+
+            transition-all
+            duration-300
           "
         >
           {button}
         </button>
 
       </div>
+
     </div>
   );
 };

@@ -5,6 +5,7 @@ import { Heart } from "lucide-react";
 import GoShowLogo from "./assets/GoShowLogo.png";
 
 // ================= FEATURE IMAGES =================
+
 import RosyOrbit from "./assets/RosyOrbit.png";
 import LegacyOfUndeadDragon from "./assets/LegacyOfUndeadDragon.png";
 import LawnnDisorder from "./assets/LawnnDisorder.png";
@@ -57,20 +58,65 @@ export default function PlayNgo() {
 
   const games = [
 
-    { id: 1, image: RosyOrbit },
-    { id: 2, image: LegacyOfUndeadDragon },
-    { id: 3, image: LawnnDisorder },
-    { id: 4, image: DiamondDig },
+    {
+      id: 1,
+      image: RosyOrbit,
+    },
 
-    { id: 5, image: GoBuffaloWealth },
-    { id: 6, image: TheGreekBknight },
-    { id: 7, image: MysteryEgg },
-    { id: 8, image: TheGoShow777Crystal },
+    {
+      id: 2,
+      image: LegacyOfUndeadDragon,
+    },
 
-    { id: 9, image: GoUnderFeatedXerxes },
-    { id: 10, image: GoGarFantToonz },
-    { id: 11, image: GoScrollOfSeth },
-    { id: 12, image: GoRascalRiches },
+    {
+      id: 3,
+      image: LawnnDisorder,
+    },
+
+    {
+      id: 4,
+      image: DiamondDig,
+    },
+
+    {
+      id: 5,
+      image: GoBuffaloWealth,
+    },
+
+    {
+      id: 6,
+      image: TheGreekBknight,
+    },
+
+    {
+      id: 7,
+      image: MysteryEgg,
+    },
+
+    {
+      id: 8,
+      image: TheGoShow777Crystal,
+    },
+
+    {
+      id: 9,
+      image: GoUnderFeatedXerxes,
+    },
+
+    {
+      id: 10,
+      image: GoGarFantToonz,
+    },
+
+    {
+      id: 11,
+      image: GoScrollOfSeth,
+    },
+
+    {
+      id: 12,
+      image: GoRascalRiches,
+    },
 
   ];
 
@@ -174,7 +220,9 @@ export default function PlayNgo() {
 
       `}</style>
 
-      <div className="bg-[#020617] px-3 py-3">
+      {/* ================= MAIN CONTAINER ================= */}
+
+      <div className="w-[540px] bg-[#020617] px-3 py-3">
 
         {/* ================= GAME GRID ================= */}
 
@@ -207,7 +255,7 @@ export default function PlayNgo() {
                 }}
                 data-index={index}
                 src={game.image}
-                alt=""
+                alt="Game"
                 className={`
                   playngo-game-image
 
@@ -238,6 +286,8 @@ export default function PlayNgo() {
                   flex
                   items-center
                   justify-center
+                  hover:bg-black/80
+                  transition
                 "
               >
 

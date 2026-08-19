@@ -6,6 +6,7 @@ import HbSports1 from "./assets/HbSports1.png";
 import SabaSports from "./assets/SabaSports.png";
 
 export default function SportsItems() {
+
   const [favorite, setFavorite] = useState([]);
   const [visibleImages, setVisibleImages] = useState([]);
 
@@ -14,11 +15,11 @@ export default function SportsItems() {
   // ================= FAVORITE =================
 
   const toggleFavorite = (id) => {
-    if (favorite.includes(id)) {
-      setFavorite(favorite.filter((item) => item !== id));
-    } else {
-      setFavorite([...favorite, id]);
-    }
+    setFavorite((prev) =>
+      prev.includes(id)
+        ? prev.filter((item) => item !== id)
+        : [...prev, id]
+    );
   };
 
   // ================= SPORTS GAMES =================
@@ -39,13 +40,20 @@ export default function SportsItems() {
   // ================= IMAGE SCROLL ANIMATION =================
 
   useEffect(() => {
+
     const observer = new IntersectionObserver(
       (entries) => {
+
         entries.forEach((entry) => {
+
           if (entry.isIntersecting) {
-            const index = Number(entry.target.dataset.index);
+
+            const index = Number(
+              entry.target.dataset.index
+            );
 
             setVisibleImages((prev) => {
+
               if (prev.includes(index)) {
                 return prev;
               }
@@ -56,7 +64,9 @@ export default function SportsItems() {
             // Animation sirf ek baar chalegi
             observer.unobserve(entry.target);
           }
+
         });
+
       },
       {
         threshold: 0.2,
@@ -64,14 +74,17 @@ export default function SportsItems() {
     );
 
     imageRefs.current.forEach((image) => {
+
       if (image) {
         observer.observe(image);
       }
+
     });
 
     return () => {
       observer.disconnect();
     };
+
   }, []);
 
   return (
@@ -79,7 +92,9 @@ export default function SportsItems() {
       {/* ================= IMAGE ANIMATION ================= */}
 
       <style>{`
+
         @keyframes sportsImageFadeUp {
+
           0% {
             opacity: 0;
             transform: translateY(45px) scale(0.96);
@@ -89,6 +104,7 @@ export default function SportsItems() {
             opacity: 1;
             transform: translateY(0) scale(1);
           }
+
         }
 
         .sports-game-image {
@@ -103,15 +119,27 @@ export default function SportsItems() {
             cubic-bezier(0.22, 1, 0.36, 1)
             forwards;
         }
+
       `}</style>
 
-      {/* ================= MAIN ================= */}
+      {/* ================= 540px MAIN CONTAINER ================= */}
 
-      <div className="bg-[#020617] px-3 py-3">
+      <div
+        className="
+          w-[540px]
+          max-w-full
+          bg-[#020617]
+          px-3
+          py-3
+        "
+      >
+
+        {/* ================= SPORTS GRID ================= */}
 
         <div className="grid grid-cols-2 gap-3">
 
           {sportsGames.map((game, index) => (
+
             <div
               key={game.id}
               className="
@@ -124,6 +152,7 @@ export default function SportsItems() {
                 shadow-[0_0_15px_rgba(255,200,0,.30)]
                 cursor-pointer
                 hover:scale-[1.03]
+                transition-all
                 duration-300
               "
             >
@@ -139,6 +168,7 @@ export default function SportsItems() {
                 alt={game.title}
                 className={`
                   sports-game-image
+
                   ${
                     visibleImages.includes(index)
                       ? "show"
@@ -154,7 +184,10 @@ export default function SportsItems() {
               {/* ================= HEART ================= */}
 
               <button
-                onClick={() => toggleFavorite(game.id)}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  toggleFavorite(game.id);
+                }}
                 className="
                   absolute
                   top-2
@@ -166,8 +199,11 @@ export default function SportsItems() {
                   flex
                   items-center
                   justify-center
+                  hover:bg-black/80
+                  transition
                 "
               >
+
                 <Heart
                   size={18}
                   className={
@@ -176,12 +212,18 @@ export default function SportsItems() {
                       : "text-white"
                   }
                 />
+
               </button>
 
             </div>
+
           ))}
 
         </div>
+
+        {/* Bottom spacing */}
+        <div className="h-2" />
+
       </div>
     </>
   );

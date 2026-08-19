@@ -30,67 +30,50 @@ import PPGames from "./PPGames";
 import TopPlayer from "./TopPlayer";
 import DBGames from "./DBGames";
 import FishGames from "./FishGames";
+
 import Footer from "./Footer";
 
-
 function App() {
-
   // =====================================================
   // SIDEBAR
   // =====================================================
 
   const [openMenu, setOpenMenu] = useState(false);
 
-
   // =====================================================
   // LOGIN / SIGNUP
   // =====================================================
 
   const [loginOpen, setLoginOpen] = useState(false);
-
   const [signupOpen, setSignupOpen] = useState(false);
 
-
   // =====================================================
-  // PAGE ROUTING
+  // PAGE
   // =====================================================
 
   const [currentPage, setCurrentPage] = useState("home");
 
-
   return (
-
     <div
       className="
         relative
-
         w-full
-        max-w-[430px]
-
+        max-w-[540px]
         h-screen
-
+        min-h-screen
         mx-auto
-
         overflow-hidden
-
-        bg-[#020617]
-
-        border-4
-        border-cyan-600
-
-        shadow-[0_0_30px_rgba(0,200,255,.15)]
+        bg-[#03152f]
+        shadow-[0_0_60px_rgba(0,120,255,.35)]
       "
     >
-
-
       {/* ================================================= */}
       {/* HOME */}
       {/* ================================================= */}
 
       {currentPage === "home" && (
         <>
-
-          {/* ================= HEADER ================= */}
+          {/* HEADER */}
 
           <Header
             setOpenMenu={setOpenMenu}
@@ -98,32 +81,31 @@ function App() {
             setSignupOpen={setSignupOpen}
           />
 
-
-          {/* ================= SIDEBAR ================= */}
+          {/* SIDEBAR */}
 
           <Sidebar
             openMenu={openMenu}
             setOpenMenu={setOpenMenu}
           />
 
-
           {/* ================================================= */}
-          {/* MAIN GAME CONTENT */}
+          {/* MAIN SCROLL AREA */}
           {/* ================================================= */}
 
-          <div
+          <main
             className="
               relative
-
+              w-full
               h-full
-
+              min-h-0
               overflow-y-auto
               overflow-x-hidden
+              pb-32
+              scrollbar-hide
 
-              pb-28
+              bg-[radial-gradient(circle_at_50%_0%,rgba(0,200,255,0.18),transparent_35%),linear-gradient(180deg,#061b3a_0%,#020617_35%,#01030b_100%)]
             "
           >
-
             <HeroSectoin />
 
             <PromoCards />
@@ -156,59 +138,76 @@ function App() {
 
             <FishGames />
 
+            {/* FOOTER */}
+
             <Footer />
 
-          </div>
-
+          </main>
         </>
       )}
-
-
 
       {/* ================================================= */}
       {/* ACTIVITY */}
       {/* ================================================= */}
 
       {currentPage === "activity" && (
-
-        <Activity
-          setCurrentPage={setCurrentPage}
-        />
-
+        <div
+          className="
+            w-full
+            h-full
+            overflow-y-auto
+            overflow-x-hidden
+            bg-[linear-gradient(180deg,#061b3a,#020617)]
+          "
+        >
+          <Activity
+            setCurrentPage={setCurrentPage}
+          />
+        </div>
       )}
-
-
 
       {/* ================================================= */}
       {/* DEPOSIT */}
       {/* ================================================= */}
 
       {currentPage === "deposit" && (
-
-        <DepositPage
-          setCurrentPage={setCurrentPage}
-        />
-
+        <div
+          className="
+            w-full
+            h-full
+            overflow-y-auto
+            overflow-x-hidden
+            bg-[linear-gradient(180deg,#061b3a,#020617)]
+          "
+        >
+          <DepositPage
+            setCurrentPage={setCurrentPage}
+          />
+        </div>
       )}
-
-
 
       {/* ================================================= */}
       {/* AGENCY */}
       {/* ================================================= */}
 
       {currentPage === "agency" && (
-
-        <AgencyHeader
-          setCurrentPage={setCurrentPage}
-        />
-
+        <div
+          className="
+            w-full
+            h-full
+            overflow-y-auto
+            overflow-x-hidden
+            bg-[linear-gradient(180deg,#061b3a,#020617)]
+          "
+        >
+          <AgencyHeader
+            setCurrentPage={setCurrentPage}
+          />
+        </div>
       )}
 
-
-
       {/* ================================================= */}
-      {/* LOGIN MODAL */}
+      {/* LOGIN */}
       {/* ================================================= */}
 
       <LoginModal
@@ -217,10 +216,8 @@ function App() {
         setSignupOpen={setSignupOpen}
       />
 
-
-
       {/* ================================================= */}
-      {/* SIGNUP MODAL */}
+      {/* SIGNUP */}
       {/* ================================================= */}
 
       <SignupModal
@@ -228,8 +225,6 @@ function App() {
         setSignupOpen={setSignupOpen}
         setLoginOpen={setLoginOpen}
       />
-
-
 
       {/* ================================================= */}
       {/* BOTTOM NAVBAR */}
@@ -241,10 +236,51 @@ function App() {
         setLoginOpen={setLoginOpen}
       />
 
-    </div>
+      {/* ================================================= */}
+      {/* GLOBAL CSS */}
+      {/* ================================================= */}
 
+      <style>{`
+        .scrollbar-hide::-webkit-scrollbar {
+          display: none;
+        }
+
+        .scrollbar-hide {
+          scrollbar-width: none;
+          -ms-overflow-style: none;
+          scroll-behavior: smooth;
+        }
+
+        html,
+        body,
+        #root {
+          margin: 0;
+          width: 100%;
+          min-height: 100%;
+          background:
+            radial-gradient(
+              circle at 50% 0%,
+              rgba(0, 180, 255, 0.20),
+              transparent 35%
+            ),
+            linear-gradient(
+              180deg,
+              #03152f 0%,
+              #020b1d 50%,
+              #01030b 100%
+            );
+        }
+
+        body {
+          overflow-x: hidden;
+        }
+
+        button {
+          -webkit-tap-highlight-color: transparent;
+        }
+      `}</style>
+    </div>
   );
 }
-
 
 export default App;

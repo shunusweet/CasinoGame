@@ -13,22 +13,52 @@ const BottomNavbar = ({
   setCurrentPage,
 }) => {
   return (
-    <div className="fixed bottom-0 left-0 w-full flex justify-center z-50">
+    <div
+      className="
+        fixed
+        bottom-0
+        left-0
+        right-0
+        z-50
+        flex
+        justify-center
+        pointer-events-none
+      "
+    >
+      {/* ================= 540px CONTAINER ================= */}
+
       <div
         className="
+          pointer-events-auto
           w-full
-          max-w-[430px]
+          max-w-[540px]
+
           bg-gradient-to-t
           from-[#020617]
           via-[#071426]
           to-[#061b3a]
+
           border-t
-          border-cyan-700
+          border-cyan-700/80
+
           rounded-t-3xl
-          shadow-[0_-5px_25px_rgba(0,200,255,.40)]
+
+          shadow-[0_-5px_30px_rgba(0,200,255,.35)]
         "
       >
-        <div className="flex justify-around items-end h-24">
+        <div
+          className="
+            relative
+            flex
+            items-end
+            justify-around
+
+            h-[82px]
+
+            px-2
+            sm:px-4
+          "
+        >
 
           {/* ================= HOME ================= */}
 
@@ -36,19 +66,29 @@ const BottomNavbar = ({
             onClick={() => setCurrentPage("home")}
             className={`
               flex
+              flex-1
               flex-col
               items-center
+              justify-center
+
+              h-full
+
+              transition-all
               duration-300
+
               ${
                 currentPage === "home"
-                  ? "text-cyan-300"
-                  : "text-gray-500"
+                  ? "text-cyan-300 scale-105"
+                  : "text-gray-500 hover:text-cyan-300"
               }
             `}
           >
-            <House size={28} />
+            <House
+              size={26}
+              strokeWidth={2}
+            />
 
-            <p className="text-xs mt-1 font-medium">
+            <p className="text-[11px] sm:text-xs mt-1 font-medium">
               Home
             </p>
           </button>
@@ -60,19 +100,29 @@ const BottomNavbar = ({
             onClick={() => setCurrentPage("deposit")}
             className={`
               flex
+              flex-1
               flex-col
               items-center
+              justify-center
+
+              h-full
+
+              transition-all
               duration-300
+
               ${
                 currentPage === "deposit"
-                  ? "text-cyan-300"
-                  : "text-gray-500"
+                  ? "text-cyan-300 scale-105"
+                  : "text-gray-500 hover:text-cyan-300"
               }
             `}
           >
-            <Wallet size={28} />
+            <Wallet
+              size={26}
+              strokeWidth={2}
+            />
 
-            <p className="text-xs mt-1 font-medium">
+            <p className="text-[11px] sm:text-xs mt-1 font-medium">
               Deposit
             </p>
           </button>
@@ -80,47 +130,81 @@ const BottomNavbar = ({
 
           {/* ================= AGENCY ================= */}
 
+          <button
+            onClick={() => setCurrentPage("agency")}
+            className="
+              relative
+              flex
+              flex-1
+              flex-col
+              items-center
 
-<button
-  onClick={() => setCurrentPage("agency")}
-  className="
-    relative
-    -mt-10
-    flex
-    flex-col
-    items-center
-  "
->
-  <div
-    className="
-      w-20
-      h-20
-      rounded-full
-      bg-gradient-to-b
-      from-cyan-300
-      via-blue-500
-      to-blue-800
-      border-4
-      border-cyan-400
-      flex
-      items-center
-      justify-center
-      shadow-[0_0_30px_rgba(0,200,255,.80)]
-      hover:scale-105
-      transition-all
-      duration-300
-    "
-  >
-    <CircleDollarSign
-      size={42}
-      className="text-white"
-    />
-  </div>
+              h-full
 
-  <p className="text-cyan-300 text-xs mt-1 font-semibold">
-    Agency
-  </p>
-</button>
+              transition-all
+              duration-300
+            "
+          >
+
+            {/* FLOATING CIRCLE */}
+
+            <div
+              className="
+                absolute
+                -top-[38px]
+
+                w-[68px]
+                h-[68px]
+
+                sm:w-[74px]
+                sm:h-[74px]
+
+                rounded-full
+
+                bg-gradient-to-b
+                from-cyan-300
+                via-blue-500
+                to-blue-800
+
+                border-[3px]
+                border-cyan-300
+
+                flex
+                items-center
+                justify-center
+
+                shadow-[0_0_28px_rgba(0,200,255,.75)]
+
+                hover:scale-105
+
+                transition-all
+                duration-300
+              "
+            >
+              <CircleDollarSign
+                size={38}
+                className="text-white"
+                strokeWidth={2}
+              />
+            </div>
+
+            {/* LABEL */}
+
+            <p
+              className="
+                absolute
+                bottom-[7px]
+
+                text-cyan-300
+                text-[11px]
+                sm:text-xs
+                font-semibold
+              "
+            >
+              Agency
+            </p>
+
+          </button>
 
 
           {/* ================= ACTIVITY ================= */}
@@ -129,19 +213,29 @@ const BottomNavbar = ({
             onClick={() => setCurrentPage("activity")}
             className={`
               flex
+              flex-1
               flex-col
               items-center
+              justify-center
+
+              h-full
+
+              transition-all
               duration-300
+
               ${
                 currentPage === "activity"
-                  ? "text-cyan-300"
-                  : "text-gray-500"
+                  ? "text-cyan-300 scale-105"
+                  : "text-gray-500 hover:text-cyan-300"
               }
             `}
           >
-            <Gift size={28} />
+            <Gift
+              size={26}
+              strokeWidth={2}
+            />
 
-            <p className="text-xs mt-1 font-medium">
+            <p className="text-[11px] sm:text-xs mt-1 font-medium">
               Activity
             </p>
           </button>
@@ -153,16 +247,28 @@ const BottomNavbar = ({
             onClick={() => setLoginOpen(true)}
             className="
               flex
+              flex-1
               flex-col
               items-center
+              justify-center
+
+              h-full
+
               text-gray-500
+
               hover:text-cyan-300
+              hover:scale-105
+
+              transition-all
               duration-300
             "
           >
-            <User size={28} />
+            <User
+              size={26}
+              strokeWidth={2}
+            />
 
-            <p className="text-xs mt-1 font-medium">
+            <p className="text-[11px] sm:text-xs mt-1 font-medium">
               Me
             </p>
           </button>

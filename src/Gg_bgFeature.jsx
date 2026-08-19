@@ -21,249 +21,303 @@ import BG_OOF_The_Goldmine_Planet from "./assets/BG_OOF_The_Goldmine_Planet.jpg"
 // ================= COMPONENT =================
 
 export default function Gg_bgFeature() {
-
   const [favorite, setFavorite] = useState([]);
 
   // ================= FAVORITE =================
 
   const toggleFavorite = (id) => {
-
-    if (favorite.includes(id)) {
-
-      setFavorite(
-        favorite.filter((item) => item !== id)
-      );
-
-    } else {
-
-      setFavorite([
-        ...favorite,
-        id
-      ]);
-
-    }
-
+    setFavorite((prev) =>
+      prev.includes(id)
+        ? prev.filter((item) => item !== id)
+        : [...prev, id]
+    );
   };
 
   // ================= GAMES =================
 
   const games = [
-
     {
       id: 1,
       image: BG_Wild_Tiger,
       title: "MG Break Away",
     },
-
     {
       id: 2,
       image: BG_Burning_Chilli_X,
-      title: "MG Basket ball Star",
+      title: "MG Basketball Star",
     },
-
     {
       id: 3,
       image: BG_Elvis_Frog_Trueways,
       title: "Football Star",
     },
-
     {
       id: 4,
       image: BG_Joker_Queen,
       title: "Ladies Nite",
     },
-
     {
       id: 5,
       image: BG_Panda_Luck,
       title: "BG Panda Luck",
     },
-
     {
       id: 6,
       image: BG_Forty_Fruity_Million,
       title: "BG Forty Fruity Million",
     },
-
     {
       id: 7,
       image: BG_Secret_Bar_Multidice_X,
       title: "BG Secret Bar Multidice X",
     },
-
     {
       id: 8,
       image: BG_Gold_Magnate,
-      title: "BG Gold Magnate.jpg",
+      title: "BG Gold Magnate",
     },
-
     {
       id: 9,
       image: BG_Alien_Fruits,
       title: "BG Alien Fruits",
     },
-
     {
       id: 10,
       image: BG_Gold_Of_Minos,
       title: "EVO Elven Princesses",
     },
-
     {
       id: 11,
       image: BG_Chicken_Rush,
       title: "EVO Unlimited Wishes",
     },
-
     {
       id: 12,
       image: BG_OOF_The_Goldmine_Planet,
       title: "BG OOF The Goldmine Planet",
     },
-
   ];
 
-  // ================= RETURN =================
-
   return (
+    <div className="w-full bg-[#020617] py-3">
 
-    <div className="bg-[#020617] px-3 py-3">
+      {/* ================= 540px CONTAINER ================= */}
 
-      {/* ================= CUSTOM ANIMATION CSS ================= */}
+      <div
+        className="
+          w-full
+          max-w-[540px]
+          mx-auto
+          px-0
+        "
+      >
 
-      <style>{`
+        {/* ================= ANIMATION ================= */}
 
-        @keyframes gameCardFadeIn {
+        <style>{`
 
-          0% {
+          @keyframes ggBgFadeIn {
+
+            0% {
+              opacity: 0;
+              transform: translateY(35px) scale(0.92);
+            }
+
+            60% {
+              opacity: 0.85;
+              transform: translateY(-4px) scale(1.01);
+            }
+
+            100% {
+              opacity: 1;
+              transform: translateY(0) scale(1);
+            }
+
+          }
+
+          .gg-bg-card {
+
             opacity: 0;
-            transform: translateY(40px) scale(0.92);
-          }
 
-          60% {
-            opacity: 0.8;
-            transform: translateY(-5px) scale(1.01);
-          }
-
-          100% {
-            opacity: 1;
-            transform: translateY(0) scale(1);
-          }
-
-        }
-
-        .game-card-animation {
-
-          opacity: 0;
-
-          animation-name: gameCardFadeIn;
-          animation-duration: 700ms;
-          animation-timing-function: ease-out;
-          animation-fill-mode: forwards;
-
-        }
-
-        .game-card-animation:hover {
-
-          transform: scale(1.05);
-
-        }
-
-        @media (prefers-reduced-motion: reduce) {
-
-          .game-card-animation {
-
-            animation: none;
-            opacity: 1;
+            animation-name: ggBgFadeIn;
+            animation-duration: 650ms;
+            animation-timing-function: ease-out;
+            animation-fill-mode: forwards;
 
           }
 
-        }
+          @media (prefers-reduced-motion: reduce) {
 
-      `}</style>
+            .gg-bg-card {
+              animation: none;
+              opacity: 1;
+            }
 
-      {/* ================= CARD GRID ================= */}
+          }
 
-      <div className="grid grid-cols-4 gap-3">
+        `}</style>
 
-        {games.map((game, index) => (
+        {/* ================= GRID ================= */}
 
-          <div
-            key={game.id}
-            style={{
-              animationDelay: `${index * 100}ms`,
-            }}
-            className="
-              game-card-animation
-              relative
-              overflow-hidden
-              rounded-xl
-              border
-              border-yellow-500
-              bg-[#061b3a]
-              shadow-[0_0_15px_rgba(255,200,0,.30)]
-              cursor-pointer
-              hover:scale-105
-              transition-transform
-              duration-300
-            "
-          >
+        <div
+          className="
+            grid
+            grid-cols-4
+            gap-2
+            sm:gap-3
+          "
+        >
 
-            {/* ================= GAME IMAGE ================= */}
-
-            <img
-              src={game.image}
-              alt={game.title}
-              className="
-                w-full
-                h-[115px]
-                object-cover
-                rounded-xl
-              "
-            />
-
-            {/* ================= HEART BUTTON ================= */}
-
-            <button
-              onClick={(e) => {
-                e.stopPropagation();
-                toggleFavorite(game.id);
+          {games.map((game, index) => (
+            <div
+              key={game.id}
+              style={{
+                animationDelay: `${index * 80}ms`,
               }}
               className="
-                absolute
-                top-1
-                right-1
-                w-7
-                h-7
-                rounded-full
-                bg-black/60
-                flex
-                items-center
-                justify-center
-                hover:bg-black/80
-                transition
+                gg-bg-card
+
+                relative
+                w-full
+
+                overflow-hidden
+                rounded-xl
+
+                border
+                border-yellow-500
+
+                bg-[#061b3a]
+
+                shadow-[0_0_14px_rgba(255,200,0,.30)]
+
+                cursor-pointer
+
+                transition-all
+                duration-300
+                ease-out
+
+                hover:scale-[1.05]
+                hover:border-yellow-300
+                hover:shadow-[0_0_22px_rgba(255,200,0,.65)]
+
+                active:scale-95
               "
             >
 
-              <Heart
-                size={16}
-                className={
-                  favorite.includes(game.id)
-                    ? "fill-red-500 text-red-500"
-                    : "text-white"
-                }
+              {/* ================= IMAGE ================= */}
+
+              <img
+                src={game.image}
+                alt={game.title}
+                className="
+                  block
+                  w-full
+                  aspect-[1/1.25]
+                  object-cover
+                "
               />
 
-            </button>
+              {/* ================= HEART ================= */}
 
-          </div>
+              <button
+                type="button"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  toggleFavorite(game.id);
+                }}
+                className="
+                  absolute
+                  top-1.5
+                  right-1.5
 
-        ))}
+                  w-7
+                  h-7
+
+                  rounded-full
+
+                  bg-black/60
+                  backdrop-blur-sm
+
+                  flex
+                  items-center
+                  justify-center
+
+                  hover:bg-black/85
+
+                  transition-all
+                  duration-200
+
+                  active:scale-90
+                "
+              >
+                <Heart
+                  size={16}
+                  className={
+                    favorite.includes(game.id)
+                      ? "fill-red-500 text-red-500"
+                      : "text-white"
+                  }
+                />
+              </button>
+
+              {/* ================= BOTTOM GRADIENT ================= */}
+
+              <div
+                className="
+                  absolute
+                  inset-x-0
+                  bottom-0
+                  h-16
+
+                  bg-gradient-to-t
+                  from-black/95
+                  via-black/50
+                  to-transparent
+
+                  pointer-events-none
+                "
+              />
+
+              {/* ================= TITLE ================= */}
+
+              <div
+                className="
+                  absolute
+                  bottom-1.5
+                  left-0
+                  right-0
+                  px-1
+                  text-center
+                  pointer-events-none
+                "
+              >
+                <h2
+                  className="
+                    text-white
+
+                    text-[9px]
+                    min-[400px]:text-[10px]
+                    sm:text-[12px]
+
+                    font-bold
+                    leading-tight
+
+                    truncate
+
+                    drop-shadow-[0_1px_3px_rgba(0,0,0,1)]
+                  "
+                >
+                  {game.title}
+                </h2>
+              </div>
+
+            </div>
+          ))}
+
+        </div>
 
       </div>
 
-
     </div>
-
   );
 }

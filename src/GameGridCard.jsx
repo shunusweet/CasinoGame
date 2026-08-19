@@ -15,248 +15,323 @@ import LuckyPiggy from "./assets/LuckyPiggy.png";
 import MoneyComing from "./assets/MonerComing.jpg";
 import ShowDown from "./assets/ShowDown.png";
 
+// ================= GAMES =================
+
 const games = [
   {
     id: 1,
     provider: "SPRIBE",
     image: Aviator,
+    title: "Aviator",
   },
   {
     id: 2,
     provider: "PG",
     image: FortuneGems,
+    title: "Fortune Gems",
   },
   {
     id: 3,
     provider: "SPRIBE",
     image: Aviator2,
+    title: "Aviator 2",
   },
   {
     id: 4,
     image: MoneyComing,
+    title: "Money Coming",
   },
   {
     id: 5,
     image: ShowDown,
+    title: "Show Down",
   },
   {
     id: 6,
     image: LuckyPiggy,
+    title: "Lucky Piggy",
   },
   {
     id: 7,
     image: Labubu,
+    title: "Labubu Lucky Box",
   },
   {
     id: 8,
     image: AnubisWrath,
+    title: "Anubis Wrath",
   },
   {
     id: 9,
     image: LuckyNeko,
+    title: "Lucky Neko",
   },
   {
     id: 10,
     image: AnubisWrath,
+    title: "Anubis Wrath",
   },
   {
     id: 11,
     image: Jili777,
+    title: "JILI 777",
   },
   {
     id: 12,
     provider: "PG",
     image: AztexGame,
+    title: "Aztec Game",
   },
 ];
+
+// ================= COMPONENT =================
 
 export default function GameGridCard() {
   const [favorite, setFavorite] = useState([]);
 
+  // ================= FAVORITE =================
+
   const toggleFavorite = (id) => {
     if (favorite.includes(id)) {
-      setFavorite(favorite.filter((item) => item !== id));
+      setFavorite(
+        favorite.filter((item) => item !== id)
+      );
     } else {
-      setFavorite([...favorite, id]);
+      setFavorite([
+        ...favorite,
+        id,
+      ]);
     }
   };
 
   return (
-    <div className="bg-[#020617] px-2 py-3">
+    <div className="w-full bg-[#020617] py-3">
 
-      {/* ================= CUSTOM ANIMATION ================= */}
+      {/* ================= 540px CONTAINER ================= */}
 
-      <style>{`
+      <div
+        className="
+          w-full
+          max-w-[540px]
+          mx-auto
+          px-2
+        "
+      >
 
-        @keyframes gameCardFadeIn {
+        {/* ================= ANIMATION CSS ================= */}
 
-          0% {
-            opacity: 0;
-            transform: translateY(40px) scale(0.92);
+        <style>{`
+
+          @keyframes gameCardFadeIn {
+
+            0% {
+              opacity: 0;
+              transform: translateY(35px) scale(0.92);
+            }
+
+            60% {
+              opacity: 0.85;
+              transform: translateY(-4px) scale(1.01);
+            }
+
+            100% {
+              opacity: 1;
+              transform: translateY(0) scale(1);
+            }
+
           }
-
-          60% {
-            opacity: 0.85;
-            transform: translateY(-5px) scale(1.01);
-          }
-
-          100% {
-            opacity: 1;
-            transform: translateY(0) scale(1);
-          }
-
-        }
-
-        .game-card-animation {
-          opacity: 0;
-          animation-name: gameCardFadeIn;
-          animation-duration: 700ms;
-          animation-timing-function: ease-out;
-          animation-fill-mode: forwards;
-        }
-
-        @media (prefers-reduced-motion: reduce) {
 
           .game-card-animation {
-            animation: none;
-            opacity: 1;
+
+            opacity: 0;
+
+            animation-name: gameCardFadeIn;
+            animation-duration: 650ms;
+            animation-timing-function: ease-out;
+            animation-fill-mode: forwards;
+
           }
 
-        }
+          @media (prefers-reduced-motion: reduce) {
 
-      `}</style>
+            .game-card-animation {
+              animation: none;
+              opacity: 1;
+            }
 
-      {/* ================= CARD GRID ================= */}
+          }
 
-      <div className="grid grid-cols-4 gap-3">
+        `}</style>
 
-        {games.map((game, index) => (
+        {/* ================= CARD GRID ================= */}
 
-          <div
-            key={game.id}
-            style={{
-              animationDelay: `${index * 100}ms`,
-            }}
-            className="
-              game-card-animation
+        <div
+          className="
+            grid
+            grid-cols-4
+            gap-2
+            sm:gap-3
+          "
+        >
 
-              relative
-              rounded-2xl
-              overflow-hidden
+          {games.map((game, index) => (
 
-              border
-              border-yellow-500
-
-              bg-[#111]
-
-              shadow-[0_0_12px_rgba(255,180,0,.35)]
-
-              cursor-pointer
-
-              hover:scale-105
-
-              transition-transform
-              duration-300
-            "
-          >
-
-            {/* ================= IMAGE ================= */}
-
-            <img
-              src={game.image}
-              alt={game.title}
+            <div
+              key={game.id}
+              style={{
+                animationDelay: `${index * 80}ms`,
+              }}
               className="
+                game-card-animation
+
+                relative
                 w-full
-                h-[140px]
-                object-cover
-              "
-            />
 
-            {/* ================= HEART ================= */}
+                rounded-xl
+                overflow-hidden
 
-            <button
-              onClick={() => toggleFavorite(game.id)}
-              className="
-                absolute
-                top-2
-                right-2
+                border
+                border-yellow-500
 
-                w-8
-                h-8
+                bg-[#111]
 
-                rounded-full
+                shadow-[0_0_12px_rgba(255,180,0,.35)]
 
-                bg-black/55
+                cursor-pointer
 
-                flex
-                items-center
-                justify-center
+                transition-all
+                duration-300
+                ease-out
 
-                hover:bg-black/80
+                hover:scale-[1.04]
+                hover:border-yellow-300
+                hover:shadow-[0_0_20px_rgba(255,190,0,.65)]
 
-                transition
-                duration-200
+                active:scale-95
               "
             >
 
-              <Heart
-                size={18}
-                className={
-                  favorite.includes(game.id)
-                    ? "fill-red-500 text-red-500"
-                    : "text-white"
-                }
+              {/* ================= IMAGE ================= */}
+
+              <img
+                src={game.image}
+                alt={game.title}
+                className="
+                  block
+                  w-full
+                  aspect-[1/1.25]
+                  object-cover
+                "
               />
 
-            </button>
+              {/* ================= HEART ================= */}
 
-            {/* ================= BOTTOM GRADIENT ================= */}
-
-            <div
-              className="
-                absolute
-                inset-x-0
-                bottom-0
-                h-20
-                bg-gradient-to-t
-                from-black/90
-                via-black/40
-                to-transparent
-              "
-            />
-
-            {/* ================= GAME TITLE ================= */}
-
-            <div
-              className="
-                absolute
-                bottom-7
-                left-0
-                right-0
-
-                px-2
-
-                text-center
-              "
-            >
-
-              <h2
+              <button
+                type="button"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  toggleFavorite(game.id);
+                }}
                 className="
-                  text-white
-                  text-[13px]
-                  font-bold
-                  leading-4
-                  drop-shadow-lg
+                  absolute
+                  top-1.5
+                  right-1.5
+
+                  w-7
+                  h-7
+
+                  rounded-full
+
+                  bg-black/60
+
+                  backdrop-blur-sm
+
+                  flex
+                  items-center
+                  justify-center
+
+                  hover:bg-black/85
+
+                  transition-all
+                  duration-200
+
+                  active:scale-90
                 "
               >
-                {game.title}
-              </h2>
+
+                <Heart
+                  size={16}
+                  className={
+                    favorite.includes(game.id)
+                      ? "fill-red-500 text-red-500"
+                      : "text-white"
+                  }
+                />
+
+              </button>
+
+              {/* ================= BOTTOM GRADIENT ================= */}
+
+              <div
+                className="
+                  absolute
+                  inset-x-0
+                  bottom-0
+
+                  h-16
+
+                  bg-gradient-to-t
+                  from-black/95
+                  via-black/55
+                  to-transparent
+
+                  pointer-events-none
+                "
+              />
+
+              {/* ================= GAME TITLE ================= */}
+
+              <div
+                className="
+                  absolute
+                  bottom-1.5
+                  left-0
+                  right-0
+
+                  px-1.5
+
+                  text-center
+
+                  pointer-events-none
+                "
+              >
+
+                <h2
+                  className="
+                    text-white
+
+                    text-[10px]
+                    min-[400px]:text-[11px]
+                    sm:text-[12px]
+
+                    font-bold
+                    leading-tight
+
+                    truncate
+
+                    drop-shadow-[0_1px_3px_rgba(0,0,0,1)]
+                  "
+                >
+                  {game.title}
+                </h2>
+
+              </div>
 
             </div>
 
-          </div>
+          ))}
 
-        ))}
+        </div>
 
       </div>
 

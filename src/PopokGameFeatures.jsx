@@ -226,7 +226,9 @@ export default function PopokGameFeatures() {
 
       `}</style>
 
-      <div className="bg-[#020617] px-3 py-3">
+      {/* ================= MAIN CONTAINER ================= */}
+
+      <div className="w-[540px] bg-[#020617] px-3 py-3">
 
         {/* ================= CARD GRID ================= */}
 
@@ -262,6 +264,7 @@ export default function PopokGameFeatures() {
                 alt={game.title}
                 className={`
                   popok-game-image
+
                   ${
                     visibleImages.includes(index)
                       ? "show"
@@ -279,8 +282,11 @@ export default function PopokGameFeatures() {
 
               <button
                 onClick={(e) => {
+
                   e.stopPropagation();
+
                   toggleFavorite(game.id);
+
                 }}
                 className="
                   absolute

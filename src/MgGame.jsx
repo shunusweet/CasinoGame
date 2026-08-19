@@ -4,7 +4,7 @@ import MgGameFeatures from "./MgGameFeatures";
 
 export default function MgGame() {
   return (
-    <div className="px-3 mt-3">
+    <div className="w-[540px] mt-3">
 
       {/* ================= HEADER ================= */}
 
@@ -32,7 +32,7 @@ export default function MgGame() {
 
           <img
             src={Mg}
-            alt="Fish Games"
+            alt="MG Games"
             className="
               w-12
               h-12

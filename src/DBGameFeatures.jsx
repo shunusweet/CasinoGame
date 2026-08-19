@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Heart } from "lucide-react";
 
 // ================= IMAGES =================
+
 import SuperAceDe from "./assets/SuperAceDe.png";
 import IceFire from "./assets/IceFire.png";
 import MahjongWins from "./assets/MahjongWins.png";
@@ -12,16 +13,25 @@ import GoldenToad from "./assets/GoldenToad.png";
 import SweetEliminate from "./assets/SweetEliminate.png";
 import EpreehaunRiches from "./assets/EpreehaunRiches.png";
 
+
+// ================= COMPONENT =================
+
 export default function DBGameFeatures() {
+
   const [favorite, setFavorite] = useState([]);
 
+  // ================= FAVORITE =================
+
   const toggleFavorite = (id) => {
-    if (favorite.includes(id)) {
-      setFavorite(favorite.filter((item) => item !== id));
-    } else {
-      setFavorite([...favorite, id]);
-    }
+
+    setFavorite((prev) =>
+      prev.includes(id)
+        ? prev.filter((item) => item !== id)
+        : [...prev, id]
+    );
+
   };
+
 
   // ================= GAMES =================
 
@@ -68,19 +78,38 @@ export default function DBGameFeatures() {
     },
   ];
 
+
   // ================= RETURN =================
 
   return (
-    <div className="bg-[#020617] px-3 py-3">
+
+    <div
+      className="
+        w-full
+        max-w-[540px]
+        mx-auto
+
+        bg-[#020617]
+
+        px-2
+        min-[400px]:px-2.5
+        sm:px-3
+
+        py-3
+
+        overflow-hidden
+      "
+    >
 
       {/* ================= ANIMATION CSS ================= */}
 
       <style>{`
 
         @keyframes gameFadeIn {
+
           0% {
             opacity: 0;
-            transform: translateY(35px) scale(0.94);
+            transform: translateY(30px) scale(0.94);
           }
 
           60% {
@@ -92,25 +121,55 @@ export default function DBGameFeatures() {
             opacity: 1;
             transform: translateY(0) scale(1);
           }
+
         }
+
 
         .game-card-animation {
+
           opacity: 0;
-          animation: gameFadeIn 0.7s ease-out forwards;
+
+          animation-name: gameFadeIn;
+          animation-duration: 0.7s;
+          animation-timing-function: ease-out;
+          animation-fill-mode: forwards;
+          animation-iteration-count: 1;
+
         }
 
+
         @media (prefers-reduced-motion: reduce) {
+
           .game-card-animation {
+
             opacity: 1;
+
             animation: none;
+
+            transform: none;
+
           }
+
         }
 
       `}</style>
 
+
       {/* ================= CARD GRID ================= */}
 
-      <div className="grid grid-cols-4 gap-3">
+      <div
+        className="
+          grid
+
+          grid-cols-2
+          min-[400px]:grid-cols-3
+          sm:grid-cols-4
+
+          gap-2
+          min-[400px]:gap-2.5
+          sm:gap-3
+        "
+      >
 
         {games.map((game, index) => (
 
@@ -125,19 +184,28 @@ export default function DBGameFeatures() {
               game-card-animation
 
               relative
+
+              w-full
+              min-w-0
+
               overflow-hidden
-              rounded-xl
+
+              rounded-lg
+              sm:rounded-xl
 
               border
               border-yellow-500
 
               bg-[#061b3a]
 
-              shadow-[0_0_15px_rgba(255,200,0,.30)]
+              shadow-[0_0_12px_rgba(255,200,0,.30)]
 
               cursor-pointer
 
-              hover:scale-105
+              hover:scale-[1.03]
+              sm:hover:scale-105
+
+              hover:-translate-y-1
 
               hover:shadow-[0_0_25px_rgba(255,200,0,.55)]
 
@@ -151,24 +219,44 @@ export default function DBGameFeatures() {
             <img
               src={game.image}
               alt={game.title}
+              draggable="false"
+
               className="
+                block
+
                 w-full
-                h-[115px]
+
+                h-[100px]
+                min-[360px]:h-[105px]
+                min-[400px]:h-[110px]
+                sm:h-[115px]
+
                 object-cover
-                rounded-xl
+
+                rounded-lg
+                sm:rounded-xl
               "
             />
+
 
             {/* ================= HEART ================= */}
 
             <button
+              type="button"
+
               onClick={(e) => {
+
                 e.stopPropagation();
+
                 toggleFavorite(game.id);
+
               }}
+
+              aria-label={`Favorite ${game.title}`}
 
               className="
                 absolute
+
                 top-1
                 right-1
 
@@ -178,27 +266,34 @@ export default function DBGameFeatures() {
                 rounded-full
 
                 bg-black/60
+                backdrop-blur-sm
 
                 flex
                 items-center
                 justify-center
 
                 hover:bg-black/80
-
                 hover:scale-110
+
+                active:scale-95
 
                 transition-all
                 duration-200
+
+                z-10
               "
             >
+
               <Heart
                 size={16}
+
                 className={
                   favorite.includes(game.id)
                     ? "fill-red-500 text-red-500"
                     : "text-white"
                 }
               />
+
             </button>
 
           </div>
@@ -208,5 +303,6 @@ export default function DBGameFeatures() {
       </div>
 
     </div>
+
   );
 }

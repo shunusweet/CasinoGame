@@ -127,7 +127,7 @@ export default function GgRedTigerGamesFeature() {
 
   return (
 
-    <div className="bg-[#020617] px-3 py-3">
+    <div className="bg-[#020617] w-[540px] max-w-full mx-auto px-3 py-3">
 
       {/* ================= CARD GRID ================= */}
 

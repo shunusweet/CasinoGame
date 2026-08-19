@@ -22,83 +22,82 @@ export default function FishGamesFeatures() {
   // ================= FAVORITE =================
 
   const toggleFavorite = (id) => {
-
     if (favorite.includes(id)) {
-
       setFavorite(
         favorite.filter((item) => item !== id)
       );
-
     } else {
-
       setFavorite([
         ...favorite,
         id
       ]);
-
     }
-
   };
 
   // ================= GAMES =================
 
   const games = [
-
     {
       id: 1,
       image: HappyFishing,
       title: "Super Ace De",
     },
-
     {
       id: 2,
       image: JiliMegaFishing,
       title: "Ice Fire",
     },
-
     {
       id: 3,
       image: FortuneKingJackpot,
       title: "BBQ Tycoon",
     },
-
     {
       id: 4,
       image: RoyalFishing,
       title: "Mahjong Wins 2",
     },
-
     {
       id: 5,
       image: DynasaurTycoon,
       title: "Dynasaur Tycoon",
     },
-
     {
       id: 6,
       image: FishingAllStar,
       title: "Fishing All Star",
     },
-
     {
       id: 7,
       image: OceanKingJackpot,
       title: "Ocean King Jackpot",
     },
-
     {
       id: 8,
       image: FortuneZombie,
       title: "Epreehaun Riches",
     },
-
   ];
 
   // ================= RETURN =================
 
   return (
+    <div
+      className="
+        w-full
+        max-w-[540px]
+        mx-auto
 
-    <div className="bg-[#020617] px-3 py-3">
+        bg-[#020617]
+
+        px-2
+        sm:px-3
+
+        py-3
+
+        overflow-hidden
+      "
+    >
 
       {/* ================= CUSTOM ANIMATION CSS ================= */}
 
@@ -108,12 +107,12 @@ export default function FishGamesFeatures() {
 
           0% {
             opacity: 0;
-            transform: translateY(40px) scale(0.92);
+            transform: translateY(35px) scale(0.94);
           }
 
           60% {
             opacity: 0.85;
-            transform: translateY(-5px) scale(1.01);
+            transform: translateY(-3px) scale(1.01);
           }
 
           100% {
@@ -124,53 +123,75 @@ export default function FishGamesFeatures() {
         }
 
         .fish-game-animation {
-
           opacity: 0;
-
           animation-name: fishGameFadeIn;
           animation-duration: 700ms;
           animation-timing-function: ease-out;
           animation-fill-mode: forwards;
-
         }
 
         @media (prefers-reduced-motion: reduce) {
 
           .fish-game-animation {
-
             animation: none;
             opacity: 1;
-
+            transform: none;
           }
 
         }
 
       `}</style>
 
+
       {/* ================= CARD GRID ================= */}
 
-      <div className="grid grid-cols-4 gap-3">
+      <div
+        className="
+          grid
+
+          grid-cols-2
+          min-[400px]:grid-cols-3
+          sm:grid-cols-4
+
+          gap-2
+          sm:gap-3
+        "
+      >
 
         {games.map((game, index) => (
 
           <div
             key={game.id}
+
             style={{
               animationDelay: `${index * 100}ms`,
             }}
+
             className="
               fish-game-animation
 
               relative
               overflow-hidden
-              rounded-xl
+
+              rounded-lg
+              sm:rounded-xl
+
               border
               border-yellow-500
+
               bg-[#061b3a]
-              shadow-[0_0_15px_rgba(255,200,0,.30)]
+
+              shadow-[0_0_12px_rgba(255,200,0,.30)]
+              sm:shadow-[0_0_15px_rgba(255,200,0,.30)]
+
               cursor-pointer
 
-              hover:scale-105
+              hover:scale-[1.03]
+              sm:hover:scale-105
+
+              hover:-translate-y-1
+
+              hover:shadow-[0_0_25px_rgba(255,200,0,.55)]
 
               transition-all
               duration-300
@@ -182,13 +203,22 @@ export default function FishGamesFeatures() {
             <img
               src={game.image}
               alt={game.title}
+
               className="
+                block
                 w-full
-                h-[115px]
+
+                h-[105px]
+                min-[400px]:h-[110px]
+                sm:h-[115px]
+
                 object-cover
-                rounded-xl
+
+                rounded-lg
+                sm:rounded-xl
               "
             />
+
 
             {/* ================= HEART BUTTON ================= */}
 
@@ -197,8 +227,12 @@ export default function FishGamesFeatures() {
                 e.stopPropagation();
                 toggleFavorite(game.id);
               }}
+
+              aria-label={`Favorite ${game.title}`}
+
               className="
                 absolute
+
                 top-1
                 right-1
 
@@ -214,13 +248,18 @@ export default function FishGamesFeatures() {
                 justify-center
 
                 hover:bg-black/80
+                hover:scale-110
 
-                transition
+                transition-all
+                duration-200
+
+                z-10
               "
             >
 
               <Heart
                 size={16}
+
                 className={
                   favorite.includes(game.id)
                     ? "fill-red-500 text-red-500"
@@ -237,6 +276,5 @@ export default function FishGamesFeatures() {
       </div>
 
     </div>
-
   );
 }

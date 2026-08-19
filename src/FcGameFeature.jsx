@@ -22,83 +22,80 @@ export default function FcGameFeature() {
   // ================= FAVORITE =================
 
   const toggleFavorite = (id) => {
-
     if (favorite.includes(id)) {
-
       setFavorite(
         favorite.filter((item) => item !== id)
       );
-
     } else {
-
       setFavorite([
         ...favorite,
         id
       ]);
-
     }
-
   };
 
   // ================= GAMES =================
 
   const games = [
-
     {
       id: 1,
       image: FcGoldenPanther,
       title: "Golden Panther",
     },
-
     {
       id: 2,
       image: FC_Three_Little_Pigs,
-      title: "Jump High",
+      title: "Three Little Pigs",
     },
-
     {
       id: 3,
       image: NightMarket,
       title: "Night Market",
     },
-
     {
       id: 4,
       image: PandaDragonBoat,
       title: "Panda Dragon Boat",
     },
-
     {
       id: 5,
       image: ChineseNewYear,
-      title: "Lucky Bets",
+      title: "Chinese New Year",
     },
-
     {
       id: 6,
       image: FC_Pong_Pong_Hu,
-      title: "FC Pong Pong Hu.jpg",
+      title: "FC Pong Pong Hu",
     },
-
     {
       id: 7,
       image: FC_Lucky_Fortunes,
-      title: "Black Wakong",
+      title: "Lucky Fortunes",
     },
-
     {
       id: 8,
       image: FC_Egypt_Bonanza,
-      title: "Striker Wild",
+      title: "Egypt Bonanza",
     },
-
   ];
 
   // ================= RETURN =================
 
   return (
+    <div
+      className="
+        w-full
+        max-w-[540px]
+        mx-auto
 
-    <div className="bg-[#020617] px-3 py-3">
+        bg-[#020617]
+
+        px-2
+        min-[400px]:px-3
+
+        py-3
+      "
+    >
 
       {/* ================= ANIMATION CSS ================= */}
 
@@ -108,12 +105,12 @@ export default function FcGameFeature() {
 
           0% {
             opacity: 0;
-            transform: translateY(40px) scale(0.92);
+            transform: translateY(35px) scale(0.94);
           }
 
           60% {
             opacity: 0.85;
-            transform: translateY(-5px) scale(1.01);
+            transform: translateY(-3px) scale(1.01);
           }
 
           100% {
@@ -136,36 +133,63 @@ export default function FcGameFeature() {
           .fc-game-animation {
             animation: none;
             opacity: 1;
+            transform: none;
           }
 
         }
 
       `}</style>
 
+
       {/* ================= CARD GRID ================= */}
 
-      <div className="grid grid-cols-4 gap-3">
+      <div
+        className="
+          grid
+
+          grid-cols-2
+          min-[400px]:grid-cols-3
+          min-[500px]:grid-cols-4
+
+          gap-2
+          min-[400px]:gap-3
+        "
+      >
 
         {games.map((game, index) => (
 
           <div
             key={game.id}
+
             style={{
               animationDelay: `${index * 100}ms`,
             }}
+
             className="
               fc-game-animation
 
               relative
               overflow-hidden
-              rounded-xl
+
+              rounded-lg
+              min-[400px]:rounded-xl
+
               border
               border-yellow-500
+
               bg-[#061b3a]
-              shadow-[0_0_15px_rgba(255,200,0,.30)]
+
+              shadow-[0_0_12px_rgba(255,200,0,.30)]
+              min-[400px]:shadow-[0_0_15px_rgba(255,200,0,.30)]
+
               cursor-pointer
 
-              hover:scale-105
+              hover:scale-[1.03]
+              min-[500px]:hover:scale-105
+
+              hover:-translate-y-1
+
+              hover:shadow-[0_0_25px_rgba(255,200,0,.55)]
 
               transition-all
               duration-300
@@ -178,12 +202,20 @@ export default function FcGameFeature() {
               src={game.image}
               alt={game.title}
               className="
+                block
                 w-full
-                h-[115px]
+
+                h-[95px]
+                min-[400px]:h-[105px]
+                min-[500px]:h-[115px]
+
                 object-cover
-                rounded-xl
+
+                rounded-lg
+                min-[400px]:rounded-xl
               "
             />
+
 
             {/* ================= HEART BUTTON ================= */}
 
@@ -192,24 +224,40 @@ export default function FcGameFeature() {
                 e.stopPropagation();
                 toggleFavorite(game.id);
               }}
+
+              aria-label={`Favorite ${game.title}`}
+
               className="
                 absolute
                 top-1
                 right-1
-                w-7
-                h-7
+
+                w-6
+                h-6
+
+                min-[400px]:w-7
+                min-[400px]:h-7
+
                 rounded-full
+
                 bg-black/60
+
                 flex
                 items-center
                 justify-center
+
                 hover:bg-black/80
-                transition
+                hover:scale-110
+
+                transition-all
+                duration-200
+
+                z-10
               "
             >
 
               <Heart
-                size={16}
+                size={14}
                 className={
                   favorite.includes(game.id)
                     ? "fill-red-500 text-red-500"
@@ -224,7 +272,7 @@ export default function FcGameFeature() {
         ))}
 
       </div>
-    </div>
 
+    </div>
   );
 }

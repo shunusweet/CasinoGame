@@ -18,6 +18,8 @@ import MG_Western_Gold from "./assets/MG_Western_Gold.jpg";
 
 export default function MgGameFeatures() {
 
+  // ================= FAVORITE =================
+
   const [favorite, setFavorite] = useState([]);
 
   // ================= IMAGE ANIMATION =================
@@ -26,7 +28,7 @@ export default function MgGameFeatures() {
 
   const imageRefs = useRef([]);
 
-  // ================= FAVORITE =================
+  // ================= FAVORITE FUNCTION =================
 
   const toggleFavorite = (id) => {
 
@@ -200,11 +202,26 @@ export default function MgGameFeatures() {
 
       `}</style>
 
-      <div className="bg-[#020617] px-3 py-3">
+      {/* ================= MAIN FEATURES ================= */}
+
+      <div
+        className="
+          w-full
+          bg-[#020617]
+          px-3
+          py-3
+        "
+      >
 
         {/* ================= CARD GRID ================= */}
 
-        <div className="grid grid-cols-4 gap-3">
+        <div
+          className="
+            grid
+            grid-cols-4
+            gap-3
+          "
+        >
 
           {games.map((game, index) => (
 
@@ -294,6 +311,7 @@ export default function MgGameFeatures() {
         </div>
 
       </div>
+
     </>
   );
 }

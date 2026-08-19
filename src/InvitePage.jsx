@@ -44,7 +44,9 @@ const rewards = [
 ];
 
 export default function InvitePage() {
+
   // ================= COPY LINK =================
+
   const copyLink = async () => {
     try {
       await navigator.clipboard.writeText(referralLink);
@@ -55,7 +57,9 @@ export default function InvitePage() {
   };
 
   // ================= SOCIAL SHARE =================
+
   const share = (item) => {
+
     if (item.url === "#") {
       alert("Instagram sharing is not available directly.");
       return;
@@ -63,13 +67,28 @@ export default function InvitePage() {
 
     const url = item.url + encodeURIComponent(referralLink);
 
-    window.open(url, "_blank", "noopener,noreferrer");
+    window.open(
+      url,
+      "_blank",
+      "noopener,noreferrer"
+    );
   };
 
   return (
-    <div className="min-h-screen w-full bg-[#020617] text-white overflow-x-hidden">
 
-      {/* ================= BLUE BACKGROUND ================= */}
+    <div
+      className="
+        min-h-screen
+        w-full
+        bg-[#020617]
+        text-white
+        overflow-x-hidden
+      "
+    >
+
+      {/* =====================================================
+          BLUE BACKGROUND
+      ====================================================== */}
 
       <div
         className="
@@ -81,7 +100,21 @@ export default function InvitePage() {
         "
       />
 
-      <div className="mx-auto w-full max-w-[430px] px-2 py-2">
+
+      {/* =====================================================
+          540PX MAIN CONTAINER
+      ====================================================== */}
+
+      <div
+        className="
+          mx-auto
+          w-full
+          max-w-[540px]
+          px-3
+          py-3
+        "
+      >
+
 
         {/* =====================================================
             SHARE CARD
@@ -107,7 +140,7 @@ export default function InvitePage() {
           <h2
             className="
               mb-2
-              text-[12px]
+              text-[13px]
               font-bold
               text-cyan-100
             "
@@ -121,7 +154,7 @@ export default function InvitePage() {
           <div
             className="
               flex
-              h-[43px]
+              h-[45px]
               items-center
               overflow-hidden
 
@@ -139,7 +172,7 @@ export default function InvitePage() {
                 flex-1
                 truncate
                 px-3
-                text-[9px]
+                text-[10px]
                 text-gray-300
               "
             >
@@ -155,8 +188,8 @@ export default function InvitePage() {
                 mr-1
 
                 flex
-                h-[32px]
-                w-[32px]
+                h-[34px]
+                w-[34px]
 
                 items-center
                 justify-center
@@ -188,9 +221,9 @@ export default function InvitePage() {
 
           <h3
             className="
-              mt-4
+              mt-5
               text-center
-              text-[11px]
+              text-[12px]
               font-bold
               text-cyan-100
             "
@@ -207,7 +240,7 @@ export default function InvitePage() {
               flex
               items-center
               justify-between
-              px-1
+              px-2
             "
           >
 
@@ -216,8 +249,10 @@ export default function InvitePage() {
             <div
               className="
                 flex
-                h-[58px]
-                w-[58px]
+                h-[65px]
+                w-[65px]
+
+                shrink-0
 
                 items-center
                 justify-center
@@ -231,6 +266,7 @@ export default function InvitePage() {
                 shadow-[0_0_10px_rgba(0,200,255,.20)]
               "
             >
+
               <div
                 className="
                   grid
@@ -246,7 +282,9 @@ export default function InvitePage() {
                   p-[2px]
                 "
               >
+
                 {Array.from({ length: 49 }).map((_, i) => (
+
                   <div
                     key={i}
                     className={
@@ -255,8 +293,11 @@ export default function InvitePage() {
                         : "bg-white"
                     }
                   />
+
                 ))}
+
               </div>
+
             </div>
 
 
@@ -267,11 +308,12 @@ export default function InvitePage() {
                 flex
                 flex-1
                 justify-around
-                pl-4
+                pl-5
               "
             >
 
               {socialLinks.map((item) => (
+
                 <button
                   key={item.name}
                   onClick={() => share(item)}
@@ -288,8 +330,8 @@ export default function InvitePage() {
                   <span
                     className={`
                       flex
-                      h-[20px]
-                      w-[20px]
+                      h-[25px]
+                      w-[25px]
 
                       items-center
                       justify-center
@@ -298,7 +340,7 @@ export default function InvitePage() {
 
                       ${item.bg}
 
-                      text-[11px]
+                      text-[12px]
                       font-bold
 
                       shadow-lg
@@ -311,11 +353,17 @@ export default function InvitePage() {
                     {item.icon}
                   </span>
 
-                  <span className="text-[6px] text-gray-300">
+                  <span
+                    className="
+                      text-[7px]
+                      text-gray-300
+                    "
+                  >
                     {item.name}
                   </span>
 
                 </button>
+
               ))}
 
             </div>
@@ -331,7 +379,7 @@ export default function InvitePage() {
 
         <section
           className="
-            mt-2
+            mt-3
 
             rounded-[14px]
 
@@ -351,7 +399,7 @@ export default function InvitePage() {
           <h2
             className="
               text-center
-              text-[12px]
+              text-[13px]
               font-bold
               tracking-wide
               text-cyan-100
@@ -361,14 +409,28 @@ export default function InvitePage() {
           </h2>
 
 
-          <div className="relative mt-4 h-[215px]">
+          {/* DIAGRAM */}
+
+          <div
+            className="
+              relative
+              mt-4
+              h-[230px]
+            "
+          >
 
             {/* CONNECTING LINES */}
 
             <svg
-              className="absolute inset-0 h-full w-full"
+              className="
+                absolute
+                inset-0
+                h-full
+                w-full
+              "
               viewBox="0 0 400 220"
               fill="none"
+              preserveAspectRatio="none"
             >
 
               <path
@@ -406,7 +468,9 @@ export default function InvitePage() {
             </svg>
 
 
-            {/* YOU */}
+            {/* =================================================
+                YOU
+            ================================================== */}
 
             <div
               className="
@@ -418,19 +482,30 @@ export default function InvitePage() {
               "
             >
 
-              <div className="relative mx-auto h-[52px] w-[52px]">
+              <div
+                className="
+                  relative
+                  mx-auto
+                  h-[58px]
+                  w-[58px]
+                "
+              >
+
+                {/* DIAMOND */}
 
                 <div
                   className="
                     absolute
                     -left-3
                     top-2
-                    text-[18px]
+                    text-[20px]
                   "
                 >
                   💎
                 </div>
 
+
+                {/* USER */}
 
                 <div
                   className="
@@ -450,7 +525,7 @@ export default function InvitePage() {
                     from-cyan-500
                     to-blue-900
 
-                    text-[27px]
+                    text-[29px]
 
                     shadow-[0_0_15px_rgba(0,200,255,.35)]
                   "
@@ -458,6 +533,8 @@ export default function InvitePage() {
                   🧑
                 </div>
 
+
+                {/* YOU LABEL */}
 
                 <span
                   className="
@@ -471,9 +548,9 @@ export default function InvitePage() {
                     bg-cyan-800
 
                     px-2
-                    py-[1px]
+                    py-[2px]
 
-                    text-[7px]
+                    text-[8px]
                     font-bold
                   "
                 >
@@ -485,13 +562,15 @@ export default function InvitePage() {
             </div>
 
 
-            {/* L1 */}
+            {/* =================================================
+                L1
+            ================================================== */}
 
             <span
               className="
                 absolute
                 left-0
-                top-[105px]
+                top-[108px]
 
                 rounded
 
@@ -510,7 +589,9 @@ export default function InvitePage() {
             </span>
 
 
-            {/* USER 1 */}
+            {/* =================================================
+                USER 1
+            ================================================== */}
 
             <div
               className="
@@ -519,8 +600,8 @@ export default function InvitePage() {
                 left-[35px]
 
                 flex
-                h-[52px]
-                w-[52px]
+                h-[58px]
+                w-[58px]
 
                 items-center
                 justify-center
@@ -534,23 +615,26 @@ export default function InvitePage() {
                 from-cyan-700
                 to-blue-950
 
-                text-[28px]
+                text-[29px]
               "
             >
               👩🏽
             </div>
 
 
-            {/* USER 2 */}
+            {/* =================================================
+                USER 2
+            ================================================== */}
 
             <div
               className="
                 absolute
                 bottom-[15px]
                 left-1/2
+
                 flex
-                h-[52px]
-                w-[52px]
+                h-[58px]
+                w-[58px]
 
                 -translate-x-1/2
 
@@ -566,14 +650,16 @@ export default function InvitePage() {
                 from-blue-700
                 to-blue-950
 
-                text-[28px]
+                text-[29px]
               "
             >
               👨🏽
             </div>
 
 
-            {/* USER 3 */}
+            {/* =================================================
+                USER 3
+            ================================================== */}
 
             <div
               className="
@@ -582,8 +668,8 @@ export default function InvitePage() {
                 right-[35px]
 
                 flex
-                h-[52px]
-                w-[52px]
+                h-[58px]
+                w-[58px]
 
                 items-center
                 justify-center
@@ -597,7 +683,7 @@ export default function InvitePage() {
                 from-cyan-700
                 to-blue-950
 
-                text-[28px]
+                text-[29px]
               "
             >
               👩🏽
@@ -614,7 +700,7 @@ export default function InvitePage() {
 
         <section
           className="
-            mt-2
+            mt-3
 
             rounded-[14px]
 
@@ -634,7 +720,7 @@ export default function InvitePage() {
           <div
             className="
               flex
-              h-[34px]
+              h-[38px]
 
               items-center
               justify-center
@@ -653,13 +739,18 @@ export default function InvitePage() {
             "
           >
 
-            <span className="mr-1 text-[14px]">
+            <span
+              className="
+                mr-1
+                text-[15px]
+              "
+            >
               💎
             </span>
 
             <span
               className="
-                text-[12px]
+                text-[13px]
                 font-bold
                 text-white
               "
@@ -704,7 +795,8 @@ export default function InvitePage() {
                     className="
                       px-2
                       py-2
-                      text-[9px]
+
+                      text-[10px]
                       font-bold
                       text-cyan-100
                     "
@@ -716,7 +808,8 @@ export default function InvitePage() {
                     className="
                       px-2
                       py-2
-                      text-[9px]
+
+                      text-[10px]
                       font-bold
                       text-cyan-100
                     "
@@ -728,7 +821,8 @@ export default function InvitePage() {
                     className="
                       px-2
                       py-2
-                      text-[9px]
+
+                      text-[10px]
                       font-bold
                       text-cyan-100
                     "
@@ -761,8 +855,8 @@ export default function InvitePage() {
 
                     <td
                       className="
-                        py-[7px]
-                        text-[9px]
+                        py-[8px]
+                        text-[10px]
                         text-gray-200
                       "
                     >
@@ -771,8 +865,8 @@ export default function InvitePage() {
 
                     <td
                       className="
-                        py-[7px]
-                        text-[9px]
+                        py-[8px]
+                        text-[10px]
                         text-gray-200
                       "
                     >
@@ -781,8 +875,8 @@ export default function InvitePage() {
 
                     <td
                       className="
-                        py-[7px]
-                        text-[9px]
+                        py-[8px]
+                        text-[10px]
                         font-bold
                         text-cyan-300
                       "
@@ -810,10 +904,12 @@ export default function InvitePage() {
         <section
           className="
             relative
-            mt-6
+            mt-7
             pb-8
           "
         >
+
+          {/* TITLE */}
 
           <div
             className="
@@ -839,7 +935,7 @@ export default function InvitePage() {
               className="
                 whitespace-nowrap
 
-                text-[11px]
+                text-[12px]
                 font-bold
 
                 text-cyan-100
@@ -862,11 +958,13 @@ export default function InvitePage() {
           </div>
 
 
+          {/* DESCRIPTION */}
+
           <div
             className="
-              space-y-2
+              space-y-3
 
-              text-[9px]
+              text-[10px]
               leading-[1.7]
 
               text-gray-300
@@ -874,7 +972,7 @@ export default function InvitePage() {
           >
 
             <p>
-              <span className="text-cyan-400">
+              <span className="text-cyan-400 font-bold">
                 1.
               </span>{" "}
               Invite friends to register via Facebook,
@@ -884,7 +982,7 @@ export default function InvitePage() {
 
 
             <p>
-              <span className="text-cyan-400">
+              <span className="text-cyan-400 font-bold">
                 2.
               </span>{" "}
               Earn up to 5% lifetime commission on every
@@ -893,7 +991,7 @@ export default function InvitePage() {
 
 
             <p>
-              <span className="text-cyan-400">
+              <span className="text-cyan-400 font-bold">
                 3.
               </span>{" "}
               If your agency has a large team and the total
@@ -904,7 +1002,7 @@ export default function InvitePage() {
 
 
             <p>
-              <span className="text-cyan-400">
+              <span className="text-cyan-400 font-bold">
                 4.
               </span>{" "}
               Claim your bonus and withdraw immediately
@@ -916,7 +1014,11 @@ export default function InvitePage() {
         </section>
 
       </div>
-      <div className="mt-8 mb-20"></div>
+
+
+      {/* BOTTOM SPACE */}
+
+      <div className="mt-8 mb-20" />
 
     </div>
   );

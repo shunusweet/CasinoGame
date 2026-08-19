@@ -1,132 +1,261 @@
 import React from "react";
 
 const categories = [
-  {
-    id: 1,
-    icon: "🔥",
-    title: "Hots",
-  },
-  {
-    id: 2,
-    icon: "💖",
-    title: "Favorite",
-  },
-  {
-    id: 3,
-    icon: "JILI",
-    title: "JILI",
-  },
-  {
-    id: 4,
-    icon: "PG",
-    title: "PG",
-  },
-  {
-    id: 5,
-    icon: "➤",
-    title: "2J",
-  },
-  {
-    id: 6,
-    icon: "⚽",
-    title: "SPORT",
-  },
-  {
-    id: 7,
-    icon: "🎰",
-    title: "Slot",
-  },
-  {
-    id: 8,
-    icon: "🎮",
-    title: "Game",
-  },
-  {
-    id: 9,
-    icon: "🎲",
-    title: "Casino",
-  },
+  { id: 1, icon: "🔥", title: "Hots" },
+  { id: 2, icon: "💖", title: "Favorite" },
+  { id: 3, icon: "JILI", title: "JILI" },
+  { id: 4, icon: "PG", title: "PG" },
+  { id: 5, icon: "➤", title: "2J" },
+  { id: 6, icon: "⚽", title: "SPORT" },
+  { id: 7, icon: "🎰", title: "Slot" },
+  { id: 8, icon: "🎮", title: "Game" },
+  { id: 9, icon: "🎲", title: "Casino" },
 ];
 
 const GameCategories = () => {
   return (
     <div className="w-full bg-[#020617] py-3">
 
+      {/* ================= 540px CONTAINER ================= */}
+
       <div
         className="
-        flex
-        gap-4
-        overflow-x-auto
-        px-3
-        whitespace-nowrap
-        no-scrollbar
+          w-full
+          max-w-[540px]
+          mx-auto
+          px-2
         "
       >
-        {categories.map((item) => (
-          <div
-            key={item.id}
-            className="
-            flex-shrink-0
+
+        {/* ================= CATEGORY SCROLL ================= */}
+
+        <div
+          className="
             flex
-            flex-col
-            items-center
-            cursor-pointer
-            group
-            "
-          >
-            {/* Icon Box */}
+            items-start
+            gap-[8px]
+
+            overflow-x-auto
+            overflow-y-hidden
+
+            pb-2
+
+            whitespace-nowrap
+            scroll-smooth
+            no-scrollbar
+          "
+        >
+
+          {categories.map((item, index) => (
+
             <div
+              key={item.id}
+              style={{
+                animationDelay: `${index * 80}ms`,
+              }}
               className="
-              w-[60px]
-              h-[60px]
+                category-animation
 
-              rounded-2xl
+                flex
+                flex-shrink-0
+                flex-col
+                items-center
 
-              bg-gradient-to-b
-              from-[#5a3608]
-              via-[#2f1804]
-              to-[#140902]
+                w-[55px]
 
-              border
-              border-[#dca648]
-
-              shadow-[0_0_15px_rgba(255,180,0,.35)]
-
-              flex
-              items-center
-              justify-center
-
-              transition-all
-              duration-300
-
-              group-hover:scale-105
-              group-hover:shadow-[0_0_20px_rgba(255,200,0,.7)]
+                cursor-pointer
+                group
               "
             >
-              <span
+
+              {/* ================= ICON ================= */}
+
+              <div
                 className="
-                text-4xl
-                font-bold
-                text-yellow-300
+                  relative
+
+                  w-[52px]
+                  h-[52px]
+
+                  rounded-xl
+
+                  bg-gradient-to-b
+                  from-[#5a3608]
+                  via-[#2f1804]
+                  to-[#140902]
+
+                  border
+                  border-[#dca648]
+
+                  shadow-[0_0_12px_rgba(255,180,0,.30)]
+
+                  flex
+                  items-center
+                  justify-center
+
+                  transition-all
+                  duration-300
+                  ease-out
+
+                  group-hover:scale-110
+                  group-hover:-translate-y-1
+
+                  group-hover:border-yellow-300
+
+                  group-hover:shadow-[0_0_22px_rgba(255,200,0,.75)]
+
+                  active:scale-95
                 "
               >
-                {item.icon}
-              </span>
+
+                {/* ================= GLOW ================= */}
+
+                <div
+                  className="
+                    absolute
+                    inset-0
+
+                    rounded-xl
+
+                    bg-yellow-400/10
+
+                    opacity-0
+
+                    group-hover:opacity-100
+
+                    transition-opacity
+                    duration-300
+                  "
+                />
+
+                {/* ================= ICON ================= */}
+
+                <span
+                  className="
+                    relative
+                    z-10
+
+                    text-[25px]
+
+                    font-bold
+                    text-yellow-300
+
+                    drop-shadow-[0_0_5px_rgba(255,220,80,.45)]
+
+                    transition-transform
+                    duration-300
+
+                    group-hover:scale-110
+                  "
+                >
+                  {item.icon}
+                </span>
+
+              </div>
+
+
+              {/* ================= TITLE ================= */}
+
+              <h3
+                className="
+                  mt-2
+
+                  w-full
+
+                  text-center
+
+                  text-[#d8b16b]
+
+                  font-semibold
+
+                  text-[10px]
+
+                  leading-tight
+
+                  truncate
+
+                  transition-all
+                  duration-300
+
+                  group-hover:text-yellow-300
+
+                  group-hover:drop-shadow-[0_0_6px_rgba(255,200,0,.5)]
+                "
+              >
+                {item.title}
+              </h3>
+
             </div>
 
-            <h3
-              className="
-              mt-3
-              text-[#d8b16b]
-              font-semibold
-              text-[16px]
-              "
-            >
-              {item.title}
-            </h3>
-          </div>
-        ))}
+          ))}
+
+        </div>
+
       </div>
+
+
+      {/* ================= ANIMATION ================= */}
+
+      <style>{`
+
+        @keyframes categoryFadeIn {
+
+          0% {
+            opacity: 0;
+            transform: translateY(25px) scale(0.85);
+          }
+
+          60% {
+            opacity: 0.8;
+            transform: translateY(-3px) scale(1.03);
+          }
+
+          100% {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+          }
+
+        }
+
+
+        .category-animation {
+
+          opacity: 0;
+
+          animation:
+            categoryFadeIn
+            600ms
+            ease-out
+            forwards;
+
+        }
+
+
+        @media (prefers-reduced-motion: reduce) {
+
+          .category-animation {
+
+            opacity: 1;
+
+            animation: none;
+
+          }
+
+        }
+
+
+        /* ================= HIDE SCROLLBAR ================= */
+
+        .no-scrollbar::-webkit-scrollbar {
+          display: none;
+        }
+
+        .no-scrollbar {
+          -ms-overflow-style: none;
+          scrollbar-width: none;
+        }
+
+      `}</style>
 
     </div>
   );

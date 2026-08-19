@@ -127,11 +127,38 @@ export default function AmigoGamesFeature() {
 
   return (
 
-    <div className="bg-[#020617] px-3 py-3">
+    <div
+      className="
+        w-full
+        max-w-[540px]
+        mx-auto
+
+        px-2
+        sm:px-3
+
+        py-3
+
+        bg-[#020617]
+
+        overflow-hidden
+      "
+    >
 
       {/* ================= CARD GRID ================= */}
 
-      <div className="grid grid-cols-4 gap-3">
+      <div
+        className="
+          w-full
+
+          grid
+          grid-cols-2
+          sm:grid-cols-3
+          md:grid-cols-4
+
+          gap-2
+          sm:gap-3
+        "
+      >
 
         {games.map((game, index) => (
 
@@ -146,12 +173,20 @@ export default function AmigoGamesFeature() {
               fade-in-card
 
               relative
+              w-full
+
               overflow-hidden
-              rounded-xl
+
+              rounded-lg
+              sm:rounded-xl
+
               border
               border-yellow-500
+
               bg-[#061b3a]
+
               shadow-[0_0_15px_rgba(255,200,0,.30)]
+
               cursor-pointer
 
               hover:scale-105
@@ -168,12 +203,21 @@ export default function AmigoGamesFeature() {
               src={game.image}
               alt={game.title}
               className="
+                block
+
                 w-full
-                h-[115px]
+
+                h-[105px]
+                sm:h-[110px]
+                md:h-[115px]
+
                 object-cover
-                rounded-xl
+
+                rounded-lg
+                sm:rounded-xl
               "
             />
+
 
             {/* ================= HEART BUTTON ================= */}
 
@@ -183,30 +227,50 @@ export default function AmigoGamesFeature() {
                 toggleFavorite(game.id);
               }}
 
+              aria-label={`Favorite ${game.title}`}
+
               className="
                 absolute
+
                 top-1
                 right-1
-                w-7
-                h-7
+
+                w-6
+                h-6
+
+                sm:w-7
+                sm:h-7
+
                 rounded-full
+
                 bg-black/60
+
                 flex
                 items-center
                 justify-center
+
                 hover:bg-black/80
-                transition
+                hover:scale-110
+
+                transition-all
+                duration-300
+
                 z-10
               "
             >
 
               <Heart
-                size={16}
-                className={
-                  favorite.includes(game.id)
-                    ? "fill-red-500 text-red-500"
-                    : "text-white"
-                }
+                size={14}
+                className={`
+                  sm:w-4
+                  sm:h-4
+
+                  ${
+                    favorite.includes(game.id)
+                      ? "fill-red-500 text-red-500"
+                      : "text-white"
+                  }
+                `}
               />
 
             </button>
@@ -216,6 +280,7 @@ export default function AmigoGamesFeature() {
         ))}
 
       </div>
+
 
       {/* ================= FADE IN CSS ================= */}
 
@@ -233,17 +298,23 @@ export default function AmigoGamesFeature() {
 
         }
 
+
         .fade-in-card {
 
           opacity: 0;
 
           animation-name: fadeInGame;
+
           animation-duration: 0.8s;
+
           animation-timing-function: ease-in;
+
           animation-fill-mode: forwards;
+
           animation-iteration-count: 1;
 
         }
+
 
         @media (prefers-reduced-motion: reduce) {
 

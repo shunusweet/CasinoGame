@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { Heart } from "lucide-react";
 
 // ================= IMAGES =================
+
 import SuperAce from "./assets/SuperAce.png";
 import FortuneCoins from "./assets/FortuneCoins.png";
 import ChargeBuffalo from "./assets/ChargeBuffalo.png";
@@ -11,7 +12,10 @@ import MonkeyPot from "./assets/MonkeyPot.png";
 import JungleKing from "./assets/JungleKing.jpg";
 import TrialOfPhonix from "./assets/TrialOfPhonix.png";
 
+
 export default function JiliFeatureCards() {
+
+  // ================= FAVORITE =================
 
   const [favorite, setFavorite] = useState([]);
 
@@ -21,7 +25,8 @@ export default function JiliFeatureCards() {
 
   const imageRefs = useRef([]);
 
-  // ================= FAVORITE =================
+
+  // ================= FAVORITE FUNCTION =================
 
   const toggleFavorite = (id) => {
 
@@ -42,31 +47,33 @@ export default function JiliFeatureCards() {
 
   };
 
+
   // ================= GAMES =================
 
   const smallGames = [
 
     {
       id: 4,
-      image: BoxingKing
+      image: BoxingKing,
     },
 
     {
       id: 5,
-      image: MonkeyPot
+      image: MonkeyPot,
     },
 
     {
       id: 6,
-      image: JungleKing
+      image: JungleKing,
     },
 
     {
       id: 7,
-      image: TrialOfPhonix
+      image: TrialOfPhonix,
     },
 
   ];
+
 
   // ================= SCROLL OBSERVER =================
 
@@ -112,6 +119,7 @@ export default function JiliFeatureCards() {
 
     );
 
+
     imageRefs.current.forEach((image) => {
 
       if (image) {
@@ -120,15 +128,20 @@ export default function JiliFeatureCards() {
 
     });
 
+
     return () => {
       observer.disconnect();
     };
 
   }, []);
 
+
   return (
     <>
-      {/* ================= IMAGE ANIMATION ================= */}
+
+      {/* =====================================================
+          IMAGE ANIMATION
+      ====================================================== */}
 
       <style>{`
 
@@ -146,12 +159,14 @@ export default function JiliFeatureCards() {
 
         }
 
+
         .jili-game-image {
 
           opacity: 0;
           transform: translateY(45px) scale(0.96);
 
         }
+
 
         .jili-game-image.show {
 
@@ -165,24 +180,60 @@ export default function JiliFeatureCards() {
 
       `}</style>
 
-      <div className="bg-[#020617] px-3 py-3">
 
-        {/* ================= TOP SECTION ================= */}
+      {/* =====================================================
+          MAIN 540px CONTAINER
+      ====================================================== */}
 
-        <div className="grid grid-cols-[2fr_1fr] gap-3">
+      <div
+        className="
+          w-full
+          max-w-[540px]
+          mx-auto
 
-          {/* ================= LEFT BIG CARD ================= */}
+          bg-[#020617]
+
+          px-3
+          py-3
+        "
+      >
+
+
+        {/* =====================================================
+            TOP SECTION
+        ====================================================== */}
+
+        <div
+          className="
+            grid
+            grid-cols-[2fr_1fr]
+            gap-3
+            w-full
+          "
+        >
+
+
+          {/* =====================================================
+              LEFT BIG CARD
+          ====================================================== */}
 
           <div
             className="
               relative
               overflow-hidden
+
               rounded-2xl
+
               border
               border-cyan-500
+
               bg-[#061b3a]
+
               shadow-[0_0_18px_rgba(0,180,255,.35)]
+
               hover:scale-[1.02]
+
+              transition-all
               duration-300
             "
           >
@@ -191,9 +242,13 @@ export default function JiliFeatureCards() {
               ref={(element) => {
                 imageRefs.current[0] = element;
               }}
+
               data-index="0"
+
               src={SuperAce}
-              alt=""
+
+              alt="Super Ace"
+
               className={`
                 jili-game-image
 
@@ -203,30 +258,50 @@ export default function JiliFeatureCards() {
                     : ""
                 }
 
+                block
                 w-full
                 h-[190px]
+
                 object-cover
               `}
             />
 
+
+            {/* FAVORITE */}
+
             <button
-              onClick={() => toggleFavorite(1)}
+              onClick={(e) => {
+                e.stopPropagation();
+                toggleFavorite(1);
+              }}
+
               className="
                 absolute
                 top-2
                 right-2
+
                 w-8
                 h-8
+
                 rounded-full
+
                 bg-black/60
+
                 flex
                 items-center
                 justify-center
+
+                hover:bg-black/80
+
+                transition
+
+                z-10
               "
             >
 
               <Heart
                 size={18}
+
                 className={
                   favorite.includes(1)
                     ? "fill-red-500 text-red-500"
@@ -238,9 +313,13 @@ export default function JiliFeatureCards() {
 
           </div>
 
-          {/* ================= RIGHT SIDE ================= */}
+
+          {/* =====================================================
+              RIGHT SIDE
+          ====================================================== */}
 
           <div className="flex flex-col gap-3">
+
 
             {/* ================= FORTUNE COINS ================= */}
 
@@ -248,12 +327,19 @@ export default function JiliFeatureCards() {
               className="
                 relative
                 overflow-hidden
+
                 rounded-2xl
+
                 border
                 border-cyan-500
+
                 bg-[#061b3a]
+
                 shadow-[0_0_18px_rgba(0,180,255,.35)]
+
                 hover:scale-105
+
+                transition-all
                 duration-300
               "
             >
@@ -262,9 +348,13 @@ export default function JiliFeatureCards() {
                 ref={(element) => {
                   imageRefs.current[1] = element;
                 }}
+
                 data-index="1"
+
                 src={FortuneCoins}
-                alt=""
+
+                alt="Fortune Coins"
+
                 className={`
                   jili-game-image
 
@@ -274,30 +364,48 @@ export default function JiliFeatureCards() {
                       : ""
                   }
 
+                  block
                   w-full
                   h-[89px]
+
                   object-cover
                 `}
               />
 
+
               <button
-                onClick={() => toggleFavorite(2)}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  toggleFavorite(2);
+                }}
+
                 className="
                   absolute
                   top-2
                   right-2
+
                   w-7
                   h-7
+
                   rounded-full
+
                   bg-black/60
+
                   flex
                   items-center
                   justify-center
+
+                  hover:bg-black/80
+
+                  transition
+
+                  z-10
                 "
               >
 
                 <Heart
                   size={16}
+
                   className={
                     favorite.includes(2)
                       ? "fill-red-500 text-red-500"
@@ -309,18 +417,26 @@ export default function JiliFeatureCards() {
 
             </div>
 
+
             {/* ================= CHARGE BUFFALO ================= */}
 
             <div
               className="
                 relative
                 overflow-hidden
+
                 rounded-2xl
+
                 border
                 border-cyan-500
+
                 bg-[#061b3a]
+
                 shadow-[0_0_18px_rgba(0,180,255,.35)]
+
                 hover:scale-105
+
+                transition-all
                 duration-300
               "
             >
@@ -329,9 +445,13 @@ export default function JiliFeatureCards() {
                 ref={(element) => {
                   imageRefs.current[2] = element;
                 }}
+
                 data-index="2"
+
                 src={ChargeBuffalo}
-                alt=""
+
+                alt="Charge Buffalo"
+
                 className={`
                   jili-game-image
 
@@ -341,30 +461,48 @@ export default function JiliFeatureCards() {
                       : ""
                   }
 
+                  block
                   w-full
                   h-[89px]
+
                   object-cover
                 `}
               />
 
+
               <button
-                onClick={() => toggleFavorite(3)}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  toggleFavorite(3);
+                }}
+
                 className="
                   absolute
                   top-2
                   right-2
+
                   w-7
                   h-7
+
                   rounded-full
+
                   bg-black/60
+
                   flex
                   items-center
                   justify-center
+
+                  hover:bg-black/80
+
+                  transition
+
+                  z-10
                 "
               >
 
                 <Heart
                   size={16}
+
                   className={
                     favorite.includes(3)
                       ? "fill-red-500 text-red-500"
@@ -380,9 +518,22 @@ export default function JiliFeatureCards() {
 
         </div>
 
-        {/* ================= BOTTOM 4 CARDS ================= */}
 
-        <div className="grid grid-cols-4 gap-3 mt-4">
+        {/* =====================================================
+            BOTTOM 4 CARDS
+        ====================================================== */}
+
+        <div
+          className="
+            grid
+            grid-cols-4
+            gap-3
+
+            mt-4
+
+            w-full
+          "
+        >
 
           {smallGames.map((game, index) => {
 
@@ -392,26 +543,43 @@ export default function JiliFeatureCards() {
 
               <div
                 key={game.id}
+
                 className="
                   relative
                   overflow-hidden
+
                   rounded-2xl
+
                   border
                   border-cyan-500
+
                   bg-[#061b3a]
+
                   shadow-[0_0_15px_rgba(0,180,255,.30)]
+
+                  cursor-pointer
+
                   hover:scale-105
+                  hover:-translate-y-1
+
+                  transition-all
                   duration-300
                 "
               >
+
+                {/* GAME IMAGE */}
 
                 <img
                   ref={(element) => {
                     imageRefs.current[imageIndex] = element;
                   }}
+
                   data-index={imageIndex}
+
                   src={game.image}
-                  alt=""
+
+                  alt="Game"
+
                   className={`
                     jili-game-image
 
@@ -421,32 +589,50 @@ export default function JiliFeatureCards() {
                         : ""
                     }
 
+                    block
                     w-full
                     h-[115px]
+
                     object-cover
                   `}
                 />
 
+
+                {/* FAVORITE */}
+
                 <button
-                  onClick={() =>
-                    toggleFavorite(game.id)
-                  }
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    toggleFavorite(game.id);
+                  }}
+
                   className="
                     absolute
                     top-2
                     right-2
+
                     w-7
                     h-7
+
                     rounded-full
+
                     bg-black/60
+
                     flex
                     items-center
                     justify-center
+
+                    hover:bg-black/80
+
+                    transition
+
+                    z-10
                   "
                 >
 
                   <Heart
                     size={16}
+
                     className={
                       favorite.includes(game.id)
                         ? "fill-red-500 text-red-500"
@@ -465,6 +651,7 @@ export default function JiliFeatureCards() {
         </div>
 
       </div>
+
     </>
   );
 }

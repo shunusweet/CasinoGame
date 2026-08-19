@@ -14,6 +14,8 @@ import Golaifu from "./assets/Golaifu.png";
 
 export default function JDBGames() {
 
+  // ================= FAVORITES =================
+
   const [favorite, setFavorite] = useState([]);
 
   // ================= IMAGE ANIMATION =================
@@ -22,7 +24,7 @@ export default function JDBGames() {
 
   const imageRefs = useRef([]);
 
-  // ================= FAVORITE =================
+  // ================= FAVORITE FUNCTION =================
 
   const toggleFavorite = (id) => {
 
@@ -126,7 +128,7 @@ export default function JDBGames() {
 
             });
 
-            // Animation sirf ek baar chalegi
+            // Animation only once
             observer.unobserve(entry.target);
 
           }
@@ -157,7 +159,10 @@ export default function JDBGames() {
 
   return (
     <>
-      {/* ================= IMAGE ANIMATION ================= */}
+
+      {/* =====================================================
+          IMAGE ANIMATION
+      ====================================================== */}
 
       <style>{`
 
@@ -194,26 +199,60 @@ export default function JDBGames() {
 
       `}</style>
 
-      <div className="bg-[#020617] px-3 py-3">
 
-        {/* ================= CARD GRID ================= */}
+      {/* =====================================================
+          MAIN 540px CONTAINER
+      ====================================================== */}
 
-        <div className="grid grid-cols-4 gap-3">
+      <div
+        className="
+          w-full
+          max-w-[540px]
+          mx-auto
+
+          bg-[#020617]
+
+          px-3
+          py-3
+        "
+      >
+
+        {/* =====================================================
+            CARD GRID
+        ====================================================== */}
+
+        <div
+          className="
+            grid
+            grid-cols-4
+            gap-3
+            w-full
+          "
+        >
 
           {games.map((game, index) => (
 
             <div
               key={game.id}
+
               className="
                 relative
                 overflow-hidden
+
                 rounded-xl
+
                 border
                 border-yellow-500
+
                 bg-[#061b3a]
+
                 shadow-[0_0_15px_rgba(255,200,0,.30)]
+
                 cursor-pointer
+
                 hover:scale-105
+                hover:-translate-y-1
+
                 transition-all
                 duration-300
               "
@@ -225,9 +264,13 @@ export default function JDBGames() {
                 ref={(element) => {
                   imageRefs.current[index] = element;
                 }}
+
                 data-index={index}
+
                 src={game.image}
+
                 alt={game.title}
+
                 className={`
                   jdb-game-image
 
@@ -237,34 +280,53 @@ export default function JDBGames() {
                       : ""
                   }
 
+                  block
                   w-full
-                  h-[115px]
+                  h-[125px]
+
                   object-cover
+
+                  rounded-xl
                 `}
               />
+
 
               {/* ================= HEART BUTTON ================= */}
 
               <button
-                onClick={() =>
-                  toggleFavorite(game.id)
-                }
+                onClick={(e) => {
+                  e.stopPropagation();
+                  toggleFavorite(game.id);
+                }}
+
                 className="
                   absolute
                   top-1
                   right-1
+
                   w-7
                   h-7
+
                   rounded-full
+
                   bg-black/60
+
                   flex
                   items-center
                   justify-center
+
+                  hover:bg-black/80
+
+                  transition
+                  duration-200
+
+                  z-10
                 "
               >
 
                 <Heart
                   size={16}
+
                   className={
                     favorite.includes(game.id)
                       ? "fill-red-500 text-red-500"
@@ -281,6 +343,7 @@ export default function JDBGames() {
         </div>
 
       </div>
+
     </>
   );
 }

@@ -22,89 +22,80 @@ export default function CqFeature() {
   // ================= FAVORITE =================
 
   const toggleFavorite = (id) => {
-
-    if (favorite.includes(id)) {
-
-      setFavorite(
-        favorite.filter((item) => item !== id)
-      );
-
-    } else {
-
-      setFavorite([
-        ...favorite,
-        id
-      ]);
-
-    }
-
+    setFavorite((prev) =>
+      prev.includes(id)
+        ? prev.filter((item) => item !== id)
+        : [...prev, id]
+    );
   };
 
   // ================= GAMES =================
 
   const games = [
-
     {
       id: 1,
       image: SixGacha,
       title: "Six Gacha",
     },
-
     {
       id: 2,
       image: JumpHigh,
       title: "Jump High",
     },
-
     {
       id: 3,
       image: RaveJump,
       title: "Rave Jump",
     },
-
     {
       id: 4,
       image: RaveJumpz,
       title: "Rave Jumpz",
     },
-
     {
       id: 5,
       image: LuckyBets,
       title: "Lucky Bets",
     },
-
     {
       id: 6,
       image: RaveJumpGame,
       title: "Rave Jump Game",
     },
-
     {
       id: 7,
       image: BlackWakong,
       title: "Black Wakong",
     },
-
     {
       id: 8,
       image: StrikerWild,
       title: "Striker Wild",
     },
-
   ];
 
-  // ================= RETURN =================
-
   return (
+    <div
+      className="
+        w-full
+        max-w-[540px]
+        mx-auto
 
-    <div className="bg-[#020617] px-3 py-3">
+        bg-[#020617]
+
+        px-2
+        sm:px-3
+
+        py-3
+      "
+    >
 
       {/* ================= ANIMATION CSS ================= */}
 
       <style>{`
 
         @keyframes gameFadeIn {
+
           0% {
             opacity: 0;
             transform: translateY(35px) scale(0.94);
@@ -119,6 +110,7 @@ export default function CqFeature() {
             opacity: 1;
             transform: translateY(0) scale(1);
           }
+
         }
 
         .game-card-animation {
@@ -127,17 +119,30 @@ export default function CqFeature() {
         }
 
         @media (prefers-reduced-motion: reduce) {
+
           .game-card-animation {
             opacity: 1;
             animation: none;
           }
+
         }
 
       `}</style>
 
+
       {/* ================= CARD GRID ================= */}
 
-      <div className="grid grid-cols-4 gap-3">
+      <div
+        className="
+          grid
+          grid-cols-4
+
+          gap-2
+          sm:gap-3
+
+          w-full
+        "
+      >
 
         {games.map((game, index) => (
 
@@ -153,18 +158,22 @@ export default function CqFeature() {
 
               relative
               overflow-hidden
-              rounded-xl
+
+              rounded-lg
+              sm:rounded-xl
 
               border
-              border-yellow-500
+              border-yellow-500/80
 
               bg-[#061b3a]
 
-              shadow-[0_0_15px_rgba(255,200,0,.30)]
+              shadow-[0_0_12px_rgba(255,200,0,.25)]
+              sm:shadow-[0_0_15px_rgba(255,200,0,.30)]
 
               cursor-pointer
 
-              hover:scale-105
+              hover:scale-[1.04]
+              hover:-translate-y-1
 
               hover:shadow-[0_0_25px_rgba(255,200,0,.55)]
 
@@ -179,12 +188,21 @@ export default function CqFeature() {
               src={game.image}
               alt={game.title}
               className="
+                block
+
                 w-full
-                h-[115px]
+
+                h-[78px]
+                xs:h-[90px]
+                sm:h-[115px]
+
                 object-cover
-                rounded-xl
+
+                rounded-lg
+                sm:rounded-xl
               "
             />
+
 
             {/* ================= HEART BUTTON ================= */}
 
@@ -194,15 +212,22 @@ export default function CqFeature() {
                 toggleFavorite(game.id);
               }}
 
+              aria-label={`Favorite ${game.title}`}
+
               className="
                 absolute
+
                 top-1
                 right-1
 
-                w-7
-                h-7
+                w-6
+                h-6
+
+                sm:w-7
+                sm:h-7
 
                 rounded-full
+
                 bg-black/60
 
                 flex
@@ -214,11 +239,13 @@ export default function CqFeature() {
 
                 transition-all
                 duration-200
+
+                z-10
               "
             >
 
               <Heart
-                size={16}
+                size={14}
                 className={
                   favorite.includes(game.id)
                     ? "fill-red-500 text-red-500"
@@ -235,6 +262,5 @@ export default function CqFeature() {
       </div>
 
     </div>
-
   );
 }

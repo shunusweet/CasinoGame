@@ -31,8 +31,8 @@ const Header = ({
           mx-auto
 
           flex
-          w-full
-          max-w-[430px]
+          w-[540px]
+          max-w-full
 
           items-center
           justify-between

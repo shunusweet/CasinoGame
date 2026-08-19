@@ -1,7 +1,13 @@
 import React from "react";
-import { FaCrown, FaGift, FaCoins, FaUserFriends } from "react-icons/fa";
+import {
+  FaCrown,
+  FaGift,
+  FaCoins,
+  FaUserFriends,
+} from "react-icons/fa";
 
 export default function RewardCards() {
+
   const cards = [
     {
       title: "VIP MONTHLY SALARY",
@@ -27,37 +33,81 @@ export default function RewardCards() {
   ];
 
   return (
-    <div className="min-h-screen bg-[#120500] p-5">
+    <div className="w-[540px] bg-[#120500] p-3">
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-3 max-w-4xl mx-auto">
+      {/* ================= MAIN GRID ================= */}
 
-        {/* Left Side */}
+      <div className="grid grid-cols-2 gap-3">
+
+        {/* ================= LEFT SIDE ================= */}
+
         <div className="space-y-3">
 
-          {cards.slice(0,2).map((item,index)=>(
+          {cards.slice(0, 2).map((item, index) => (
+
             <div
               key={index}
               className={`
-              relative overflow-hidden h-28 rounded-2xl
-              bg-gradient-to-r ${item.bg}
-              border border-yellow-300
-              shadow-[0_0_20px_rgba(255,200,0,0.5)]
-              flex items-center px-5
+                relative
+                overflow-hidden
+                h-28
+                rounded-2xl
+
+                bg-gradient-to-r
+                ${item.bg}
+
+                border
+                border-yellow-300
+
+                shadow-[0_0_20px_rgba(255,200,0,0.5)]
+
+                flex
+                items-center
+                px-5
               `}
             >
 
-              {/* Glow */}
-              <div className="absolute w-20 h-20 bg-yellow-300 opacity-20 blur-2xl rounded-full left-5"></div>
+              {/* ================= GLOW ================= */}
 
+              <div
+                className="
+                  absolute
+                  w-20
+                  h-20
+                  bg-yellow-300
+                  opacity-20
+                  blur-2xl
+                  rounded-full
+                  left-5
+                "
+              />
 
-              <div className="text-yellow-200 text-5xl mr-5">
+              {/* ================= ICON ================= */}
+
+              <div
+                className="
+                  relative
+                  text-yellow-200
+                  text-5xl
+                  mr-5
+                  shrink-0
+                "
+              >
                 {item.icon}
               </div>
 
+              {/* ================= TEXT ================= */}
 
-              <div className="text-white">
+              <div className="relative text-white">
 
-                <h2 className="font-black text-xl tracking-wide">
+                <h2
+                  className="
+                    font-black
+                    text-xl
+                    tracking-wide
+                    whitespace-nowrap
+                  "
+                >
                   {item.title}
                 </h2>
 
@@ -65,69 +115,125 @@ export default function RewardCards() {
                   {item.sub}
                 </p>
 
-                <h1 className="text-3xl font-extrabold text-yellow-300">
+                <h1
+                  className="
+                    text-3xl
+                    font-extrabold
+                    text-yellow-300
+                  "
+                >
                   {item.amount}
                 </h1>
 
               </div>
 
-
             </div>
-          ))}
 
+          ))}
 
         </div>
 
-
-
-        {/* Right Large Card */}
+        {/* ================= RIGHT LARGE CARD ================= */}
 
         <div
-        className="
-        relative overflow-hidden
-        rounded-2xl
-        h-[235px]
-        bg-gradient-to-r from-red-700 via-orange-500 to-yellow-500
-        border border-yellow-300
-        shadow-[0_0_25px_rgba(255,200,0,0.6)]
-        flex items-center
-        p-6
-        "
+          className="
+            relative
+            overflow-hidden
+
+            rounded-2xl
+
+            h-[235px]
+
+            bg-gradient-to-r
+            from-red-700
+            via-orange-500
+            to-yellow-500
+
+            border
+            border-yellow-300
+
+            shadow-[0_0_25px_rgba(255,200,0,0.6)]
+
+            flex
+            items-center
+
+            p-6
+          "
         >
 
-          <div className="absolute top-0 right-0 text-yellow-200 opacity-30 text-9xl">
-            <FaGift/>
+          {/* ================= BACKGROUND GIFT ================= */}
+
+          <div
+            className="
+              absolute
+              top-0
+              right-0
+
+              text-yellow-200
+              opacity-30
+              text-9xl
+            "
+          >
+            <FaGift />
           </div>
 
+          {/* ================= CONTENT ================= */}
 
-          <div>
+          <div className="relative">
 
-            <div className="text-yellow-200 text-6xl mb-3">
-              <FaGift/>
+            {/* Gift Icon */}
+
+            <div
+              className="
+                text-yellow-200
+                text-6xl
+                mb-3
+              "
+            >
+              <FaGift />
             </div>
 
+            {/* Title */}
 
-            <h1 className="text-white text-3xl font-black">
+            <h1
+              className="
+                text-white
+                text-3xl
+                font-black
+              "
+            >
               INVITE FRIEND
             </h1>
 
-            <p className="text-white text-xl font-bold">
+            {/* Reward */}
+
+            <p
+              className="
+                text-white
+                text-xl
+                font-bold
+              "
+            >
               REWARD
             </p>
 
-            <h2 className="text-yellow-300 text-5xl font-black">
+            {/* Amount */}
+
+            <h2
+              className="
+                text-yellow-300
+                text-5xl
+                font-black
+              "
+            >
               RS 3000
             </h2>
 
-
           </div>
-
 
         </div>
 
-
       </div>
-
 
     </div>
   );

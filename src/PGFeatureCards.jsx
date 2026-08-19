@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { Heart } from "lucide-react";
 
 // ================= IMAGES =================
+
 import PinataWins from "./assets/PinataWins.png";
 import Apollo from "./assets/Apollo.png";
 import FortuneRabbit from "./assets/FortuneRabbit.jpg";
@@ -43,19 +44,19 @@ export default function PGFeatureCards() {
   const games = [
     {
       id: 4,
-      image: FortuneOx
+      image: FortuneOx,
     },
     {
       id: 5,
-      image: FortuneHorse
+      image: FortuneHorse,
     },
     {
       id: 6,
-      image: FortuneDragon
+      image: FortuneDragon,
     },
     {
       id: 7,
-      image: DoubleFortune
+      image: DoubleFortune,
     },
   ];
 
@@ -158,7 +159,9 @@ export default function PGFeatureCards() {
 
       `}</style>
 
-      <div className="bg-[#020617] px-3 py-3">
+      {/* ================= MAIN CONTAINER ================= */}
+
+      <div className="w-[540px] bg-[#020617] px-3 py-3">
 
         {/* ================= TOP SECTION ================= */}
 
@@ -184,9 +187,10 @@ export default function PGFeatureCards() {
               }}
               data-index="0"
               src={PinataWins}
-              alt=""
+              alt="Pinata Wins"
               className={`
                 pg-game-image
+
                 ${
                   visibleImages.includes(0)
                     ? "show"
@@ -212,6 +216,8 @@ export default function PGFeatureCards() {
                 flex
                 items-center
                 justify-center
+                hover:bg-black/80
+                transition
               "
             >
 
@@ -255,6 +261,7 @@ export default function PGFeatureCards() {
                 alt="Apollo"
                 className={`
                   pg-game-image
+
                   ${
                     visibleImages.includes(1)
                       ? "show"
@@ -280,6 +287,8 @@ export default function PGFeatureCards() {
                   flex
                   items-center
                   justify-center
+                  hover:bg-black/80
+                  transition
                 "
               >
 
@@ -319,6 +328,7 @@ export default function PGFeatureCards() {
                 alt="Fortune Rabbit"
                 className={`
                   pg-game-image
+
                   ${
                     visibleImages.includes(2)
                       ? "show"
@@ -344,6 +354,8 @@ export default function PGFeatureCards() {
                   flex
                   items-center
                   justify-center
+                  hover:bg-black/80
+                  transition
                 "
               >
 
@@ -397,9 +409,10 @@ export default function PGFeatureCards() {
                   }}
                   data-index={imageIndex}
                   src={game.image}
-                  alt=""
+                  alt="Game"
                   className={`
                     pg-game-image
+
                     ${
                       visibleImages.includes(imageIndex)
                         ? "show"
@@ -427,6 +440,8 @@ export default function PGFeatureCards() {
                     flex
                     items-center
                     justify-center
+                    hover:bg-black/80
+                    transition
                   "
                 >
 

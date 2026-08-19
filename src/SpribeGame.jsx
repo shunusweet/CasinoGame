@@ -4,12 +4,13 @@ import SpribeGameFeature from "./SpribeGameFeature";
 
 export default function SpribeGame() {
   return (
-    <div className="px-3 mt-3">
+    <div className="w-[540px] max-w-full px-3 mt-3">
 
       {/* ================= HEADER ================= */}
 
       <div
         className="
+          w-full
           flex
           items-center
           justify-between
@@ -32,7 +33,7 @@ export default function SpribeGame() {
 
           <img
             src={SpribeGameLogo}
-            alt="Fish Games"
+            alt="SPRIBE"
             className="
               w-12
               h-12

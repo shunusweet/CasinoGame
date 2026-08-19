@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+
 import {
   ChevronDown,
   Send,
@@ -6,49 +7,74 @@ import {
 } from "lucide-react";
 
 import ChickenFooter from "./assets/ChickenFooter.png";
+
+// =====================================================
+// GAME COMPONENTS
+// =====================================================
+
 import Gg2JGames from "./Gg2JGames";
-import SpribeGame from "./SpribeGame"
-import Inout from "./Inout"
-import Cq from "./Cq"
-import FcGame from "./FcGame"
-import BBGames from "./BBGames"
-import MgGame from "./MgGame"
+import SpribeGame from "./SpribeGame";
+import Inout from "./Inout";
+import Cq from "./Cq";
+import FcGame from "./FcGame";
+import BBGames from "./BBGames";
+import MgGame from "./MgGame";
 import Evoplay from "./Evoplay";
 import Gg_bg from "./Gg_bg";
-import Spinomenal from "./Spinomenal";
+import Spinomenal from "./Spinomenal"
 import GgUgGames from "./GgUgGames";
 import GgRelax from "./GgRelax";
 import GgRedTigerGames from "./GgRedTigerGames";
-import PlayTech from "./PlayTech"
+import PlayTech from "./PlayTech";
 import KagaGames from "./kagaGames";
-import AskMe from "./AskMe"
-import PopokGames from "./PopakGames"
+import AskMe from "./AskMe";
+import PopokGames from "./PopakGames";
 import HacksawGames from "./HacksawGames";
 import Habanero from "./Habanero";
 import BetSoft from "./BetSoft";
-import  RichGames from "./RichGames";
-import AmigoGames from "./AmigoGames"
+import RichGames from "./RichGames";
+import AmigoGames from "./AmigoGames";
 
-export default function Footer() {
+// =====================================================
+// FOOTER
+// =====================================================
+
+function Footer() {
+
+  // ===================================================
+  // SHOW MORE STATE
+  // ===================================================
+
   const [showMore, setShowMore] = useState(false);
+
+  // ===================================================
+  // TOGGLE SHOW MORE
+  // ===================================================
+
+  const handleShowMore = () => {
+    setShowMore((prev) => !prev);
+  };
 
   return (
     <footer
       className="
         relative
+        z-30
         w-full
-        min-h-[540px]
-        overflow-hidden
         bg-[#020617]
         text-white
       "
     >
-      {/* ================= BLUE BACKGROUND ================= */}
+
+      {/* ================================================= */}
+      {/* BACKGROUND */}
+      {/* ================================================= */}
 
       <div
         className="
           absolute
           inset-0
+          z-0
           pointer-events-none
         "
         style={{
@@ -73,196 +99,270 @@ export default function Footer() {
         }}
       />
 
-      {/* ================= TOP MORE BUTTON ================= */}
+      {/* ================================================= */}
+      {/* SHOW MORE BUTTON */}
+      {/* ================================================= */}
 
-      <div className="relative z-10 flex justify-center pt-3">
+      <div
+        className="
+          relative
+          z-[50]
+          w-full
+          flex
+          justify-center
+          pt-3
+        "
+      >
+
         <button
           type="button"
-          onClick={() => setShowMore((prev) => !prev)}
+          onClick={handleShowMore}
+          aria-expanded={showMore}
           className="
             flex
             items-center
+            justify-center
             gap-1
+
+            h-7
             px-4
-            h-6
+
             rounded-full
+
             border
             border-cyan-600
-            bg-[#061b3a]/90
+
+            bg-[#061b3a]
+
             text-cyan-200
             text-[11px]
+            font-medium
+
             shadow-[0_0_10px_rgba(0,180,255,.25)]
-            hover:bg-[#0b2d57]
-            hover:border-cyan-400
+
             transition-all
-            duration-300
+            duration-200
+
+            active:scale-95
+
+            cursor-pointer
+            select-none
+
+            outline-none
           "
         >
-          {showMore ? "Close" : "More"}
+
+          {/* BUTTON TEXT */}
+
+          <span>
+            {showMore ? "Close" : "More"}
+          </span>
+
+          {/* ARROW */}
 
           <ChevronDown
-            size={11}
+            size={12}
             className={`
               transition-transform
               duration-300
-              ${showMore ? "rotate-180" : ""}
+              ${showMore ? "rotate-180" : "rotate-0"}
             `}
           />
+
         </button>
+
       </div>
 
-      {/* ================= MORE CONTENT ================= */}
+
+      {/* ================================================= */}
+      {/* EXPANDED CONTENT */}
+      {/* ================================================= */}
 
       {showMore && (
-        <div className="relative z-10 mt-4">
-          <Gg2JGames />
+        <div
+          className="
+            relative
+            z-40
+
+            w-full
+
+            mt-4
+            pb-5
+
+            animate-[footerOpen_.3s_ease-out]
+          "
+        >
+
+          {/* 1 */}
+
+          <div className="mt-4">
+            <Gg2JGames />
+          </div>
+
+
+          {/* 2 */}
+
+          <div className="mt-4">
+            <SpribeGame />
+          </div>
+
+
+          {/* 3 */}
+
+          <div className="mt-4">
+            <Inout />
+          </div>
+
+
+          {/* 4 */}
+
+          <div className="mt-4">
+            <Cq />
+          </div>
+
+
+          {/* 5 */}
+
+          <div className="mt-4">
+            <FcGame />
+          </div>
+
+
+          {/* 6 */}
+
+          <div className="mt-4">
+            <BBGames />
+          </div>
+
+
+          {/* 7 */}
+
+          <div className="mt-4">
+            <MgGame />
+          </div>
+
+
+          {/* 8 */}
+
+          <div className="mt-4">
+            <Evoplay />
+          </div>
+
+
+          {/* 9 */}
+
+          <div className="mt-4">
+            <Gg_bg />
+          </div>
+          {/* 9 */}
+
+          <div className="mt-4">
+            <Spinomenal />
+          </div>
+
+          {/* 11 */}
+
+          <div className="mt-4">
+            <GgUgGames />
+          </div>
+
+
+          {/* 12 */}
+
+          <div className="mt-4">
+            <GgRelax />
+          </div>
+
+
+          {/* 13 */}
+
+          <div className="mt-4">
+            <GgRedTigerGames />
+          </div>
+
+
+          {/* 14 */}
+
+          <div className="mt-4">
+            <PlayTech />
+          </div>
+
+
+          {/* 15 */}
+
+          <div className="mt-4">
+            <KagaGames />
+          </div>
+
+
+          {/* 16 */}
+
+          <div className="mt-4">
+            <AskMe />
+          </div>
+
+
+          {/* 17 */}
+
+          <div className="mt-4">
+            <PopokGames />
+          </div>
+
+
+          {/* 18 */}
+
+          <div className="mt-4">
+            <HacksawGames />
+          </div>
+
+
+          {/* 19 */}
+
+          <div className="mt-4">
+            <Habanero />
+          </div>
+
+
+          {/* 20 */}
+
+          <div className="mt-4">
+            <BetSoft />
+          </div>
+
+
+          {/* 21 */}
+
+          <div className="mt-4">
+            <RichGames />
+          </div>
+
+
+          {/* 22 */}
+
+          <div className="mt-4">
+            <AmigoGames />
+          </div>
+
         </div>
       )}
 
-       {showMore && (
-        <div className="relative z-10 mt-4">
-          <SpribeGame />
-        </div>
-      )}
 
-      {showMore && (
-        <div className="relative z-10 mt-4">
-          <Inout />
-        </div>
-      )}
-
-        {showMore && (
-        <div className="relative z-10 mt-4">
-          <Cq />
-        </div>
-      )}
-
-      {showMore && (
-        <div className="relative z-10 mt-4">
-          <FcGame />
-        </div>
-      )}
-
-      {showMore && (
-        <div className="relative z-10 mt-4">
-          <BBGames />
-        </div>
-      )}
-
-       {showMore && (
-        <div className="relative z-10 mt-4">
-          <MgGame />
-        </div>
-      )}
-
-      {showMore && (
-        <div className="relative z-10 mt-4">
-          <Evoplay />
-        </div>
-      )}
-
-      {showMore && (
-        <div className="relative z-10 mt-4">
-          <Gg_bg />
-        </div>
-      )}
-
-      {showMore && (
-        <div className="relative z-10 mt-4">
-          <Spinomenal />
-        </div>
-      )}
-
-      {showMore && (
-        <div className="relative z-10 mt-4">
-          <GgUgGames />
-        </div>
-      )}
-
-      {showMore && (
-        <div className="relative z-10 mt-4">
-          <GgRelax />
-        </div>
-      )}
-
-      {showMore && (
-        <div className="relative z-10 mt-4">
-          <GgRedTigerGames />
-        </div>
-      )}
-
-      {showMore && (
-        <div className="relative z-10 mt-4">
-          <PlayTech />
-        </div>
-      )}
-
-      {showMore && (
-        <div className="relative z-10 mt-4">
-          <KagaGames />
-        </div>
-      )}
-
-       {showMore && (
-        <div className="relative z-10 mt-4">
-          <AskMe />
-        </div>
-      )}
-
-      {showMore && (
-        <div className="relative z-10 mt-4">
-          <PopokGames />
-        </div>
-      )}
-
-      {showMore && (
-        <div className="relative z-10 mt-4">
-          <HacksawGames />
-        </div>
-      )}
-
-
-        {showMore && (
-        <div className="relative z-10 mt-4">
-          <Habanero />
-        </div>
-      )}
-
-       {showMore && (
-        <div className="relative z-10 mt-4">
-          <BetSoft />
-        </div>
-      )}
-
-       {showMore && (
-        <div className="relative z-10 mt-4">
-          <RichGames />
-        </div>
-      )}
-      
-      {showMore && (
-        <div className="relative z-10 mt-4">
-          <AmigoGames />
-        </div>
-      )}
-
-     
-
-
-
- 
-
-      {/* ================= CHICKEN ================= */}
+      {/* ================================================= */}
+      {/* CHICKEN IMAGE */}
+      {/* ================================================= */}
 
       <div
         className="
           relative
           z-10
+
           flex
           justify-center
+
           mt-2
         "
       >
+
         <img
           src={ChickenFooter}
           alt="33RS Chicken"
@@ -272,99 +372,146 @@ export default function Footer() {
             object-contain
           "
         />
+
       </div>
 
-      {/* ================= SOCIAL ICONS ================= */}
+
+      {/* ================================================= */}
+      {/* SOCIAL ICONS */}
+      {/* ================================================= */}
 
       <div
         className="
           relative
           z-10
+
           flex
           justify-center
           gap-4
+
           mt-[-3px]
         "
       >
-        {/* Facebook */}
+
+        {/* FACEBOOK */}
 
         <div
           className="
-            w-[25px]
-            h-[25px]
-            rounded-full
-            bg-[#1877f2]
             flex
             items-center
             justify-center
+
+            w-[25px]
+            h-[25px]
+
+            rounded-full
+
+            bg-[#1877f2]
+
             shadow-[0_2px_10px_rgba(0,140,255,.35)]
           "
         >
-          <span className="text-white text-[19px] font-bold">
+
+          <span
+            className="
+              text-white
+              text-[19px]
+              font-bold
+            "
+          >
             f
           </span>
+
         </div>
 
-        {/* Telegram */}
+
+        {/* TELEGRAM */}
 
         <div
           className="
-            w-[25px]
-            h-[25px]
-            rounded-full
-            bg-[#229ed9]
             flex
             items-center
             justify-center
+
+            w-[25px]
+            h-[25px]
+
+            rounded-full
+
+            bg-[#229ed9]
+
             shadow-[0_2px_10px_rgba(0,180,255,.35)]
           "
         >
+
           <Send
             size={13}
             fill="white"
             className="text-white"
           />
+
         </div>
 
-        {/* WhatsApp */}
+
+        {/* WHATSAPP */}
 
         <div
           className="
-            w-[25px]
-            h-[25px]
-            rounded-full
-            bg-[#25d366]
             flex
             items-center
             justify-center
+
+            w-[25px]
+            h-[25px]
+
+            rounded-full
+
+            bg-[#25d366]
+
             shadow-[0_2px_10px_rgba(0,255,150,.25)]
           "
         >
+
           <MessageCircle
             size={15}
             fill="white"
             className="text-white"
           />
+
         </div>
+
 
         {/* 18+ */}
 
         <div
           className="
             relative
-            w-[25px]
-            h-[25px]
-            rounded-full
-            bg-[#2563eb]
+
             flex
             items-center
             justify-center
+
+            w-[25px]
+            h-[25px]
+
+            rounded-full
+
+            bg-[#2563eb]
+
             border
             border-cyan-300
+
             shadow-[0_0_10px_rgba(0,140,255,.45)]
           "
         >
-          <span className="text-white text-[11px] font-black">
+
+          <span
+            className="
+              text-white
+              text-[11px]
+              font-black
+            "
+          >
             18
           </span>
 
@@ -373,39 +520,52 @@ export default function Footer() {
               absolute
               top-[-2px]
               right-[-2px]
+
               text-[8px]
               font-bold
             "
           >
             +
           </span>
+
         </div>
+
       </div>
 
-      {/* ================= FOOTER TEXT ================= */}
+
+      {/* ================================================= */}
+      {/* FOOTER TEXT */}
+      {/* ================================================= */}
 
       <div
         className="
           relative
           z-10
+
           px-[34px]
           mt-7
+
           text-white
           font-serif
           text-[11px]
           leading-[17px]
         "
       >
-        {/* Description */}
 
         <p>
-          <span className="text-cyan-300 font-bold">
+          <span
+            className="
+              text-cyan-300
+              font-bold
+            "
+          >
             33RS.COM
           </span>{" "}
           is one of the most trusted and popular online slot
           websites in Pakistan, and the top choice for slot
           enthusiasts.
         </p>
+
 
         <p className="mt-2">
           As a leading slot website, 33RS.COM offers an
@@ -415,9 +575,9 @@ export default function Footer() {
           safe, and comfortable online slot gaming experience.
         </p>
 
-        {/* ================= RULES ================= */}
 
         <div className="mt-2">
+
           <p>
             1. This product is for users aged 18 and over only.
           </p>
@@ -431,28 +591,69 @@ export default function Footer() {
             guaranteed to win in real-money gambling and
             related games.
           </p>
+
         </div>
+
       </div>
 
-      {/* ================= COPYRIGHT ================= */}
+
+      {/* ================================================= */}
+      {/* COPYRIGHT */}
+      {/* ================================================= */}
 
       <div
         className="
           relative
           z-10
+
           text-center
+
           mt-4
+
           text-[10px]
           font-bold
+
           text-cyan-100
+
+          pb-4
         "
       >
         Copyright © 2026 33RS.COM
       </div>
 
-      {/* ================= BOTTOM SPACING ================= */}
+
+      {/* ================================================= */}
+      {/* BOTTOM SPACE */}
+      {/* ================================================= */}
 
       <div className="h-[140px]" />
+
+
+      {/* ================================================= */}
+      {/* ANIMATION */}
+      {/* ================================================= */}
+
+      <style>{`
+
+        @keyframes footerOpen {
+
+          0% {
+            opacity: 0;
+            transform: translateY(-8px);
+          }
+
+          100% {
+            opacity: 1;
+            transform: translateY(0);
+          }
+
+        }
+
+      `}</style>
+
     </footer>
   );
 }
+
+
+export default Footer;

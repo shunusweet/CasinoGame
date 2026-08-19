@@ -26,20 +26,11 @@ export default function SpribeGameFeaure() {
 
   const toggleFavorite = (id) => {
 
-    if (favorite.includes(id)) {
-
-      setFavorite(
-        favorite.filter((item) => item !== id)
-      );
-
-    } else {
-
-      setFavorite([
-        ...favorite,
-        id
-      ]);
-
-    }
+    setFavorite((prev) =>
+      prev.includes(id)
+        ? prev.filter((item) => item !== id)
+        : [...prev, id]
+    );
 
   };
 
@@ -155,9 +146,12 @@ export default function SpribeGameFeaure() {
 
   }, []);
 
+  // ================= RETURN =================
+
   return (
 
     <>
+
       {/* ================= IMAGE ANIMATION ================= */}
 
       <style>{`
@@ -195,9 +189,17 @@ export default function SpribeGameFeaure() {
 
       `}</style>
 
-      {/* ================= MAIN ================= */}
+      {/* ================= 540px MAIN ================= */}
 
-      <div className="bg-[#020617] px-3 py-3">
+      <div
+        className="
+          w-[540px]
+          max-w-full
+          bg-[#020617]
+          px-3
+          py-3
+        "
+      >
 
         {/* ================= CARD GRID ================= */}
 
@@ -233,6 +235,7 @@ export default function SpribeGameFeaure() {
                 alt={game.title}
                 className={`
                   spribe-game-image
+
                   ${
                     visibleImages.includes(index)
                       ? "show"
@@ -288,12 +291,11 @@ export default function SpribeGameFeaure() {
 
         {/* ================= BOTTOM SPACE ================= */}
 
-        <div className="mt-4"></div>
+        <div className="h-2" />
 
       </div>
 
     </>
 
   );
-
 }

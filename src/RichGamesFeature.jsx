@@ -17,29 +17,36 @@ import CandyIsland from "./assets/DiscoFarm.png";
 
 export default function RichGamesFeature() {
 
+  // ================= FAVORITE =================
+
   const [favorite, setFavorite] = useState([]);
+
+  // ================= IMAGE VISIBILITY =================
+
   const [visibleImages, setVisibleImages] = useState([]);
 
   const imageRefs = useRef([]);
 
-  // ================= FAVORITE =================
+  // ================= FAVORITE FUNCTION =================
 
   const toggleFavorite = (id) => {
 
-    if (favorite.includes(id)) {
+    setFavorite((prev) => {
 
-      setFavorite(
-        favorite.filter((item) => item !== id)
-      );
+      if (prev.includes(id)) {
 
-    } else {
+        return prev.filter(
+          (item) => item !== id
+        );
 
-      setFavorite([
-        ...favorite,
+      }
+
+      return [
+        ...prev,
         id
-      ]);
+      ];
 
-    }
+    });
 
   };
 
@@ -107,29 +114,29 @@ export default function RichGamesFeature() {
 
         entries.forEach((entry) => {
 
-          if (entry.isIntersecting) {
-
-            const index = Number(
-              entry.target.dataset.index
-            );
-
-            setVisibleImages((prev) => {
-
-              if (prev.includes(index)) {
-                return prev;
-              }
-
-              return [
-                ...prev,
-                index
-              ];
-
-            });
-
-            // Animation sirf ek baar chalegi
-            observer.unobserve(entry.target);
-
+          if (!entry.isIntersecting) {
+            return;
           }
+
+          const index = Number(
+            entry.target.dataset.index
+          );
+
+          setVisibleImages((prev) => {
+
+            if (prev.includes(index)) {
+              return prev;
+            }
+
+            return [
+              ...prev,
+              index
+            ];
+
+          });
+
+          // Animation sirf ek baar chalegi
+          observer.unobserve(entry.target);
 
         });
 
@@ -158,8 +165,8 @@ export default function RichGamesFeature() {
   // ================= RETURN =================
 
   return (
-
     <>
+
       {/* ================= IMAGE ANIMATION ================= */}
 
       <style>{`
@@ -168,12 +175,16 @@ export default function RichGamesFeature() {
 
           0% {
             opacity: 0;
-            transform: translateY(45px) scale(0.96);
+            transform:
+              translateY(45px)
+              scale(0.96);
           }
 
           100% {
             opacity: 1;
-            transform: translateY(0) scale(1);
+            transform:
+              translateY(0)
+              scale(1);
           }
 
         }
@@ -181,7 +192,10 @@ export default function RichGamesFeature() {
         .rich-game-image {
 
           opacity: 0;
-          transform: translateY(45px) scale(0.96);
+
+          transform:
+            translateY(45px)
+            scale(0.96);
 
         }
 
@@ -197,11 +211,26 @@ export default function RichGamesFeature() {
 
       `}</style>
 
-      <div className="bg-[#020617] px-3 py-3">
+      {/* ================= MAIN CONTAINER ================= */}
+
+      <div
+        className="
+          w-[540px]
+          bg-[#020617]
+          px-3
+          py-3
+        "
+      >
 
         {/* ================= CARD GRID ================= */}
 
-        <div className="grid grid-cols-4 gap-3">
+        <div
+          className="
+            grid
+            grid-cols-4
+            gap-3
+          "
+        >
 
           {games.map((game, index) => (
 
@@ -210,13 +239,20 @@ export default function RichGamesFeature() {
               className="
                 relative
                 overflow-hidden
+
                 rounded-xl
+
                 border
                 border-yellow-500
+
                 bg-[#061b3a]
+
                 shadow-[0_0_15px_rgba(255,200,0,.30)]
+
                 cursor-pointer
+
                 hover:scale-105
+
                 transition-all
                 duration-300
               "
@@ -226,13 +262,17 @@ export default function RichGamesFeature() {
 
               <img
                 ref={(element) => {
-                  imageRefs.current[index] = element;
+
+                  imageRefs.current[index] =
+                    element;
+
                 }}
                 data-index={index}
                 src={game.image}
                 alt={game.title}
                 className={`
                   rich-game-image
+
                   ${
                     visibleImages.includes(index)
                       ? "show"
@@ -249,23 +289,39 @@ export default function RichGamesFeature() {
               {/* ================= HEART BUTTON ================= */}
 
               <button
+                type="button"
                 onClick={(e) => {
+
                   e.stopPropagation();
+
                   toggleFavorite(game.id);
+
                 }}
+                aria-label={
+                  favorite.includes(game.id)
+                    ? `Remove ${game.title} from favorites`
+                    : `Add ${game.title} to favorites`
+                }
                 className="
                   absolute
                   top-1
                   right-1
+
                   w-7
                   h-7
+
                   rounded-full
+
                   bg-black/60
+
                   flex
                   items-center
                   justify-center
+
                   hover:bg-black/80
+
                   transition
+                  duration-200
                 "
               >
 
@@ -286,10 +342,12 @@ export default function RichGamesFeature() {
 
         </div>
 
+        {/* ================= BOTTOM SPACING ================= */}
+
+        <div className="mt-5"></div>
+
       </div>
 
     </>
-
   );
-
 }

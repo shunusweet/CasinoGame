@@ -17,34 +17,26 @@ import GrapTurnDragon from "./assets/GrapTurnDragon.png";
 // ================= COMPONENT =================
 
 export default function BbGamesFeatures() {
-
   const [favorite, setFavorite] = useState([]);
 
   // ================= FAVORITE =================
 
   const toggleFavorite = (id) => {
-
     if (favorite.includes(id)) {
-
       setFavorite(
         favorite.filter((item) => item !== id)
       );
-
     } else {
-
       setFavorite([
         ...favorite,
-        id
+        id,
       ]);
-
     }
-
   };
 
   // ================= GAMES =================
 
   const games = [
-
     {
       id: 1,
       image: FireOfHuluwa,
@@ -92,36 +84,61 @@ export default function BbGamesFeatures() {
       image: GrapTurnDragon,
       title: "Grap Turn Dragon",
     },
-
   ];
 
   // ================= RETURN =================
 
   return (
-
-    <div className="bg-[#020617] px-3 py-3">
+    <div
+      className="
+        w-full
+        max-w-[540px]
+        mx-auto
+        px-2
+        sm:px-3
+        py-3
+        bg-transparent
+      "
+    >
 
       {/* ================= CARD GRID ================= */}
 
-      <div className="grid grid-cols-4 gap-3">
+      <div
+        className="
+          grid
+          grid-cols-4
+          gap-2
+          sm:gap-3
+          w-full
+        "
+      >
 
         {games.map((game, index) => (
-
           <div
             key={game.id}
+
             style={{
               animationDelay: `${index * 0.12}s`,
             }}
+
             className="
               animate-gameCard
 
               relative
+              w-full
+              min-w-0
               overflow-hidden
-              rounded-xl
+
+              rounded-lg
+              sm:rounded-xl
+
               border
               border-yellow-500
+
               bg-[#061b3a]
+
               shadow-[0_0_15px_rgba(255,200,0,.30)]
+
               cursor-pointer
 
               hover:scale-105
@@ -137,11 +154,14 @@ export default function BbGamesFeatures() {
             <img
               src={game.image}
               alt={game.title}
+              loading="lazy"
               className="
+                block
                 w-full
-                h-[115px]
+                aspect-[1/1]
                 object-cover
-                rounded-xl
+                rounded-lg
+                sm:rounded-xl
               "
             />
 
@@ -152,42 +172,66 @@ export default function BbGamesFeatures() {
                 e.stopPropagation();
                 toggleFavorite(game.id);
               }}
+
+              aria-label={`Add ${game.title} to favorites`}
+
               className="
                 absolute
                 top-1
                 right-1
-                w-7
-                h-7
+
+                w-6
+                h-6
+                sm:w-7
+                sm:h-7
+
                 rounded-full
+
                 bg-black/60
+                backdrop-blur-sm
+
                 flex
                 items-center
                 justify-center
+
                 hover:bg-black/80
-                transition
+                hover:scale-110
+
+                transition-all
+                duration-200
+
+                z-10
               "
             >
 
               <Heart
-                size={16}
-                className={
-                  favorite.includes(game.id)
-                    ? "fill-red-500 text-red-500"
-                    : "text-white"
-                }
+                size={14}
+                className={`
+                  sm:w-4
+                  sm:h-4
+
+                  ${
+                    favorite.includes(game.id)
+                      ? "fill-red-500 text-red-500"
+                      : "text-white"
+                  }
+                `}
               />
 
             </button>
 
           </div>
-
         ))}
 
       </div>
-{/* ================= ANIMATION CSS ================= */}
+
+
+      {/* ================= ANIMATION CSS ================= */}
 
       <style>{`
+
         @keyframes gameCardFadeIn {
+
           0% {
             opacity: 0;
             transform: translateY(35px) scale(0.92);
@@ -201,27 +245,37 @@ export default function BbGamesFeatures() {
             opacity: 1;
             transform: translateY(0) scale(1);
           }
+
         }
 
+
         .animate-gameCard {
+
           opacity: 0;
+
           animation-name: gameCardFadeIn;
           animation-duration: 0.7s;
           animation-timing-function: ease-out;
           animation-fill-mode: forwards;
           animation-iteration-count: 1;
+
         }
 
+
         @media (prefers-reduced-motion: reduce) {
+
           .animate-gameCard {
+
             opacity: 1;
             animation: none;
             transform: none;
+
           }
+
         }
+
       `}</style>
 
     </div>
-
   );
 }

@@ -3,59 +3,82 @@ import { Flame } from "lucide-react";
 
 const HotGameHeader = () => {
   return (
-    <div className="px-3 mt-3">
+    <div className="w-full max-w-[540px] mx-auto px-3 mt-3">
+
+      {/* ================= HEADER ================= */}
 
       <div
         className="
-        h-[72px]
+          h-[72px]
 
-        rounded-xl
+          rounded-xl
 
-        border
-        border-[#b8822b]
+          border
+          border-cyan-600
 
-        bg-gradient-to-r
-        from-[#2b1405]
-        via-[#3d1d08]
-        to-[#241003]
+          bg-gradient-to-r
+          from-[#061b3a]
+          via-[#08244a]
+          to-[#061b3a]
 
-        flex
-        items-center
-        justify-between
+          flex
+          items-center
+          justify-between
 
-        px-4
+          px-4
 
-        shadow-[0_0_12px_rgba(255,170,0,.35)]
+          shadow-[0_0_18px_rgba(0,180,255,.30)]
+
+          overflow-hidden
         "
       >
 
-        {/* Left */}
-        <div className="flex items-center gap-4">
+        {/* ================= LEFT ================= */}
+
+        <div className="flex items-center gap-3 min-w-0">
+
+          {/* FLAME */}
 
           <div
             className="
-            w-14
-            h-14
+              w-12
+              h-12
 
-            rounded-xl
+              rounded-xl
 
-            flex
-            items-center
-            justify-center
+              flex
+              items-center
+              justify-center
+
+              bg-[#0a2145]
+
+              border
+              border-cyan-700
+
+              shadow-[0_0_12px_rgba(0,180,255,.25)]
             "
           >
+
             <Flame
-              size={46}
-              className="text-orange-500 fill-orange-500"
+              size={38}
+              className="
+                text-orange-500
+                fill-orange-500
+              "
             />
+
           </div>
+
+
+          {/* TITLE */}
 
           <h2
             className="
-            text-[#f3d189]
-            text-4xl
-            font-serif
-            font-semibold
+              text-cyan-100
+              text-3xl
+              font-serif
+              font-semibold
+              whitespace-nowrap
             "
           >
             Hots
@@ -63,50 +86,65 @@ const HotGameHeader = () => {
 
         </div>
 
-        {/* Right */}
-        <div className="flex gap-3">
+
+        {/* ================= RIGHT BUTTONS ================= */}
+
+        <div className="flex items-center gap-2 shrink-0">
+
+          {/* ALL */}
 
           <button
             className="
-            w-[95px]
-            h-[48px]
+              px-4
+              h-10
 
-            rounded-xl
+              rounded-xl
 
-            border
-            border-[#b8822b]
+              border
+              border-cyan-600
 
-            bg-[#3b1c08]
+              bg-[#0a2145]
 
-            text-[#f3d189]
-            text-2xl
-            font-bold
+              text-cyan-200
 
-            hover:bg-[#51280d]
-            duration-300
+              font-bold
+
+              hover:bg-cyan-700
+              hover:text-white
+              hover:scale-105
+
+              transition-all
+              duration-300
             "
           >
             All 35
           </button>
 
+
+          {/* MORE */}
+
           <button
             className="
-            w-[95px]
-            h-[48px]
+              px-4
+              h-10
 
-            rounded-xl
+              rounded-xl
 
-            border
-            border-[#b8822b]
+              border
+              border-cyan-600
 
-            bg-[#3b1c08]
+              bg-[#0a2145]
 
-            text-[#f3d189]
-            text-2xl
-            font-bold
+              text-cyan-200
 
-            hover:bg-[#51280d]
-            duration-300
+              font-bold
+
+              hover:bg-cyan-700
+              hover:text-white
+              hover:scale-105
+
+              transition-all
+              duration-300
             "
           >
             More

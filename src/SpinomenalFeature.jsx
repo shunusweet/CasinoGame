@@ -30,100 +30,76 @@ export default function SpinomenalFeature() {
   // ================= FAVORITE =================
 
   const toggleFavorite = (id) => {
-
-    if (favorite.includes(id)) {
-
-      setFavorite(
-        favorite.filter((item) => item !== id)
-      );
-
-    } else {
-
-      setFavorite([
-        ...favorite,
-        id
-      ]);
-
-    }
-
+    setFavorite((prev) =>
+      prev.includes(id)
+        ? prev.filter((item) => item !== id)
+        : [...prev, id]
+    );
   };
 
   // ================= GAMES =================
 
   const games = [
-
     {
       id: 1,
       image: SP_777_vegas_voyage,
       title: "MG Break Away",
     },
-
     {
       id: 2,
       image: SP_Majestic_Spirit,
       title: "MG Basket ball Star",
     },
-
     {
       id: 3,
       image: SP_777_Flamingo_Fever,
       title: "Football Star",
     },
-
     {
       id: 4,
       image: SP_Book_of_majestic_wild_buffalo,
       title: "Ladies Nite",
     },
-
     {
       id: 5,
       image: SP_777_Fruits_Fire_Blaze,
-      title: "SP 777 Fruits Fire Blaze.jpg",
+      title: "SP 777 Fruits Fire Blaze",
     },
-
     {
       id: 6,
       image: SP_Buffalo_Rampage_Hold_Hit,
       title: "SP Buffalo Rampage Hold & Hit",
     },
-
     {
       id: 7,
       image: SP_777_Dragons_Rage,
       title: "BG Secret Bar Multidice X",
     },
-
     {
       id: 8,
       image: SP_Joker_Wild_Ride_Halloween,
-      title: "BG Gold Magnate.jpg",
+      title: "BG Gold Magnate",
     },
-
     {
       id: 9,
       image: SP_Book_Of_Ocean_Outlaws,
       title: "BG Alien Fruits",
     },
-
     {
       id: 10,
       image: SP_TroutTreasure_Egyptian_Catch,
       title: "EVO Elven Princesses",
     },
-
     {
       id: 11,
       image: SP_777_Havana_Nights,
       title: "EVO Unlimited Wishes",
     },
-
     {
       id: 12,
       image: SP_Baba_Yaga_Tales_Haunted_Hollows,
       title: "BG OOF The Goldmine Planet",
     },
-
   ];
 
   // ================= IMAGE SCROLL ANIMATION =================
@@ -131,7 +107,6 @@ export default function SpinomenalFeature() {
   useEffect(() => {
 
     const observer = new IntersectionObserver(
-
       (entries) => {
 
         entries.forEach((entry) => {
@@ -148,26 +123,18 @@ export default function SpinomenalFeature() {
                 return prev;
               }
 
-              return [
-                ...prev,
-                index
-              ];
-
+              return [...prev, index];
             });
 
-            // Animation sirf ek baar chalegi
             observer.unobserve(entry.target);
-
           }
 
         });
 
       },
-
       {
         threshold: 0.2,
       }
-
     );
 
     imageRefs.current.forEach((image) => {
@@ -187,7 +154,6 @@ export default function SpinomenalFeature() {
   // ================= RETURN =================
 
   return (
-
     <>
       {/* ================= IMAGE ANIMATION ================= */}
 
@@ -208,25 +174,31 @@ export default function SpinomenalFeature() {
         }
 
         .spinomenal-game-image {
-
           opacity: 0;
           transform: translateY(45px) scale(0.96);
-
         }
 
         .spinomenal-game-image.show {
-
           animation:
             spinomenalImageFadeUp
             0.9s
             cubic-bezier(0.22, 1, 0.36, 1)
             forwards;
-
         }
 
       `}</style>
 
-      <div className="bg-[#020617] px-3 py-3">
+      {/* ================= 540px MAIN CONTAINER ================= */}
+
+      <div
+        className="
+          w-[540px]
+          max-w-full
+          bg-[#020617]
+          px-3
+          py-3
+        "
+      >
 
         {/* ================= CARD GRID ================= */}
 
@@ -315,12 +287,10 @@ export default function SpinomenalFeature() {
 
         </div>
 
-       
+        {/* Bottom spacing */}
+        <div className="h-2" />
 
       </div>
-
     </>
-
   );
-
 }

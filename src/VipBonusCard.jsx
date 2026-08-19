@@ -5,6 +5,10 @@ const VipBonusCard = () => {
   return (
     <div
       className="
+      w-full
+      max-w-[540px]
+      mx-auto
+
       rounded-[22px]
       overflow-hidden
 
@@ -19,7 +23,8 @@ const VipBonusCard = () => {
       shadow-[0_0_20px_rgba(0,255,255,.18)]
       "
     >
-      {/* Banner */}
+      {/* ================= BANNER ================= */}
+
       <div className="relative">
 
         <img
@@ -33,11 +38,11 @@ const VipBonusCard = () => {
         />
 
         {/* Overlay */}
+
         <div
           className="
           absolute
           inset-0
-
           bg-gradient-to-r
           from-[#020617]/75
           via-[#020617]/25
@@ -45,7 +50,8 @@ const VipBonusCard = () => {
           "
         />
 
-        {/* Text */}
+        {/* Banner Text */}
+
         <div
           className="
           absolute
@@ -54,6 +60,7 @@ const VipBonusCard = () => {
           -translate-y-1/2
           "
         >
+
           <p className="text-cyan-300 text-sm uppercase tracking-wider">
             VIP Exclusive
           </p>
@@ -78,26 +85,32 @@ const VipBonusCard = () => {
           >
             Earn up to Rs 500,000
           </p>
+
         </div>
+
       </div>
 
-      {/* Bottom */}
+      {/* ================= BOTTOM ================= */}
+
       <div
         className="
         flex
         justify-between
         items-center
-
+        gap-3
         p-4
         "
       >
-        {/* Left */}
-        <div className="flex items-center gap-4">
+
+        {/* ================= LEFT ================= */}
+
+        <div className="flex items-center gap-3 min-w-0">
 
           <div
             className="
-            w-16
-            h-16
+            w-14
+            h-14
+            shrink-0
 
             rounded-2xl
 
@@ -114,25 +127,28 @@ const VipBonusCard = () => {
             justify-center
             "
           >
+
             <Crown
-              size={34}
+              size={30}
               className="text-yellow-300"
             />
+
           </div>
 
-          <div>
+          <div className="min-w-0">
 
             <h2
               className="
               text-white
               text-2xl
               font-bold
+              truncate
               "
             >
               VIP Bonus
             </h2>
 
-            <p className="text-cyan-300 text-sm">
+            <p className="text-cyan-300 text-xs">
               Unlock exclusive VIP rewards every day
             </p>
 
@@ -140,10 +156,13 @@ const VipBonusCard = () => {
 
         </div>
 
-        {/* Button */}
+        {/* ================= BUTTON ================= */}
+
         <button
           className="
-          px-6
+          shrink-0
+
+          px-5
           py-3
 
           rounded-2xl
@@ -166,14 +185,19 @@ const VipBonusCard = () => {
           shadow-[0_0_15px_rgba(0,255,255,.45)]
 
           hover:scale-105
+          transition
           duration-300
           "
         >
+
           <CircleDollarSign size={18} />
+
           Claim
+
         </button>
 
       </div>
+
     </div>
   );
 };

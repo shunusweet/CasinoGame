@@ -4,8 +4,6 @@ import img1 from "./assets/bluebanner1.png";
 import img2 from "./assets/bluebanner2.png";
 import img3 from "./assets/bluebanner3.png";
 
-
-
 export default function HeroSectoin() {
   const banners = [img1, img2, img3];
 
@@ -21,7 +19,8 @@ export default function HeroSectoin() {
 
   return (
     <>
-      {/* Hero Section */}
+      {/* ================= HERO SECTION ================= */}
+
       <section
         className="
           w-full
@@ -29,13 +28,18 @@ export default function HeroSectoin() {
           py-3
         "
       >
+
         <div
           className="
-            w-[94%]
+            w-[540px]
+            max-w-full
             mx-auto
+            px-3
           "
         >
-          {/* Banner Slider */}
+
+          {/* ================= BANNER SLIDER ================= */}
+
           <div
             className="
               relative
@@ -45,19 +49,25 @@ export default function HeroSectoin() {
               shadow-[0_0_20px_rgba(0,200,255,.30)]
             "
           >
+
             {banners.map((image, index) => (
+
               <img
                 key={index}
                 src={image}
                 alt={`banner-${index}`}
+
                 className={`
                   absolute
                   inset-0
                   w-full
                   h-full
                   object-cover
+
                   transition-all
                   duration-1000
+                  ease-in-out
+
                   ${
                     current === index
                       ? "opacity-100 scale-100"
@@ -65,9 +75,12 @@ export default function HeroSectoin() {
                   }
                 `}
               />
+
             ))}
 
-            {/* Blue Overlay */}
+
+            {/* ================= BLUE OVERLAY ================= */}
+
             <div
               className="
                 absolute
@@ -79,7 +92,9 @@ export default function HeroSectoin() {
               "
             />
 
-            {/* Slider Dots */}
+
+            {/* ================= SLIDER DOTS ================= */}
+
             <div
               className="
                 absolute
@@ -90,32 +105,38 @@ export default function HeroSectoin() {
                 gap-2
               "
             >
+
               {banners.map((_, index) => (
+
                 <button
                   key={index}
                   onClick={() => setCurrent(index)}
+
                   className={`
                     w-2.5
                     h-2.5
                     rounded-full
+
                     transition-all
                     duration-300
+
                     ${
                       current === index
-                        ? "bg-cyan-300 scale-125"
-                        : "bg-white/40"
+                        ? "bg-cyan-300 scale-125 shadow-[0_0_8px_rgba(0,220,255,.8)]"
+                        : "bg-white/40 hover:bg-white/70"
                     }
                   `}
                 />
+
               ))}
+
             </div>
+
           </div>
 
-         
         </div>
-         
+
       </section>
-      
     </>
   );
 }

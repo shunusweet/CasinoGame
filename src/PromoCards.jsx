@@ -1,171 +1,408 @@
-import React from "react";
-import { FaCrown, FaGift, FaCoins, FaUserFriends } from "react-icons/fa";
+import React, { useEffect, useRef, useState } from "react";
+import { Heart } from "lucide-react";
 
-export default function RewardCards() {
+// ================= IMAGES =================
+import RewardBonus from "./assets/RewardBonus.png";
+import LuckyRoulete from "./assets/LuckyRoulete.png";
+import VipMonthlySallery from "./assets/VipMonthlySallery.png";
+
+// ================= COMPONENT =================
+export default function PPGamesFeatures() {
+  // ================= FAVORITE STATE =================
+  const [favorite, setFavorite] = useState([]);
+
+  // ================= IMAGE VISIBILITY =================
+  const [visibleImages, setVisibleImages] = useState([]);
+
+  const imageRefs = useRef([]);
+
+  // ================= FAVORITE FUNCTION =================
+  const toggleFavorite = (id) => {
+    setFavorite((prev) => {
+      if (prev.includes(id)) {
+        return prev.filter((item) => item !== id);
+      }
+
+      return [...prev, id];
+    });
+  };
+
+  // ================= IMAGE SCROLL ANIMATION =================
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+
+          const index = Number(entry.target.dataset.index);
+
+          setVisibleImages((prev) => {
+            if (prev.includes(index)) {
+              return prev;
+            }
+
+            return [...prev, index];
+          });
+
+          observer.unobserve(entry.target);
+        });
+      },
+      {
+        threshold: 0.15,
+      }
+    );
+
+    imageRefs.current.forEach((image) => {
+      if (image) {
+        observer.observe(image);
+      }
+    });
+
+    return () => {
+      observer.disconnect();
+    };
+  }, []);
+
   return (
-    <div className="bg-[#020617] p-3">
+    <>
+      {/* ================================================= */}
+      {/* IMAGE ANIMATION */}
+      {/* ================================================= */}
+      <style>{`
+        @keyframes ppGameImageFadeUp {
+          0% {
+            opacity: 0;
+            transform: translateY(25px) scale(0.97);
+          }
 
-      <div className="grid grid-cols-3 gap-2 max-w-md mx-auto">
+          100% {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+          }
+        }
 
+        .pp-game-image {
+          opacity: 0;
+          transform: translateY(25px) scale(0.97);
+        }
 
-        {/* LEFT SIDE */}
-        <div className="col-span-2 space-y-2">
+        .pp-game-image.show {
+          animation:
+            ppGameImageFadeUp
+            0.7s
+            cubic-bezier(0.22, 1, 0.36, 1)
+            forwards;
+        }
+      `}</style>
 
-
-          {/* VIP */}
-          <div className="
-          h-20
-          rounded-xl
-          bg-gradient-to-r from-blue-700 to-cyan-500
-          border border-cyan-300
-          flex items-center
-          px-2
+      {/* ================================================= */}
+      {/* MAIN CONTAINER */}
+      {/* ================================================= */}
+      <div
+        className="
+          w-full
+          max-w-[540px]
+          mx-auto
+          bg-[#020617]
+          px-3
           overflow-hidden
-          ">
+        "
+      >
+        {/* ================================================= */}
+        {/* SPACE BETWEEN BANNERS */}
+        {/* ================================================= */}
+        <div className="h-2" />
 
-            <FaCrown 
-            className="text-yellow-300 text-3xl mr-2"
-            />
-
-            <div className="text-white">
-
-              <h2 className="text-[10px] font-black">
-                VIP MONTHLY SALARY
-              </h2>
-
-              <p className="text-[9px]">
-                UP TO
-              </p>
-
-              <h1 className="text-lg font-black text-yellow-300">
-                5,000,000
-              </h1>
-
-            </div>
-
-          </div>
-
-
-
-
-          {/* LUCKY */}
-
-          <div className="
-          h-20
-          rounded-xl
-          bg-gradient-to-r from-indigo-700 to-blue-500
-        border border-cyan-300
-          
-          flex items-center
-          px-2
-          ">
-
-
-            <FaCoins
-            className="text-yellow-300 text-3xl mr-2"
-            />
-
-
-            <div className="text-white">
-
-              <h2 className="text-[10px] font-black">
-                LUCKY ROULETTE
-              </h2>
-
-              <p className="text-[9px]">
-                GET
-              </p>
-
-              <h1 className="text-lg font-black text-yellow-300">
-                1500
-              </h1>
-
-            </div>
-
-
-          </div>
-
-
-        </div>
-
-
-
-
-
-
-        {/* RIGHT CARD */}
-
-        <div className="
-        col-span-1
-        h-[164px]
-        rounded-xl
-        bg-gradient-to-b from-blue-900 via-blue-600 to-cyan-400
-        border border-cyan-300
-        
-        flex items-center
-        justify-center
-        text-center
-        p-2
-        relative
-        overflow-hidden
-        ">
-
-
-          <FaGift
+        {/* ================================================= */}
+        {/* BANNER GRID */}
+        {/* ================================================= */}
+        <div
           className="
-          absolute
-          text-white/10
-          text-8xl
+            grid
+            grid-cols-2
+            gap-2
+            items-stretch
           "
-          />
-
-
-          <div className="relative">
-
-            <FaUserFriends
+        >
+          {/* ================================================= */}
+          {/* VIP MONTHLY SALARY */}
+          {/* ================================================= */}
+          <div
             className="
-            text-yellow-300 
-            text-3xl 
-            mx-auto mb-2
+              relative
+              h-[82px]
+              sm:h-[90px]
+
+              overflow-hidden
+              rounded-xl
+
+              border
+              border-blue-500
+
+              bg-[#061b3a]
+
+              shadow-[0_0_15px_rgba(0,100,255,.35)]
+
+              cursor-pointer
+
+              hover:scale-[1.02]
+
+              transition-all
+              duration-300
             "
+          >
+            <img
+              ref={(element) => {
+                imageRefs.current[1] = element;
+              }}
+              data-index="1"
+              src={VipMonthlySallery}
+              alt="VIP Monthly Salary"
+              className={`
+                pp-game-image
+                ${visibleImages.includes(1) ? "show" : ""}
+
+                absolute
+                inset-0
+
+                w-full
+                h-full
+
+                object-cover
+                object-center
+
+                rounded-xl
+              `}
             />
 
+            {/* HEART */}
+            <button
+              type="button"
+              onClick={(e) => {
+                e.stopPropagation();
+                toggleFavorite(1);
+              }}
+              className="
+                absolute
+                top-1
+                right-1
+                z-10
 
-            <h1 className="
-            text-white
-            text-xs
-            font-black
-            ">
-              INVITE
-            </h1>
+                w-6
+                h-6
 
+                rounded-full
+                bg-black/60
 
-            <h2 className="
-            text-white
-            text-xs
-            font-bold
-            ">
-              REWARD
-            </h2>
+                flex
+                items-center
+                justify-center
 
+                hover:bg-black/80
+                hover:scale-110
 
-            <h3 className="
-            text-yellow-300
-            text-xl
-            font-black
-            ">
-              RS 3000
-            </h3>
-
-
+                transition-all
+                duration-200
+              "
+            >
+              <Heart
+                size={14}
+                className={
+                  favorite.includes(1)
+                    ? "fill-red-500 text-red-500"
+                    : "text-white"
+                }
+              />
+            </button>
           </div>
 
+          {/* ================================================= */}
+          {/* REWARD BONUS / INVITE REWARD */}
+          {/* FULL IMAGE + FULL DIV */}
+          {/* ================================================= */}
+          <div
+            className="
+              relative
+              row-span-2
 
+              h-[174px]
+              sm:h-[188px]
+
+              overflow-hidden
+              rounded-xl
+
+              border
+              border-blue-500
+
+              bg-[#061b3a]
+
+              shadow-[0_0_18px_rgba(0,100,255,.40)]
+
+              cursor-pointer
+
+              hover:scale-[1.02]
+
+              transition-all
+              duration-300
+            "
+          >
+            <img
+              ref={(element) => {
+                imageRefs.current[2] = element;
+              }}
+              data-index="2"
+              src={RewardBonus}
+              alt="Reward Bonus"
+              className={`
+                pp-game-image
+                ${visibleImages.includes(2) ? "show" : ""}
+
+                absolute
+                inset-0
+
+                w-full
+                h-full
+
+                object-fill
+
+                rounded-xl
+              `}
+            />
+
+            {/* HEART */}
+            <button
+              type="button"
+              onClick={(e) => {
+                e.stopPropagation();
+                toggleFavorite(2);
+              }}
+              className="
+                absolute
+                top-1
+                right-1
+                z-10
+
+                w-7
+                h-7
+
+                rounded-full
+                bg-black/60
+
+                flex
+                items-center
+                justify-center
+
+                hover:bg-black/80
+                hover:scale-110
+
+                transition-all
+                duration-200
+              "
+            >
+              <Heart
+                size={15}
+                className={
+                  favorite.includes(2)
+                    ? "fill-red-500 text-red-500"
+                    : "text-white"
+                }
+              />
+            </button>
+          </div>
+
+          {/* ================================================= */}
+          {/* LUCKY ROULETTE */}
+          {/* ================================================= */}
+          <div
+            className="
+              relative
+              h-[82px]
+              sm:h-[90px]
+
+              overflow-hidden
+              rounded-xl
+
+              border
+              border-blue-500
+
+              bg-[#061b3a]
+
+              shadow-[0_0_15px_rgba(0,100,255,.35)]
+
+              cursor-pointer
+
+              hover:scale-[1.02]
+
+              transition-all
+              duration-300
+            "
+          >
+            <img
+              ref={(element) => {
+                imageRefs.current[3] = element;
+              }}
+              data-index="3"
+              src={LuckyRoulete}
+              alt="Lucky Roulette"
+              className={`
+                pp-game-image
+                ${visibleImages.includes(3) ? "show" : ""}
+
+                absolute
+                inset-0
+
+                w-full
+                h-full
+
+                object-cover
+                object-center
+
+                rounded-xl
+              `}
+            />
+
+            {/* HEART */}
+            <button
+              type="button"
+              onClick={(e) => {
+                e.stopPropagation();
+                toggleFavorite(3);
+              }}
+              className="
+                absolute
+                top-1
+                right-1
+                z-10
+
+                w-6
+                h-6
+
+                rounded-full
+                bg-black/60
+
+                flex
+                items-center
+                justify-center
+
+                hover:bg-black/80
+                hover:scale-110
+
+                transition-all
+                duration-200
+              "
+            >
+              <Heart
+                size={14}
+                className={
+                  favorite.includes(3)
+                    ? "fill-red-500 text-red-500"
+                    : "text-white"
+                }
+              />
+            </button>
+          </div>
         </div>
-
-
       </div>
-
-    </div>
+    </>
   );
 }

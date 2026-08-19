@@ -4,7 +4,7 @@ import GgRelaxFeature from "./GgRelaxFeature";
 
 export default function GgRelax() {
   return (
-    <div className="px-3 mt-3">
+    <div className="w-[540px] max-w-full mx-auto px-3 mt-3">
 
       {/* ================= HEADER ================= */}
 
@@ -103,4 +103,3 @@ export default function GgRelax() {
     </div>
   );
 }
-

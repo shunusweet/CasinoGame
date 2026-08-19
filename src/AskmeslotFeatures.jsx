@@ -127,29 +127,64 @@ export default function AskmeslotFeatures() {
 
   return (
 
-    <div className="bg-[#020617] px-3 py-3">
+    <div
+      className="
+        w-full
+        max-w-[540px]
+        mx-auto
+
+        bg-[#020617]
+
+        px-2
+        sm:px-3
+
+        py-3
+      "
+    >
 
       {/* ================= CARD GRID ================= */}
 
-      <div className="grid grid-cols-4 gap-3">
+      <div
+        className="
+          grid
+          grid-cols-4
+
+          gap-1.5
+          sm:gap-2
+          md:gap-3
+
+          w-full
+        "
+      >
 
         {games.map((game, index) => (
 
           <div
             key={game.id}
+
             style={{
               animationDelay: `${index * 0.12}s`,
             }}
+
             className="
               game-card-animation
 
               relative
               overflow-hidden
-              rounded-xl
+
+              w-full
+              min-w-0
+
+              rounded-lg
+              sm:rounded-xl
+
               border
               border-yellow-500
+
               bg-[#061b3a]
+
               shadow-[0_0_15px_rgba(255,200,0,.30)]
+
               cursor-pointer
 
               hover:scale-105
@@ -165,13 +200,21 @@ export default function AskmeslotFeatures() {
             <img
               src={game.image}
               alt={game.title}
+
               className="
+                block
+
                 w-full
-                h-[115px]
+
+                aspect-[1.45/1]
+
                 object-cover
-                rounded-xl
+
+                rounded-lg
+                sm:rounded-xl
               "
             />
+
 
             {/* ================= HEART BUTTON ================= */}
 
@@ -180,30 +223,53 @@ export default function AskmeslotFeatures() {
                 e.stopPropagation();
                 toggleFavorite(game.id);
               }}
+
               className="
                 absolute
+
                 top-1
                 right-1
-                w-7
-                h-7
+
+                w-6
+                h-6
+
+                sm:w-7
+                sm:h-7
+
                 rounded-full
+
                 bg-black/60
+
                 flex
                 items-center
                 justify-center
+
                 hover:bg-black/80
-                transition
+
+                hover:scale-110
+
+                transition-all
+                duration-300
+
                 z-10
               "
             >
 
               <Heart
-                size={16}
-                className={
-                  favorite.includes(game.id)
-                    ? "fill-red-500 text-red-500"
-                    : "text-white"
-                }
+                size={14}
+                className={`
+                  sm:w-4
+                  sm:h-4
+
+                  transition-all
+                  duration-300
+
+                  ${
+                    favorite.includes(game.id)
+                      ? "fill-red-500 text-red-500 scale-110"
+                      : "text-white"
+                  }
+                `}
               />
 
             </button>
@@ -213,6 +279,7 @@ export default function AskmeslotFeatures() {
         ))}
 
       </div>
+
 
       {/* ================= ANIMATION CSS ================= */}
 
@@ -236,6 +303,7 @@ export default function AskmeslotFeatures() {
 
         }
 
+
         .game-card-animation {
 
           opacity: 0;
@@ -247,6 +315,7 @@ export default function AskmeslotFeatures() {
           animation-iteration-count: 1;
 
         }
+
 
         @media (prefers-reduced-motion: reduce) {
 

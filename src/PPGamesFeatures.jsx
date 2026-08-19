@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { Heart } from "lucide-react";
 
 // ================= IMAGES =================
+
 import ZeusTyphon from "./assets/ZeusTyphon.png";
 import WolfGold from "./assets/WolfGold.png";
 import WitchHeart from "./assets/WitchHeart.png";
@@ -192,7 +193,9 @@ export default function PPGamesFeatures() {
 
       `}</style>
 
-      <div className="bg-[#020617] px-3 py-3">
+      {/* ================= MAIN CONTAINER ================= */}
+
+      <div className="w-[540px] bg-[#020617] px-3 py-3">
 
         {/* ================= CARD GRID ================= */}
 
@@ -228,6 +231,7 @@ export default function PPGamesFeatures() {
                 alt={game.title}
                 className={`
                   pp-game-image
+
                   ${
                     visibleImages.includes(index)
                       ? "show"
@@ -260,6 +264,9 @@ export default function PPGamesFeatures() {
                   flex
                   items-center
                   justify-center
+
+                  hover:bg-black/80
+                  transition
                 "
               >
 
@@ -279,10 +286,6 @@ export default function PPGamesFeatures() {
           ))}
 
         </div>
-
-        {/* ================= BOTTOM SPACING ================= */}
-
-        <div className="mt-5"></div>
 
       </div>
 

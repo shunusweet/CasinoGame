@@ -32,6 +32,7 @@ function Card({ children, className = "" }) {
     <div
       className={`
         relative
+        w-full
         overflow-hidden
         rounded-[14px]
         border
@@ -45,6 +46,7 @@ function Card({ children, className = "" }) {
       `}
     >
       {/* Blue Glow */}
+
       <div
         className="
           pointer-events-none
@@ -86,17 +88,22 @@ function Card({ children, className = "" }) {
 
 function FAQCard({ question, answer }) {
   return (
-    <Card className="px-4 py-4 sm:px-6 sm:py-5">
+    <Card className="px-3 py-4 min-[400px]:px-4 sm:px-6 sm:py-5">
+
       <h2
         className="
           text-center
           font-serif
-          text-[17px]
-          font-bold
-          leading-tight
-          text-cyan-100
-          drop-shadow-[0_0_6px_rgba(0,200,255,.25)]
+          text-[15px]
+          min-[400px]:text-[16px]
           sm:text-[20px]
+
+          font-bold
+          leading-snug
+
+          text-cyan-100
+
+          drop-shadow-[0_0_6px_rgba(0,200,255,.25)]
         "
       >
         {question}
@@ -105,15 +112,20 @@ function FAQCard({ question, answer }) {
       <p
         className="
           mt-3
-          text-[11px]
+
+          text-[10px]
+          min-[400px]:text-[11px]
+          sm:text-[13px]
+
           font-semibold
           leading-[1.8]
+
           text-gray-200
-          sm:text-[13px]
         "
       >
         {answer}
       </p>
+
     </Card>
   );
 }
@@ -127,13 +139,18 @@ function FAQ() {
     <main
       className="
         relative
+
         min-h-screen
         w-full
+
         overflow-x-hidden
+
         bg-[#020617]
+
         text-white
       "
     >
+
       {/* =====================================================
           BACKGROUND
       ====================================================== */}
@@ -147,17 +164,24 @@ function FAQ() {
           overflow-hidden
         "
       >
+
         <div
           className="
             absolute
             inset-0
+
             bg-[radial-gradient(circle_at_50%_10%,rgba(0,110,180,0.30),transparent_35%),radial-gradient(circle_at_10%_50%,rgba(0,80,150,0.18),transparent_30%),linear-gradient(180deg,#061b3a,#020617)]
           "
         />
 
         {/* Blue Dot Pattern */}
+
         <div
-          className="absolute inset-0 opacity-20"
+          className="
+            absolute
+            inset-0
+            opacity-20
+          "
           style={{
             backgroundImage: `
               radial-gradient(circle at 20% 20%, #00bfff 1px, transparent 1px),
@@ -166,9 +190,9 @@ function FAQ() {
             backgroundSize: "80px 80px, 120px 120px",
           }}
         />
+
       </div>
 
-      
 
       {/* =====================================================
           CONTENT
@@ -178,329 +202,525 @@ function FAQ() {
         className="
           relative
           z-10
+
           mx-auto
+
           w-full
-          max-w-[700px]
-          px-3
+          max-w-[540px]
+
+          px-2
+          min-[400px]:px-3
+          sm:px-4
+
           pb-8
-          pt-4
-          sm:px-5
           sm:pb-10
-          sm:pt-8
+
+          pt-3
+          sm:pt-6
         "
       >
+
         {/* =====================================================
             FAQ
         ====================================================== */}
 
         <section className="space-y-2 sm:space-y-3">
+
           {faqs.map((faq, index) => (
             <FAQCard
               key={index}
               {...faq}
             />
           ))}
+
         </section>
+
 
         {/* =====================================================
             UNLIMITED EXPANSION
         ====================================================== */}
 
         <section className="mt-3 sm:mt-5">
-          <Card className="px-4 py-5 sm:px-7 sm:py-6">
+
+          <Card
+            className="
+              px-3
+              py-5
+
+              min-[400px]:px-4
+
+              sm:px-7
+              sm:py-6
+            "
+          >
+
             <h2
               className="
                 text-center
                 font-serif
-                text-[17px]
+
+                text-[16px]
+                min-[400px]:text-[17px]
+                sm:text-[20px]
+
                 font-bold
                 text-cyan-100
-                sm:text-[20px]
               "
             >
               Unlimited Expansion of Subordinates
             </h2>
 
-            {/* Diagram */}
+
+            {/* =================================================
+                DIAGRAM
+            ================================================== */}
 
             <div
               className="
                 relative
                 mx-auto
+
                 mt-5
+
                 h-[210px]
+
                 w-full
                 max-w-[420px]
+
                 sm:h-[250px]
               "
             >
-              {/* Main Person */}
+
+              {/* ================= MAIN PERSON ================= */}
 
               <div
                 className="
                   absolute
+
                   left-1/2
                   top-0
+
                   -translate-x-1/2
+
                   text-center
                 "
               >
+
                 <div
                   className="
                     relative
+
                     mx-auto
+
                     flex
-                    h-[62px]
-                    w-[62px]
+
+                    h-[58px]
+                    w-[58px]
+
+                    min-[400px]:h-[62px]
+                    min-[400px]:w-[62px]
+
+                    sm:h-[72px]
+                    sm:w-[72px]
+
                     items-center
                     justify-center
+
                     overflow-hidden
+
                     rounded-full
+
                     border-2
                     border-cyan-400
+
                     bg-gradient-to-br
                     from-[#164c78]
                     to-[#020617]
-                    text-4xl
+
+                    text-3xl
+                    min-[400px]:text-4xl
+
                     shadow-[0_0_15px_rgba(0,200,255,.35)]
-                    sm:h-[72px]
-                    sm:w-[72px]
                   "
                 >
                   🧑🏻
+
+                  {/* Diamonds */}
+
+                  <span
+                    className="
+                      absolute
+                      -right-4
+                      top-0
+                      text-lg
+                    "
+                  >
+                    💎
+                  </span>
+
+                  <span
+                    className="
+                      absolute
+                      -left-4
+                      top-3
+                      text-lg
+                    "
+                  >
+                    💎
+                  </span>
+
                 </div>
 
-                <div className="absolute -right-5 top-1 text-xl">
-                  💎
-                </div>
-
-                <div className="absolute -left-5 top-4 text-xl">
-                  💎
-                </div>
               </div>
 
-              {/* Vertical Connector */}
+
+              {/* ================= VERTICAL CONNECTOR ================= */}
 
               <div
                 className="
                   absolute
+
                   left-1/2
-                  top-[67px]
-                  h-[42px]
+
+                  top-[62px]
+
+                  min-[400px]:top-[67px]
+
+                  h-[43px]
+
                   w-[2px]
+
                   -translate-x-1/2
+
                   bg-cyan-700
+
                   shadow-[0_0_6px_rgba(0,200,255,.5)]
                 "
               />
 
-              {/* Horizontal Connector */}
+
+              {/* ================= HORIZONTAL ================= */}
 
               <div
                 className="
                   absolute
+
                   left-[20%]
                   right-[20%]
+
                   top-[105px]
+
                   h-[2px]
+
                   bg-cyan-700
+
                   shadow-[0_0_6px_rgba(0,200,255,.4)]
                 "
               />
 
-              {/* Left Connector */}
+
+              {/* ================= LEFT CONNECTOR ================= */}
 
               <div
                 className="
                   absolute
+
                   left-[20%]
+
                   top-[105px]
+
                   h-[30px]
+
                   w-[2px]
+
                   bg-cyan-700
                 "
               />
 
-              {/* Center Connector */}
+
+              {/* ================= CENTER CONNECTOR ================= */}
 
               <div
                 className="
                   absolute
+
                   left-1/2
+
                   top-[105px]
+
                   h-[30px]
+
                   w-[2px]
+
                   -translate-x-1/2
+
                   bg-cyan-700
                 "
               />
 
-              {/* Right Connector */}
+
+              {/* ================= RIGHT CONNECTOR ================= */}
 
               <div
                 className="
                   absolute
+
                   right-[20%]
+
                   top-[105px]
+
                   h-[30px]
+
                   w-[2px]
+
                   bg-cyan-700
                 "
               />
 
-              {/* Arrow */}
+
+              {/* ================= ARROW ================= */}
 
               <div
                 className="
                   absolute
-                  left-[8%]
-                  top-[97px]
-                  text-xl
+
+                  left-[7%]
+
+                  top-[96px]
+
+                  text-lg
+                  min-[400px]:text-xl
+
                   text-cyan-400
                 "
               >
                 ➜
               </div>
 
-              {/* L1 */}
+
+              {/* ================= L1 ================= */}
 
               <span
                 className="
                   absolute
+
                   left-0
-                  top-[100px]
+
+                  top-[99px]
+
                   rounded
+
                   border
                   border-cyan-500
+
                   bg-[#0b3157]
-                  px-3
+
+                  px-2
+                  min-[400px]:px-3
+
                   py-1
-                  text-[10px]
+
+                  text-[9px]
+                  min-[400px]:text-[10px]
+
                   font-bold
+
                   text-cyan-100
+
                   shadow-[0_0_8px_rgba(0,200,255,.25)]
                 "
               >
                 L1
               </span>
 
-              {/* User 1 */}
+
+              {/* ================= USER 1 ================= */}
 
               <div
                 className="
                   absolute
-                  left-[13%]
+
+                  left-[10%]
+                  min-[400px]:left-[13%]
+
                   top-[130px]
+
                   text-center
                 "
               >
+
                 <div
                   className="
                     mx-auto
+
                     flex
-                    h-[54px]
-                    w-[54px]
+
+                    h-[50px]
+                    w-[50px]
+
+                    min-[400px]:h-[54px]
+                    min-[400px]:w-[54px]
+
+                    sm:h-[62px]
+                    sm:w-[62px]
+
                     items-center
                     justify-center
+
                     rounded-full
+
                     border-2
                     border-cyan-500
+
                     bg-gradient-to-br
                     from-[#164c78]
                     to-[#020617]
-                    text-3xl
+
+                    text-2xl
+                    min-[400px]:text-3xl
+
                     shadow-[0_0_12px_rgba(0,200,255,.25)]
-                    sm:h-[62px]
-                    sm:w-[62px]
                   "
                 >
                   👨🏽
                 </div>
+
               </div>
 
-              {/* User 2 */}
+
+              {/* ================= USER 2 ================= */}
 
               <div
                 className="
                   absolute
+
                   left-1/2
+
                   top-[130px]
+
                   -translate-x-1/2
+
                   text-center
                 "
               >
+
                 <div
                   className="
                     mx-auto
+
                     flex
-                    h-[54px]
-                    w-[54px]
+
+                    h-[50px]
+                    w-[50px]
+
+                    min-[400px]:h-[54px]
+                    min-[400px]:w-[54px]
+
+                    sm:h-[62px]
+                    sm:w-[62px]
+
                     items-center
                     justify-center
+
                     rounded-full
+
                     border-2
                     border-cyan-500
+
                     bg-gradient-to-br
                     from-[#0b3157]
                     to-[#020617]
-                    text-3xl
+
+                    text-2xl
+                    min-[400px]:text-3xl
+
                     shadow-[0_0_12px_rgba(0,200,255,.25)]
-                    sm:h-[62px]
-                    sm:w-[62px]
                   "
                 >
                   👨🏻
                 </div>
+
               </div>
 
-              {/* User 3 */}
+
+              {/* ================= USER 3 ================= */}
 
               <div
                 className="
                   absolute
-                  right-[13%]
+
+                  right-[10%]
+                  min-[400px]:right-[13%]
+
                   top-[130px]
+
                   text-center
                 "
               >
+
                 <div
                   className="
                     mx-auto
+
                     flex
-                    h-[54px]
-                    w-[54px]
+
+                    h-[50px]
+                    w-[50px]
+
+                    min-[400px]:h-[54px]
+                    min-[400px]:w-[54px]
+
+                    sm:h-[62px]
+                    sm:w-[62px]
+
                     items-center
                     justify-center
+
                     rounded-full
+
                     border-2
                     border-cyan-500
+
                     bg-gradient-to-br
                     from-[#164c78]
                     to-[#020617]
-                    text-3xl
+
+                    text-2xl
+                    min-[400px]:text-3xl
+
                     shadow-[0_0_12px_rgba(0,200,255,.25)]
-                    sm:h-[62px]
-                    sm:w-[62px]
                   "
                 >
                   👩🏽
                 </div>
+
               </div>
+
             </div>
 
-            {/* Description */}
+
+            {/* =================================================
+                DESCRIPTION
+            ================================================== */}
 
             <div
               className="
                 mt-2
+
                 space-y-2
-                text-[10px]
-                font-semibold
-                leading-[1.8]
-                text-gray-200
+
+                text-[9px]
+                min-[400px]:text-[10px]
                 sm:text-[12px]
+
+                font-semibold
+
+                leading-[1.8]
+
+                text-gray-200
               "
             >
+
               <p>
                 <span className="mr-1 text-cyan-400">
                   1.
@@ -523,31 +743,52 @@ function FAQ() {
 
                 The system calculates commissions every 3 minutes.
               </p>
+
             </div>
+
           </Card>
+
         </section>
+
 
         {/* =====================================================
             COMMISSION CALCULATION
         ====================================================== */}
 
         <section className="mt-3 sm:mt-5">
-          <Card className="px-3 py-5 sm:px-7 sm:py-7">
+
+          <Card
+            className="
+              px-2
+              min-[400px]:px-3
+
+              py-5
+
+              sm:px-7
+              sm:py-7
+            "
+          >
 
             <h2
               className="
                 text-center
                 font-serif
-                text-[18px]
-                font-bold
-                text-cyan-100
+
+                text-[17px]
+                min-[400px]:text-[18px]
+
                 sm:text-[21px]
+
+                font-bold
+
+                text-cyan-100
               "
             >
               Commission Calculation Rules
             </h2>
 
-            {/* User */}
+
+            {/* ================= USER ================= */}
 
             <div className="mt-5 flex items-center justify-center">
 
@@ -556,20 +797,32 @@ function FAQ() {
                 <div
                   className="
                     flex
-                    h-[72px]
-                    w-[72px]
+
+                    h-[68px]
+                    w-[68px]
+
+                    min-[400px]:h-[72px]
+                    min-[400px]:w-[72px]
+
+                    sm:h-[82px]
+                    sm:w-[82px]
+
                     items-center
                     justify-center
+
                     rounded-full
+
                     border-2
                     border-cyan-400
+
                     bg-gradient-to-br
                     from-[#164c78]
                     to-[#020617]
-                    text-4xl
+
+                    text-3xl
+                    sm:text-4xl
+
                     shadow-[0_0_15px_rgba(0,200,255,.3)]
-                    sm:h-[82px]
-                    sm:w-[82px]
                   "
                 >
                   🧑🏻
@@ -580,14 +833,24 @@ function FAQ() {
                     absolute
                     -bottom-1
                     left-0
+
                     rounded-full
+
                     border
                     border-cyan-500
+
                     bg-[#0b3157]
-                    px-3
+
+                    px-2
+                    min-[400px]:px-3
+
                     py-1
-                    text-[11px]
+
+                    text-[9px]
+                    min-[400px]:text-[11px]
+
                     font-bold
+
                     text-cyan-100
                   "
                 >
@@ -596,9 +859,17 @@ function FAQ() {
 
               </div>
 
-              <div className="ml-4 text-center">
+              <div className="ml-3 sm:ml-4 text-center">
 
-                <p className="text-[12px] text-gray-300 sm:text-[14px]">
+                <p
+                  className="
+                    text-[10px]
+                    min-[400px]:text-[12px]
+                    sm:text-[14px]
+
+                    text-gray-300
+                  "
+                >
                   Great Team and have
                 </p>
 
@@ -606,22 +877,36 @@ function FAQ() {
 
             </div>
 
-            {/* Bonus */}
+
+            {/* ================= BONUS ================= */}
 
             <div className="mt-5 text-center">
 
-              <p className="text-[10px] text-gray-300 sm:text-[12px]">
+              <p
+                className="
+                  text-[9px]
+                  min-[400px]:text-[10px]
+                  sm:text-[12px]
+
+                  text-gray-300
+                "
+              >
                 Total performance 2200K Total Agent Bonus
               </p>
 
               <p
                 className="
                   mt-1
-                  text-[20px]
-                  font-bold
-                  text-cyan-300
-                  drop-shadow-[0_0_8px_rgba(0,200,255,.45)]
+
+                  text-[19px]
+                  min-[400px]:text-[20px]
                   sm:text-[23px]
+
+                  font-bold
+
+                  text-cyan-300
+
+                  drop-shadow-[0_0_8px_rgba(0,200,255,.45)]
                 "
               >
                 6.6K
@@ -629,11 +914,12 @@ function FAQ() {
 
             </div>
 
-            {/* Contributions */}
 
-            <div className="relative mx-auto mt-3 max-w-[430px]">
+            {/* ================= CONTRIBUTIONS ================= */}
 
-              <div className="grid grid-cols-3 gap-2 sm:gap-4">
+            <div className="relative mx-auto mt-3 w-full max-w-[430px]">
+
+              <div className="grid grid-cols-3 gap-1.5 min-[400px]:gap-2 sm:gap-4">
 
                 <Contribution
                   level="B1"
@@ -660,16 +946,22 @@ function FAQ() {
 
             </div>
 
-            {/* Calculation */}
+
+            {/* ================= CALCULATION ================= */}
 
             <div
               className="
                 mt-5
-                text-[10px]
-                font-semibold
-                leading-[1.9]
-                text-gray-100
+
+                text-[9px]
+                min-[400px]:text-[10px]
                 sm:text-[12px]
+
+                font-semibold
+
+                leading-[1.9]
+
+                text-gray-100
               "
             >
 
@@ -695,7 +987,9 @@ function FAQ() {
             </div>
 
           </Card>
+
         </section>
+
 
         {/* =====================================================
             RULE EXPLANATION
@@ -703,16 +997,30 @@ function FAQ() {
 
         <section className="mt-3 sm:mt-5">
 
-          <Card className="px-4 py-4 sm:px-7 sm:py-5">
+          <Card
+            className="
+              px-3
+              min-[400px]:px-4
+
+              py-4
+
+              sm:px-7
+              sm:py-5
+            "
+          >
 
             <h2
               className="
                 text-center
                 font-serif
-                text-[17px]
-                font-bold
-                text-cyan-100
+
+                text-[16px]
+                min-[400px]:text-[17px]
                 sm:text-[20px]
+
+                font-bold
+
+                text-cyan-100
               "
             >
               Rule Explanation
@@ -721,12 +1029,18 @@ function FAQ() {
             <p
               className="
                 mt-3
+
                 text-center
-                text-[10px]
-                font-semibold
-                leading-[1.9]
-                text-gray-200
+
+                text-[9px]
+                min-[400px]:text-[10px]
                 sm:text-[12px]
+
+                font-semibold
+
+                leading-[1.9]
+
+                text-gray-200
               "
             >
               A valid bet here is calculated based on the total accumulated
@@ -740,6 +1054,7 @@ function FAQ() {
         </section>
 
       </div>
+
     </main>
   );
 }
@@ -757,28 +1072,40 @@ function Contribution({
   return (
     <div
       className="
+        w-full
         overflow-hidden
+
         rounded-lg
+
         border
         border-cyan-800
+
         bg-[#061b3a]
+
         shadow-[0_0_10px_rgba(0,180,255,.12)]
       "
     >
 
-      {/* Avatar Area */}
+      {/* ================= AVATAR AREA ================= */}
 
       <div
         className="
           relative
+
           flex
-          h-[70px]
+
+          h-[65px]
+
+          min-[400px]:h-[70px]
+
+          sm:h-[82px]
+
           items-center
           justify-center
+
           bg-gradient-to-br
           from-[#164c78]
           to-[#061b3a]
-          sm:h-[82px]
         "
       >
 
@@ -787,41 +1114,66 @@ function Contribution({
         <span
           className="
             absolute
+
             left-1
             top-1
+
             rounded-full
+
             border
             border-cyan-600
+
             bg-[#0b3157]
-            px-2
-            py-1
-            text-[10px]
+
+            px-1.5
+            min-[400px]:px-2
+
+            py-0.5
+            min-[400px]:py-1
+
+            text-[8px]
+            min-[400px]:text-[10px]
+
             font-bold
+
             text-cyan-100
           "
         >
           {level}
         </span>
 
+
         {/* Avatar */}
 
         <div
           className="
             flex
-            h-[52px]
-            w-[52px]
+
+            h-[48px]
+            w-[48px]
+
+            min-[400px]:h-[52px]
+            min-[400px]:w-[52px]
+
+            sm:h-[60px]
+            sm:w-[60px]
+
             items-center
             justify-center
+
             rounded-full
+
             border-2
             border-cyan-500
+
             bg-gradient-to-br
             from-[#1c5d8f]
             to-[#020617]
-            text-3xl
+
+            text-2xl
+            min-[400px]:text-3xl
+
             shadow-[0_0_10px_rgba(0,200,255,.25)]
-            sm:h-[60px]
-            sm:w-[60px]
           "
         >
           {emoji}
@@ -829,16 +1181,20 @@ function Contribution({
 
       </div>
 
-      {/* Information */}
+
+      {/* ================= INFORMATION ================= */}
 
       <div className="py-2 text-center">
 
         <p
           className="
-            text-[13px]
-            font-bold
-            text-cyan-300
+            text-[12px]
+            min-[400px]:text-[13px]
             sm:text-[16px]
+
+            font-bold
+
+            text-cyan-300
           "
         >
           {percent}
@@ -847,10 +1203,14 @@ function Contribution({
         <p
           className="
             mt-1
-            text-[9px]
-            font-semibold
-            text-gray-300
+
+            text-[8px]
+            min-[400px]:text-[9px]
             sm:text-[11px]
+
+            font-semibold
+
+            text-gray-300
           "
         >
           Valid Bets
@@ -858,10 +1218,13 @@ function Contribution({
 
         <p
           className="
-            text-[11px]
-            font-bold
-            text-white
+            text-[10px]
+            min-[400px]:text-[11px]
             sm:text-[13px]
+
+            font-bold
+
+            text-white
           "
         >
           {bets}

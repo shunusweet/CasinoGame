@@ -2,52 +2,54 @@ import React from "react";
 import PPGamesLogo from "./assets/PPGamesLogo.png";
 import PPGamesFeatures from "./PPGamesFeatures";
 
-
 export default function PPGames() {
   return (
-    <div className="px-3 mt-3">
+    <div className="w-[540px] mt-3">
+
+      {/* ================= HEADER ================= */}
 
       <div
         className="
-        flex
-        items-center
-        justify-between
+          flex
+          items-center
+          justify-between
 
-        rounded-2xl
+          rounded-2xl
 
-        px-3
-        py-2
+          px-3
+          py-2
 
-        border
-        border-cyan-700
+          border
+          border-cyan-700
 
-        bg-gradient-to-r
-        from-[#061b3a]
-        via-[#08244a]
-        to-[#061b3a]
+          bg-gradient-to-r
+          from-[#061b3a]
+          via-[#08244a]
+          to-[#061b3a]
 
-        shadow-[0_0_18px_rgba(0,180,255,.25)]
+          shadow-[0_0_18px_rgba(0,180,255,.25)]
         "
       >
 
-        {/* Left */}
+        {/* ================= LEFT ================= */}
 
         <div className="flex items-center gap-3">
 
           <img
             src={PPGamesLogo}
-            alt="PG"
+            alt="PP Games"
             className="
-            w-14
-            h-14
-            object-contain
+              w-14
+              h-14
+              object-contain
             "
           />
 
           <h2
             className="
-            font-bold
-            text-cyan-100
+              font-bold
+              text-cyan-100
+              text-2xl
             "
           >
             PP
@@ -55,28 +57,29 @@ export default function PPGames() {
 
         </div>
 
-        {/* Right */}
+        {/* ================= RIGHT ================= */}
 
         <div className="flex items-center gap-3">
 
           <button
             className="
-            px-5
-            h-12
+              px-5
+              h-12
 
-            rounded-xl
+              rounded-xl
 
-            border
-            border-cyan-600
+              border
+              border-cyan-600
 
-            bg-[#0a2145]
+              bg-[#0a2145]
 
-            text-cyan-200
-            
-            font-bold
+              text-cyan-200
+              text-xl
+              font-bold
 
-            hover:bg-cyan-700
-            duration-300
+              hover:bg-cyan-700
+              transition
+              duration-300
             "
           >
             All 451
@@ -84,22 +87,23 @@ export default function PPGames() {
 
           <button
             className="
-            px-5
-            h-12
+              px-5
+              h-12
 
-            rounded-xl
+              rounded-xl
 
-            border
-            border-cyan-600
+              border
+              border-cyan-600
 
-            bg-[#0a2145]
+              bg-[#0a2145]
 
-            text-cyan-200
-            text-2xl
-            font-bold
+              text-cyan-200
+              text-xl
+              font-bold
 
-            hover:bg-cyan-700
-            duration-300
+              hover:bg-cyan-700
+              transition
+              duration-300
             "
           >
             More
@@ -108,6 +112,9 @@ export default function PPGames() {
         </div>
 
       </div>
+
+      {/* ================= FEATURE CARDS ================= */}
+
       <PPGamesFeatures />
 
     </div>

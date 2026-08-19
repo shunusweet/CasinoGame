@@ -127,16 +127,21 @@ export default function HabaneroFeature() {
 
   return (
 
-    <div className="bg-[#020617] px-3 py-3">
+    <div className="bg-[#020617] w-[540px] max-w-full mx-auto px-3 py-3">
 
       {/* ================= CARD GRID ================= */}
 
       <div className="grid grid-cols-4 gap-3">
 
-        {games.map((game) => (
+        {games.map((game, index) => (
 
           <div
             key={game.id}
+
+            style={{
+              animationDelay: `${index * 100}ms`,
+            }}
+
             className="
               relative
               overflow-hidden
@@ -146,7 +151,13 @@ export default function HabaneroFeature() {
               bg-[#061b3a]
               shadow-[0_0_15px_rgba(255,200,0,.30)]
               cursor-pointer
+
+              opacity-0
+
+              animate-[fadeInUp_0.6s_ease-out_forwards]
+
               hover:scale-105
+
               transition-all
               duration-300
             "
@@ -162,7 +173,11 @@ export default function HabaneroFeature() {
                 h-[115px]
                 object-cover
                 rounded-xl
-                animate-[imageFadeIn_0.8s_ease-out]
+
+                transition-transform
+                duration-500
+
+                hover:scale-110
               "
             />
 
@@ -173,6 +188,7 @@ export default function HabaneroFeature() {
                 e.stopPropagation();
                 toggleFavorite(game.id);
               }}
+
               className="
                 absolute
                 top-1
@@ -181,21 +197,33 @@ export default function HabaneroFeature() {
                 h-7
                 rounded-full
                 bg-black/60
+
                 flex
                 items-center
                 justify-center
+
                 hover:bg-black/80
-                transition
+
+                transition-all
+                duration-300
+
+                hover:scale-110
               "
             >
 
               <Heart
                 size={16}
-                className={
-                  favorite.includes(game.id)
-                    ? "fill-red-500 text-red-500"
-                    : "text-white"
-                }
+
+                className={`
+                  transition-all
+                  duration-300
+
+                  ${
+                    favorite.includes(game.id)
+                      ? "fill-red-500 text-red-500 scale-125"
+                      : "text-white"
+                  }
+                `}
               />
 
             </button>
@@ -205,6 +233,27 @@ export default function HabaneroFeature() {
         ))}
 
       </div>
+
+
+      {/* ================= ANIMATION ================= */}
+
+      <style>{`
+
+        @keyframes fadeInUp {
+
+          from {
+            opacity: 0;
+            transform: translateY(30px) scale(0.96);
+          }
+
+          to {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+          }
+
+        }
+
+      `}</style>
 
     </div>
 

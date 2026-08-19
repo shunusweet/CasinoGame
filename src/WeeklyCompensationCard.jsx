@@ -4,6 +4,10 @@ const WeeklyCompensationCard = () => {
   return (
     <div
       className="
+      w-[540px]
+      max-w-full
+      mx-auto
+
       rounded-[22px]
       overflow-hidden
       border
@@ -21,14 +25,35 @@ const WeeklyCompensationCard = () => {
         <img
           src="https://images.unsplash.com/photo-1518546305927-5a555bb7020d?q=80&w=1200&auto=format&fit=crop"
           alt=""
-          className="w-full h-[170px] object-cover"
+          className="
+          w-full
+          h-[170px]
+          object-cover
+          "
         />
 
         {/* Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-r from-[#020617]/30 via-transparent to-[#020617]/60" />
+        <div
+          className="
+          absolute
+          inset-0
+          bg-gradient-to-r
+          from-[#020617]/30
+          via-transparent
+          to-[#020617]/60
+          "
+        />
 
         {/* Banner Text */}
-        <div className="absolute right-5 top-1/2 -translate-y-1/2 text-right">
+        <div
+          className="
+          absolute
+          right-5
+          top-1/2
+          -translate-y-1/2
+          text-right
+          "
+        >
 
           <h1 className="text-4xl font-black text-white leading-tight">
             Weekly Loss Cashback
@@ -56,6 +81,7 @@ const WeeklyCompensationCard = () => {
             className="
             w-16
             h-16
+            shrink-0
             rounded-2xl
             bg-gradient-to-b
             from-cyan-500
@@ -74,7 +100,7 @@ const WeeklyCompensationCard = () => {
             />
           </div>
 
-          <div>
+          <div className="min-w-0">
 
             <h2 className="text-white text-3xl font-bold">
               Weekly Compensation
@@ -91,6 +117,7 @@ const WeeklyCompensationCard = () => {
         {/* Button */}
         <button
           className="
+          shrink-0
           px-6
           py-3
           rounded-2xl

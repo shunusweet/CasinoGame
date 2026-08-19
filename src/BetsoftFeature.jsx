@@ -21,34 +21,26 @@ import PotsGreatFortune from "./assets/PotsGreatFortune.png";
 // ================= COMPONENT =================
 
 export default function BetsoftFeature() {
-
   const [favorite, setFavorite] = useState([]);
 
   // ================= FAVORITE =================
 
   const toggleFavorite = (id) => {
-
     if (favorite.includes(id)) {
-
       setFavorite(
         favorite.filter((item) => item !== id)
       );
-
     } else {
-
       setFavorite([
         ...favorite,
-        id
+        id,
       ]);
-
     }
-
   };
 
   // ================= GAMES =================
 
   const games = [
-
     {
       id: 1,
       image: MonsterPop,
@@ -120,14 +112,25 @@ export default function BetsoftFeature() {
       image: PotsGreatFortune,
       title: "Pots Great Fortune",
     },
-
   ];
 
   // ================= RETURN =================
 
   return (
+    <div
+      className="
+        w-full
+        max-w-[540px]
+        mx-auto
 
-    <div className="bg-[#020617] px-3 py-3">
+        px-2
+        sm:px-3
+
+        py-3
+
+        bg-transparent
+      "
+    >
 
       {/* ================= ANIMATION CSS ================= */}
 
@@ -154,7 +157,11 @@ export default function BetsoftFeature() {
 
         .game-card-animation {
           opacity: 0;
-          animation: gameFadeIn 0.7s ease-out forwards;
+          animation-name: gameFadeIn;
+          animation-duration: 0.7s;
+          animation-timing-function: ease-out;
+          animation-fill-mode: forwards;
+          animation-iteration-count: 1;
         }
 
         @media (prefers-reduced-motion: reduce) {
@@ -162,15 +169,27 @@ export default function BetsoftFeature() {
           .game-card-animation {
             opacity: 1;
             animation: none;
+            transform: none;
           }
 
         }
 
       `}</style>
 
+
       {/* ================= CARD GRID ================= */}
 
-      <div className="grid grid-cols-4 gap-3">
+      <div
+        className="
+          w-full
+
+          grid
+          grid-cols-4
+
+          gap-2
+          sm:gap-3
+        "
+      >
 
         {games.map((game, index) => (
 
@@ -185,8 +204,13 @@ export default function BetsoftFeature() {
               game-card-animation
 
               relative
+              w-full
+              min-w-0
+
               overflow-hidden
-              rounded-xl
+
+              rounded-lg
+              sm:rounded-xl
 
               border
               border-yellow-500
@@ -198,6 +222,8 @@ export default function BetsoftFeature() {
               cursor-pointer
 
               hover:scale-105
+
+              hover:-translate-y-1
 
               hover:shadow-[0_0_25px_rgba(255,200,0,.55)]
 
@@ -211,13 +237,22 @@ export default function BetsoftFeature() {
             <img
               src={game.image}
               alt={game.title}
+              loading="lazy"
+
               className="
+                block
+
                 w-full
-                h-[115px]
+
+                aspect-square
+
                 object-cover
-                rounded-xl
+
+                rounded-lg
+                sm:rounded-xl
               "
             />
+
 
             {/* ================= HEART BUTTON ================= */}
 
@@ -227,17 +262,24 @@ export default function BetsoftFeature() {
                 toggleFavorite(game.id);
               }}
 
+              aria-label={`Favorite ${game.title}`}
+
               className="
                 absolute
+
                 top-1
                 right-1
 
-                w-7
-                h-7
+                w-6
+                h-6
+
+                sm:w-7
+                sm:h-7
 
                 rounded-full
 
                 bg-black/60
+                backdrop-blur-sm
 
                 flex
                 items-center
@@ -248,16 +290,24 @@ export default function BetsoftFeature() {
 
                 transition-all
                 duration-200
+
+                z-10
               "
             >
 
               <Heart
-                size={16}
-                className={
-                  favorite.includes(game.id)
-                    ? "fill-red-500 text-red-500"
-                    : "text-white"
-                }
+                size={14}
+
+                className={`
+                  sm:w-4
+                  sm:h-4
+
+                  ${
+                    favorite.includes(game.id)
+                      ? "fill-red-500 text-red-500"
+                      : "text-white"
+                  }
+                `}
               />
 
             </button>
@@ -269,6 +319,5 @@ export default function BetsoftFeature() {
       </div>
 
     </div>
-
   );
 }
