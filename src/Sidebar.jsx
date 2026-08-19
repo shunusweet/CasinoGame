@@ -12,7 +12,7 @@ import sign_in from "./assets/sign_in.png";
 import relief from "./assets/relief.png";
 import gift_code from "./assets/gift_code.png";
 import weekly_compensation from "./assets/weekly_compensation.png";
-import red_envelope_rain from "./assets/red_envelope_rain.png";
+import red_envelope_rain from "./assets/Red_envelope_rain.png";
 import Bet_challenge from "./assets/Bet_challenge.png";
 import vip_sign_in from "./assets/vip_sign_in.png";
 
