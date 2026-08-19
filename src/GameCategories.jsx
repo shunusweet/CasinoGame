@@ -14,7 +14,7 @@ const categories = [
 
 const GameCategories = () => {
   return (
-    <div className="w-full bg-[#020617] py-3">
+    <div className="w-full bg-[#020817] py-3">
 
       {/* ================= 540px CONTAINER ================= */}
 
@@ -80,14 +80,14 @@ const GameCategories = () => {
                   rounded-xl
 
                   bg-gradient-to-b
-                  from-[#5a3608]
-                  via-[#2f1804]
-                  to-[#140902]
+                  from-[#0B5FA5]
+                  via-[#073765]
+                  to-[#031A32]
 
                   border
-                  border-[#dca648]
+                  border-[#168DDF]
 
-                  shadow-[0_0_12px_rgba(255,180,0,.30)]
+                  shadow-[0_0_12px_rgba(0,160,255,.35)]
 
                   flex
                   items-center
@@ -100,15 +100,15 @@ const GameCategories = () => {
                   group-hover:scale-110
                   group-hover:-translate-y-1
 
-                  group-hover:border-yellow-300
+                  group-hover:border-[#55C8FF]
 
-                  group-hover:shadow-[0_0_22px_rgba(255,200,0,.75)]
+                  group-hover:shadow-[0_0_22px_rgba(0,190,255,.80)]
 
                   active:scale-95
                 "
               >
 
-                {/* ================= GLOW ================= */}
+                {/* ================= BLUE GLOW ================= */}
 
                 <div
                   className="
@@ -117,7 +117,7 @@ const GameCategories = () => {
 
                     rounded-xl
 
-                    bg-yellow-400/10
+                    bg-cyan-400/10
 
                     opacity-0
 
@@ -125,6 +125,33 @@ const GameCategories = () => {
 
                     transition-opacity
                     duration-300
+                  "
+                />
+
+                {/* ================= TOP LIGHT ================= */}
+
+                <div
+                  className="
+                    pointer-events-none
+                    absolute
+                    left-1/2
+                    top-0
+
+                    h-[2px]
+                    w-[65%]
+
+                    -translate-x-1/2
+
+                    rounded-full
+
+                    bg-gradient-to-r
+                    from-transparent
+                    via-cyan-300
+                    to-transparent
+
+                    opacity-70
+
+                    blur-[1px]
                   "
                 />
 
@@ -138,9 +165,9 @@ const GameCategories = () => {
                     text-[25px]
 
                     font-bold
-                    text-yellow-300
+                    text-cyan-200
 
-                    drop-shadow-[0_0_5px_rgba(255,220,80,.45)]
+                    drop-shadow-[0_0_5px_rgba(80,210,255,.55)]
 
                     transition-transform
                     duration-300
@@ -164,7 +191,7 @@ const GameCategories = () => {
 
                   text-center
 
-                  text-[#d8b16b]
+                  text-[#8FCBEA]
 
                   font-semibold
 
@@ -177,9 +204,9 @@ const GameCategories = () => {
                   transition-all
                   duration-300
 
-                  group-hover:text-yellow-300
+                  group-hover:text-cyan-300
 
-                  group-hover:drop-shadow-[0_0_6px_rgba(255,200,0,.5)]
+                  group-hover:drop-shadow-[0_0_6px_rgba(0,200,255,.65)]
                 "
               >
                 {item.title}

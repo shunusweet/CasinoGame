@@ -93,14 +93,9 @@ export default function GameGridCard() {
 
   const toggleFavorite = (id) => {
     if (favorite.includes(id)) {
-      setFavorite(
-        favorite.filter((item) => item !== id)
-      );
+      setFavorite(favorite.filter((item) => item !== id));
     } else {
-      setFavorite([
-        ...favorite,
-        id,
-      ]);
+      setFavorite([...favorite, id]);
     }
   };
 
@@ -191,11 +186,11 @@ export default function GameGridCard() {
                 overflow-hidden
 
                 border
-                border-yellow-500
+                border-blue-500
 
                 bg-[#111]
 
-                shadow-[0_0_12px_rgba(255,180,0,.35)]
+                shadow-[0_0_12px_rgba(0,100,255,.35)]
 
                 cursor-pointer
 
@@ -204,8 +199,8 @@ export default function GameGridCard() {
                 ease-out
 
                 hover:scale-[1.04]
-                hover:border-yellow-300
-                hover:shadow-[0_0_20px_rgba(255,190,0,.65)]
+                hover:border-blue-300
+                hover:shadow-[0_0_20px_rgba(0,120,255,.65)]
 
                 active:scale-95
               "

@@ -1,671 +1,1437 @@
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 import {
-  ArrowLeft,
-  History,
-  Smartphone,
-} from "lucide-react";
+  FaArrowLeft,
+  FaHistory,
+  FaTimes,
+  FaChevronDown,
+  FaCheckCircle,
+  FaClock,
+  FaBan,
+  FaWallet,
+} from "react-icons/fa";
+
+import jazzcashLogo from "./assets/jazzcash-logo.png";
+import easypaisaLogo from "./assets/easypaisa-logo.png";
 
 export default function DepositPage() {
-  const [selectedMethod, setSelectedMethod] = useState("S4");
+  // =========================================================
+  // STATE
+  // =========================================================
 
-  const channels = [
-    "S4",
-    "S8",
-    "S12",
-    "S18",
-    "S22",
+  const [method, setMethod] = useState("jazzcash");
+  const [channel, setChannel] = useState("S4");
+
+  const [amount, setAmount] = useState(null);
+  const [customAmount, setCustomAmount] = useState("");
+
+  const [showHistory, setShowHistory] = useState(false);
+  const [showDateModal, setShowDateModal] = useState(false);
+
+  const [selectedDate, setSelectedDate] = useState(
+    "11 Aug 2026 00:00 - 12 Aug 2026 00:00"
+  );
+
+  const [historyFilter, setHistoryFilter] = useState("All");
+  const [message, setMessage] = useState("");
+
+  // =========================================================
+  // PAYMENT METHODS
+  // =========================================================
+
+  const methods = [
+    {
+      id: "jazzcash",
+      name: "JazzCash",
+      logo: jazzcashLogo,
+    },
+    {
+      id: "easypaisa",
+      name: "EasyPaisa",
+      logo: easypaisaLogo,
+    },
   ];
 
+  // =========================================================
+  // CHANNELS
+  // =========================================================
+
+  const channels = {
+    jazzcash: [
+      {
+        id: "S4",
+        name: "JazzCash",
+        code: "S4",
+      },
+      {
+        id: "S8",
+        name: "JazzCash",
+        code: "S8",
+      },
+      {
+        id: "S12",
+        name: "JazzCash",
+        code: "S12",
+      },
+    ],
+
+    easypaisa: [
+      {
+        id: "E1",
+        name: "EasyPaisa",
+        code: "E1",
+      },
+      {
+        id: "E2",
+        name: "EasyPaisa",
+        code: "E2",
+      },
+      {
+        id: "E3",
+        name: "EasyPaisa",
+        code: "E3",
+      },
+    ],
+  };
+
+  // =========================================================
+  // AMOUNTS
+  // =========================================================
+
+  const amounts = [
+    100,
+    300,
+    500,
+    1000,
+    3000,
+    5000,
+    10000,
+    30000,
+    50000,
+  ];
+
+  // =========================================================
+  // HISTORY DATA
+  // =========================================================
+
+  const historyData = [];
+
+  // =========================================================
+  // DATES
+  // =========================================================
+
+  const dates = [
+    "11 Aug 2026 00:00 - 12 Aug 2026 00:00",
+    "10 Aug 2026 00:00 - 11 Aug 2026 00:00",
+    "09 Aug 2026 00:00 - 10 Aug 2026 00:00",
+    "08 Aug 2026 00:00 - 09 Aug 2026 00:00",
+    "07 Aug 2026 00:00 - 08 Aug 2026 00:00",
+  ];
+
+  // =========================================================
+  // FINAL AMOUNT
+  // =========================================================
+
+  const finalAmount =
+    customAmount !== "" ? Number(customAmount) : amount;
+
+  // =========================================================
+  // CURRENT METHOD
+  // =========================================================
+
+  const currentMethod = methods.find(
+    (item) => item.id === method
+  );
+
+  // =========================================================
+  // CHANGE METHOD
+  // =========================================================
+
+  const handleMethodChange = (id) => {
+    setMethod(id);
+
+    const firstChannel = channels[id][0];
+
+    setChannel(firstChannel.id);
+
+    setAmount(null);
+    setCustomAmount("");
+    setMessage("");
+  };
+
+  // =========================================================
+  // SELECT AMOUNT
+  // =========================================================
+
+  const handleAmount = (value) => {
+    setAmount(value);
+    setCustomAmount("");
+    setMessage("");
+  };
+
+  // =========================================================
+  // DEPOSIT
+  // =========================================================
+
+  const handleDeposit = () => {
+    const numericAmount = Number(finalAmount);
+
+    if (
+      !numericAmount ||
+      numericAmount < 100 ||
+      numericAmount > 50000
+    ) {
+      setMessage(
+        "Please enter an amount between Rs 100 and Rs 50,000."
+      );
+
+      return;
+    }
+
+    setMessage(
+      `${method === "jazzcash" ? "JazzCash" : "EasyPaisa"} ${
+        channel
+      } selected — Rs ${numericAmount.toLocaleString()}`
+    );
+
+    /*
+      Yahan apni payment API / backend request laga sakte ho.
+
+      Example:
+
+      fetch("/api/deposit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          method,
+          channel,
+          amount: numericAmount,
+        }),
+      });
+    */
+  };
+
+  // =========================================================
+  // FILTER HISTORY
+  // =========================================================
+
+  const filteredHistory = useMemo(() => {
+    if (historyFilter === "All") {
+      return historyData;
+    }
+
+    return historyData.filter(
+      (item) => item.status === historyFilter
+    );
+  }, [historyFilter]);
+
   return (
-    <div
-      className="
-        min-h-screen
-        w-full
-        bg-[#020617]
-        text-white
-      "
-    >
-
-      {/* ================= MAIN CONTAINER ================= */}
-
+    <div className="min-h-screen w-full overflow-hidden bg-[#020817] text-white">
       <div
         className="
+          mx-auto
+          flex
+          min-h-screen
           w-full
           max-w-[540px]
-          mx-auto
-          min-h-screen
-          bg-[#020617]
+          flex-col
+          overflow-hidden
+          bg-gradient-to-b
+          from-[#020B18]
+          via-[#031B35]
+          to-[#020817]
         "
       >
+        {/* =====================================================
+            HEADER
+        ====================================================== */}
 
-        {/* ================= HEADER ================= */}
-
-        <div
+        <header
           className="
-            sticky
-            top-0
+            relative
             z-50
-
-            w-full
-
-            bg-[#04152e]
-            border-b
-            border-cyan-800
-
-            px-3
-            sm:px-4
-            py-3
-            sm:py-4
-
             flex
+            h-[76px]
+            min-h-[76px]
+            shrink-0
             items-center
-            justify-between
+            justify-center
+            border-b
+            border-cyan-400/20
+            bg-[#031426]
           "
         >
-
-          {/* Back */}
+          {/* BACK BUTTON */}
 
           <button
+            type="button"
+            onClick={() => window.history.back()}
+            aria-label="Go back"
             className="
-              w-9
-              h-9
-              sm:w-10
-              sm:h-10
-
-              shrink-0
-
-              rounded-full
-
-              bg-cyan-500/10
-              border
-              border-cyan-500
-
+              absolute
+              left-4
               flex
+              h-11
+              w-11
               items-center
               justify-center
-
-              hover:bg-cyan-500/20
+              rounded-full
+              border
+              border-cyan-300/30
+              bg-[#073154]
+              text-[22px]
               transition
-              duration-300
+              active:scale-90
             "
           >
-            <ArrowLeft
-              size={20}
-              className="sm:w-[22px] sm:h-[22px]"
-            />
+            <FaArrowLeft />
           </button>
 
-
-          {/* Title */}
+          {/* TITLE */}
 
           <h1
             className="
-              text-xl
-              sm:text-2xl
+              text-[25px]
               font-bold
+              tracking-wide
+              text-white
             "
           >
             Deposit
           </h1>
 
-
-          {/* History */}
+          {/* HISTORY BUTTON */}
 
           <button
+            type="button"
+            onClick={() => setShowHistory(true)}
+            aria-label="Deposit history"
             className="
-              w-9
-              h-9
-              sm:w-10
-              sm:h-10
-
-              shrink-0
-
-              rounded-full
-
-              bg-cyan-500/10
-              border
-              border-cyan-500
-
+              absolute
+              right-4
               flex
+              h-11
+              w-11
               items-center
               justify-center
-
-              hover:bg-cyan-500/20
+              rounded-xl
+              border
+              border-cyan-300/30
+              bg-[#073154]
+              text-[21px]
+              text-cyan-200
               transition
-              duration-300
+              active:scale-90
             "
           >
-            <History
-              size={20}
-              className="sm:w-[22px] sm:h-[22px]"
-            />
+            <FaHistory />
           </button>
+        </header>
 
-        </div>
+        {/* =====================================================
+            MAIN CONTENT
+        ====================================================== */}
 
-
-        {/* ================= BODY ================= */}
-
-        <div
+        <main
           className="
-            w-full
-            px-3
-            sm:px-4
-            py-4
-            sm:py-5
+            min-h-0
+            flex-1
+            overflow-x-hidden
+            overflow-y-auto
+            px-4
             pb-8
+            pt-5
           "
         >
+          {/* =================================================
+              RECHARGE METHOD
+          ================================================= */}
 
-          {/* ================= RECHARGE METHOD ================= */}
+          <SectionTitle title="Recharge Method" />
 
-          <h2
-            className="
-              text-2xl
-              sm:text-3xl
-              font-bold
-              mb-3
-            "
-          >
-            Recharge Method
-          </h2>
+          <div className="mt-4 grid grid-cols-2 gap-4">
+            {methods.map((item) => {
+              const active = method === item.id;
 
-          <div className="border-b border-cyan-700 mb-5"></div>
-
-
-          {/* Main Recharge Icon */}
-
-          <div
-            className="
-              w-28
-              h-28
-              sm:w-36
-              sm:h-36
-
-              rounded-3xl
-
-              bg-gradient-to-br
-              from-cyan-400
-              via-blue-600
-              to-blue-900
-
-              border
-              border-cyan-300
-
-              flex
-              items-center
-              justify-center
-
-              shadow-[0_0_25px_rgba(0,255,255,.35)]
-            "
-          >
-
-            <div
-              className="
-                w-16
-                h-16
-                sm:w-20
-                sm:h-20
-
-                rounded-2xl
-
-                bg-white
-
-                flex
-                items-center
-                justify-center
-              "
-            >
-              <Smartphone
-                size={36}
-                className="sm:w-[42px] sm:h-[42px] text-green-500"
-              />
-            </div>
-
-          </div>
-
-
-          {/* ================= RECHARGE CHANNEL ================= */}
-
-          <div
-            className="
-              flex
-              items-center
-              gap-2
-              sm:gap-3
-              mt-7
-              sm:mt-8
-            "
-          >
-
-            <div
-              className="
-                w-11
-                h-11
-                sm:w-14
-                sm:h-14
-
-                shrink-0
-
-                rounded-xl
-
-                bg-white
-
-                flex
-                items-center
-                justify-center
-              "
-            >
-              <Smartphone
-                size={24}
-                className="sm:w-7 sm:h-7 text-green-500"
-              />
-            </div>
-
-            <h2
-              className="
-                text-xl
-                sm:text-3xl
-                font-bold
-              "
-            >
-              Recharge Channel
-            </h2>
-
-          </div>
-
-          <div className="border-b border-cyan-700 mt-3 sm:mt-4 mb-4 sm:mb-5"></div>
-
-
-          {/* ================= CHANNEL LIST ================= */}
-
-          <div
-            className="
-              flex
-              gap-2
-              sm:gap-3
-
-              overflow-x-auto
-              pb-3
-
-              scrollbar-hide
-            "
-          >
-
-            {channels.map((item) => (
-
-              <button
-                key={item}
-                onClick={() => setSelectedMethod(item)}
-                className={`
-                  min-w-[145px]
-                  sm:min-w-[170px]
-
-                  h-[85px]
-                  sm:h-[95px]
-
-                  rounded-2xl
-                  sm:rounded-3xl
-
-                  border
-
-                  transition-all
-                  duration-300
-
-                  flex
-                  flex-col
-                  items-center
-                  justify-center
-
-                  shrink-0
-
-                  ${
-                    selectedMethod === item
-                      ? `
-                        border-cyan-300
-                        bg-gradient-to-br
-                        from-cyan-400
-                        via-blue-500
-                        to-blue-800
-                        shadow-[0_0_20px_rgba(0,255,255,.40)]
-                      `
-                      : `
-                        border-cyan-700
-                        bg-[#061b3a]
-                      `
+              return (
+                <button
+                  key={item.id}
+                  type="button"
+                  aria-pressed={active}
+                  onClick={() =>
+                    handleMethodChange(item.id)
                   }
-                `}
-              >
+                  className={`
+                    relative
+                    h-[145px]
+                    overflow-hidden
+                    rounded-[22px]
+                    border
+                    transition-all
+                    duration-300
+                    active:scale-[.97]
 
-                <span
-                  className="
-                    text-lg
-                    sm:text-2xl
-                    font-bold
-                  "
+                    ${
+                      active
+                        ? `
+                          border-cyan-200/80
+                          bg-gradient-to-b
+                          from-[#0B8DCC]
+                          via-[#075E99]
+                          to-[#06365B]
+                          shadow-[0_0_25px_rgba(0,200,255,.35)]
+                        `
+                        : `
+                          border-cyan-300/20
+                          bg-[#061C30]
+                          hover:border-cyan-300/50
+                          hover:bg-[#073254]
+                        `
+                    }
+                  `}
                 >
-                  Easypaisa
-                </span>
+                  {/* GLOW */}
 
-                <span
-                  className="
-                    text-base
-                    sm:text-xl
-                    mt-1
-                    sm:mt-2
-                    font-semibold
-                  "
-                >
-                  {item}
-                </span>
+                  {active && (
+                    <div
+                      className="
+                        pointer-events-none
+                        absolute
+                        left-1/2
+                        top-[-60px]
+                        h-[150px]
+                        w-[150px]
+                        -translate-x-1/2
+                        rounded-full
+                        bg-cyan-300/20
+                        blur-[35px]
+                      "
+                    />
+                  )}
 
-              </button>
+                  {/* EXACT LOGO IMAGE */}
 
-            ))}
+                  <div
+                    className="
+                      relative
+                      mx-auto
+                      flex
+                      h-[72px]
+                      w-[125px]
+                      items-center
+                      justify-center
+                      overflow-hidden
+                      rounded-[16px]
+                    "
+                  >
+                    <img
+                      src={item.logo}
+                      alt={item.name}
+                      className="
+                        h-full
+                        w-full
+                        object-contain
+                      "
+                    />
+                  </div>
 
+                  {/* NAME */}
+
+                  <p
+                    className="
+                      relative
+                      mt-2
+                      text-[17px]
+                      font-bold
+                    "
+                  >
+                    {item.name}
+                  </p>
+
+                  {/* CHECK */}
+
+                  {active && (
+                    <span
+                      className="
+                        absolute
+                        right-3
+                        top-3
+                        flex
+                        h-6
+                        w-6
+                        items-center
+                        justify-center
+                        rounded-full
+                        bg-cyan-300
+                        text-[14px]
+                        font-black
+                        text-[#032039]
+                      "
+                    >
+                      ✓
+                    </span>
+                  )}
+                </button>
+              );
+            })}
           </div>
 
+          {/* =================================================
+              CHANNEL
+          ================================================= */}
 
-          {/* ================= RECHARGE AMOUNT ================= */}
-
-          <h2
-            className="
-              text-2xl
-              sm:text-3xl
-              font-bold
-              mt-7
-              sm:mt-8
-            "
-          >
-            Recharge Amount
-          </h2>
-
-          <div className="border-b border-cyan-700 mt-3 sm:mt-4 mb-4 sm:mb-5"></div>
-
-
-          {/* ================= AMOUNT BUTTONS ================= */}
+          <div className="mt-7">
+            <SectionTitle
+              title={
+                method === "jazzcash"
+                  ? "JazzCash Channel"
+                  : "EasyPaisa Channel"
+              }
+            />
+          </div>
 
           <div
             className="
-              grid
-              grid-cols-2
-              min-[400px]:grid-cols-3
-              gap-2
-              sm:gap-4
+              mt-4
+              flex
+              gap-4
+              overflow-x-auto
+              pb-2
             "
           >
+            {channels[method].map((item) => {
+              const active = channel === item.id;
 
-            {[
-              500,
-              1000,
-              2000,
-              5000,
-              10000,
-              20000,
-            ].map((amount) => (
+              return (
+                <button
+                  key={item.id}
+                  type="button"
+                  aria-pressed={active}
+                  onClick={() => {
+                    setChannel(item.id);
+                    setMessage("");
+                  }}
+                  className={`
+                    relative
+                    h-[96px]
+                    min-w-[220px]
+                    shrink-0
+                    rounded-[20px]
+                    border
+                    px-4
+                    transition-all
+                    duration-300
+                    active:scale-[.98]
 
-              <button
-                key={amount}
-                className="
-                  h-14
-                  sm:h-[70px]
+                    ${
+                      active
+                        ? `
+                          border-cyan-200/80
+                          bg-gradient-to-r
+                          from-[#0B8DCC]
+                          via-[#086DA8]
+                          to-[#06446F]
+                          shadow-[0_0_25px_rgba(0,200,255,.3)]
+                        `
+                        : `
+                          border-cyan-300/20
+                          bg-[#061C30]
+                          hover:border-cyan-300/50
+                        `
+                    }
+                  `}
+                >
+                  <div className="flex h-full items-center justify-between">
+                    <div className="flex items-center gap-3 text-left">
+                      {/* LOGO */}
 
-                  rounded-xl
-                  sm:rounded-2xl
+                      <div
+                        className="
+                          flex
+                          h-12
+                          w-14
+                          shrink-0
+                          items-center
+                          justify-center
+                          overflow-hidden
+                          rounded-xl
+                        "
+                      >
+                        <img
+                          src={currentMethod.logo}
+                          alt={currentMethod.name}
+                          className="
+                            h-full
+                            w-full
+                            object-contain
+                          "
+                        />
+                      </div>
 
-                  border
-                  border-cyan-500
+                      {/* CHANNEL INFO */}
 
-                  bg-[#061b3a]
+                      <div>
+                        <p className="text-[17px] font-bold">
+                          {item.name}
+                        </p>
 
-                  hover:bg-gradient-to-br
-                  hover:from-cyan-500
-                  hover:to-blue-700
+                        <p className="mt-1 text-[14px] font-bold text-cyan-200">
+                          Channel {item.code}
+                        </p>
+                      </div>
+                    </div>
 
-                  hover:border-cyan-300
+                    {/* CHECK */}
 
-                  transition-all
-                  duration-300
-
-                  font-bold
-
-                  text-base
-                  sm:text-xl
-                "
-              >
-                Rs {amount}
-              </button>
-
-            ))}
-
+                    {active && (
+                      <span
+                        className="
+                          ml-2
+                          flex
+                          h-8
+                          w-8
+                          shrink-0
+                          items-center
+                          justify-center
+                          rounded-full
+                          bg-cyan-300
+                          text-[14px]
+                          font-black
+                          text-[#032039]
+                        "
+                      >
+                        ✓
+                      </span>
+                    )}
+                  </div>
+                </button>
+              );
+            })}
           </div>
 
+          {/* =================================================
+              AMOUNT
+          ================================================= */}
 
-          {/* ================= CUSTOM AMOUNT ================= */}
+          <div className="mt-7">
+            <SectionTitle title="Recharge Amount" />
+          </div>
 
-          <div className="mt-6 sm:mt-8">
+          {/* AMOUNT BUTTONS */}
 
-            <label
-              className="
-                text-base
-                sm:text-xl
-                font-semibold
-                text-cyan-200
-              "
-            >
-              Enter Amount
-            </label>
+          <div className="mt-4 grid grid-cols-3 gap-3">
+            {amounts.map((value) => {
+              const active = amount === value;
+
+              return (
+                <button
+                  key={value}
+                  type="button"
+                  aria-pressed={active}
+                  onClick={() => handleAmount(value)}
+                  className={`
+                    h-[75px]
+                    rounded-[20px]
+                    border
+                    text-[17px]
+                    font-bold
+                    transition-all
+                    duration-300
+                    active:scale-[.96]
+
+                    ${
+                      active
+                        ? `
+                          border-cyan-200
+                          bg-gradient-to-b
+                          from-[#0CA9ED]
+                          via-[#087DC0]
+                          to-[#064A78]
+                          text-white
+                          shadow-[0_0_25px_rgba(0,210,255,.45)]
+                        `
+                        : `
+                          border-cyan-300/20
+                          bg-[#061C30]
+                          text-white
+                          hover:border-cyan-300/60
+                          hover:bg-[#073254]
+                        `
+                    }
+                  `}
+                >
+                  Rs {value.toLocaleString()}
+                </button>
+              );
+            })}
+          </div>
+
+          {/* =================================================
+              CUSTOM AMOUNT
+          ================================================= */}
+
+          <div
+            className="
+              mt-5
+              flex
+              h-[65px]
+              items-center
+              rounded-[32px]
+              border
+              border-cyan-300/30
+              bg-[#020B18]
+              px-5
+              transition
+              focus-within:border-cyan-300/70
+              focus-within:shadow-[0_0_20px_rgba(0,200,255,.12)]
+            "
+          >
+            <span className="text-[22px] font-bold">
+              Rs
+            </span>
 
             <input
               type="number"
-              placeholder="Minimum Rs 500"
+              min="100"
+              max="50000"
+              step="1"
+              value={customAmount}
+              onChange={(e) => {
+                setCustomAmount(e.target.value);
+                setAmount(null);
+                setMessage("");
+              }}
+              placeholder="100 ~ 50000"
               className="
-                w-full
-                mt-2
-                sm:mt-3
-
-                h-12
-                sm:h-14
-
-                rounded-xl
-                sm:rounded-2xl
-
-                bg-[#061b3a]
-
-                border
-                border-cyan-500
-
-                px-4
-                sm:px-5
-
-                text-base
-                sm:text-lg
+                ml-3
+                min-w-0
+                flex-1
+                bg-transparent
+                text-[18px]
+                font-semibold
                 text-white
-
                 outline-none
-
-                focus:border-cyan-300
-                focus:ring-2
-                focus:ring-cyan-400/40
-
-                placeholder:text-gray-400
+                placeholder:text-white/35
               "
             />
 
+            {customAmount !== "" && (
+              <button
+                type="button"
+                onClick={() => {
+                  setCustomAmount("");
+                  setMessage("");
+                }}
+                aria-label="Clear amount"
+                className="
+                  flex
+                  h-8
+                  w-8
+                  items-center
+                  justify-center
+                  rounded-full
+                  bg-white/20
+                  transition
+                  active:scale-90
+                "
+              >
+                <FaTimes />
+              </button>
+            )}
           </div>
 
-
-          {/* ================= PAYMENT INFO ================= */}
+          {/* =================================================
+              PAYMENT SUMMARY
+          ================================================= */}
 
           <div
             className="
-              mt-6
-              sm:mt-8
-
-              rounded-xl
-              sm:rounded-2xl
-
+              mt-5
+              rounded-[18px]
               border
-              border-cyan-700
-
-              bg-[#04152e]
-
+              border-cyan-300/20
+              bg-[#061C30]
               p-4
-              sm:p-5
             "
           >
+            {/* METHOD */}
+
+            <div className="flex items-center justify-between gap-3">
+              <span className="text-white/60">
+                Payment Method
+              </span>
+
+              <div className="flex items-center gap-2">
+                <div
+                  className="
+                    h-8
+                    w-16
+                    overflow-hidden
+                    rounded-md
+                  "
+                >
+                  <img
+                    src={currentMethod.logo}
+                    alt={currentMethod.name}
+                    className="
+                      h-full
+                      w-full
+                      object-contain
+                    "
+                  />
+                </div>
+
+                <span className="font-bold text-cyan-200">
+                  {currentMethod.name}
+                </span>
+              </div>
+            </div>
+
+            {/* CHANNEL */}
+
+            <div className="mt-3 flex items-center justify-between">
+              <span className="text-white/60">
+                Channel
+              </span>
+
+              <span className="font-bold text-cyan-200">
+                {channel}
+              </span>
+            </div>
+
+            {/* AMOUNT */}
 
             <div
               className="
+                mt-3
                 flex
-                justify-between
                 items-center
-                gap-3
-                mb-3
-                text-sm
-                sm:text-base
+                justify-between
+                border-t
+                border-cyan-300/10
+                pt-3
               "
             >
-
-              <span className="text-gray-300">
-                Selected Channel
+              <span className="text-white/60">
+                Amount
               </span>
 
-              <span className="font-bold text-right">
-                Easypaisa {selectedMethod}
+              <span className="text-[20px] font-bold text-cyan-300">
+                Rs{" "}
+                {finalAmount
+                  ? Number(finalAmount).toLocaleString()
+                  : "0"}
               </span>
-
             </div>
-
-
-            <div
-              className="
-                flex
-                justify-between
-                items-center
-                gap-3
-                text-sm
-                sm:text-base
-              "
-            >
-
-              <span className="text-gray-300">
-                Minimum Deposit
-              </span>
-
-              <span className="font-bold text-cyan-300">
-                Rs 500
-              </span>
-
-            </div>
-
           </div>
 
+          {/* =================================================
+              MESSAGE
+          ================================================= */}
 
-          {/* ================= DEPOSIT BUTTON ================= */}
+          {message && (
+            <div
+              className="
+                mt-4
+                rounded-xl
+                border
+                border-cyan-300/25
+                bg-cyan-400/10
+                px-4
+                py-3
+                text-center
+                text-[14px]
+                text-cyan-200
+              "
+            >
+              {message}
+            </div>
+          )}
+
+          {/* =================================================
+              DEPOSIT BUTTON
+          ================================================= */}
 
           <button
+            type="button"
+            onClick={handleDeposit}
             className="
-              w-full
-
-              h-14
-              sm:h-16
-
               mt-6
-              sm:mt-8
-
-              rounded-xl
-              sm:rounded-2xl
-
+              h-[65px]
+              w-full
+              rounded-[18px]
+              border
+              border-cyan-200/60
               bg-gradient-to-r
-              from-cyan-400
-              via-blue-500
-              to-blue-700
-
-              text-xl
-              sm:text-2xl
-
+              from-[#0EA8F0]
+              via-[#087DC0]
+              to-[#064A78]
+              text-[21px]
               font-bold
               text-white
-
-              shadow-[0_0_20px_rgba(0,255,255,.35)]
-
-              hover:scale-[1.02]
-              hover:shadow-[0_0_30px_rgba(0,255,255,.6)]
-
+              shadow-[0_0_22px_rgba(0,200,255,.25)]
               transition-all
               duration-300
+              hover:shadow-[0_0_30px_rgba(0,220,255,.4)]
+              active:scale-[.97]
             "
           >
             Deposit
           </button>
 
-
-          {/* ================= INFO BOX ================= */}
-
-          <div
-            className="
-              mt-6
-              sm:mt-8
-
-              rounded-xl
-              sm:rounded-2xl
-
-              border
-              border-cyan-700
-
-              bg-[#061b3a]
-
-              p-4
-              sm:p-5
-
-              text-xs
-              sm:text-sm
-
-              text-cyan-100
-
-              leading-6
-              sm:leading-7
-            "
-          >
-
-            <p>
-              • Deposit will be credited within{" "}
-              <b>1-5 minutes.</b>
-            </p>
-
-            <p>
-              • Please use your own Easypaisa account.
-            </p>
-
-            <p>
-              • Minimum deposit amount is{" "}
-              <b>Rs 500</b>.
-            </p>
-
-            <p>
-              • Contact customer support if payment is delayed.
-            </p>
-
-          </div>
-
-        </div>
-
+          <div className="h-5" />
+        </main>
       </div>
 
-      {/* ================= HIDE SCROLLBAR ================= */}
+      {/* =====================================================
+          HISTORY MODAL
+      ====================================================== */}
+
+      {showHistory && (
+        <HistoryModal
+          filter={historyFilter}
+          setFilter={setHistoryFilter}
+          data={filteredHistory}
+          selectedDate={selectedDate}
+          onDate={() => setShowDateModal(true)}
+          onClose={() => setShowHistory(false)}
+        />
+      )}
+
+      {/* =====================================================
+          DATE MODAL
+      ====================================================== */}
+
+      {showDateModal && (
+        <DatePickerModal
+          dates={dates}
+          selectedDate={selectedDate}
+          setSelectedDate={setSelectedDate}
+          onClose={() => setShowDateModal(false)}
+        />
+      )}
+
+      {/* =====================================================
+          SCROLLBAR CSS
+      ====================================================== */}
 
       <style>{`
-        .scrollbar-hide::-webkit-scrollbar {
+        main::-webkit-scrollbar {
+          width: 0;
+          height: 0;
           display: none;
         }
 
-        .scrollbar-hide {
-          -ms-overflow-style: none;
+        main {
           scrollbar-width: none;
+          -ms-overflow-style: none;
+        }
+
+        div::-webkit-scrollbar {
+          width: 0;
+          height: 0;
+        }
+
+        div {
+          scrollbar-width: none;
+          -ms-overflow-style: none;
+        }
+
+        button {
+          -webkit-tap-highlight-color: transparent;
+        }
+
+        input[type="number"]::-webkit-inner-spin-button,
+        input[type="number"]::-webkit-outer-spin-button {
+          -webkit-appearance: none;
+          margin: 0;
+        }
+
+        input[type="number"] {
+          -moz-appearance: textfield;
         }
       `}</style>
+    </div>
+  );
+}
 
+/* =========================================================
+   SECTION TITLE
+========================================================= */
+
+function SectionTitle({ title }) {
+  return (
+    <div>
+      <h2 className="text-[24px] font-bold text-white">
+        {title}
+      </h2>
+
+      <div
+        className="
+          mt-3
+          h-px
+          w-full
+          bg-gradient-to-r
+          from-cyan-300/50
+          via-cyan-300/20
+          to-transparent
+        "
+      />
+    </div>
+  );
+}
+
+/* =========================================================
+   HISTORY MODAL
+========================================================= */
+
+function HistoryModal({
+  filter,
+  setFilter,
+  data,
+  selectedDate,
+  onDate,
+  onClose,
+}) {
+  const filters = [
+    {
+      name: "All",
+      icon: <FaWallet />,
+    },
+    {
+      name: "Paid",
+      icon: <FaCheckCircle />,
+    },
+    {
+      name: "Unpaid",
+      icon: <FaClock />,
+    },
+    {
+      name: "Cancel",
+      icon: <FaBan />,
+    },
+    {
+      name: "Complete",
+      icon: <FaCheckCircle />,
+    },
+  ];
+
+  return (
+    <div
+      className="
+        fixed
+        inset-0
+        z-[1000]
+        flex
+        justify-center
+        bg-black/70
+        backdrop-blur-sm
+      "
+    >
+      <div
+        className="
+          relative
+          flex
+          h-full
+          w-full
+          max-w-[540px]
+          flex-col
+          overflow-hidden
+          bg-gradient-to-b
+          from-[#020B18]
+          via-[#031B35]
+          to-[#020817]
+        "
+      >
+        {/* HEADER */}
+
+        <header
+          className="
+            relative
+            flex
+            h-[76px]
+            min-h-[76px]
+            items-center
+            justify-center
+            border-b
+            border-cyan-300/20
+            bg-[#031426]
+          "
+        >
+          <button
+            type="button"
+            onClick={onClose}
+            className="
+              absolute
+              left-4
+              flex
+              h-11
+              w-11
+              items-center
+              justify-center
+              rounded-full
+              bg-[#073154]
+              text-[20px]
+            "
+          >
+            <FaArrowLeft />
+          </button>
+
+          <h2 className="text-[23px] font-bold">
+            Deposit History
+          </h2>
+        </header>
+
+        {/* CONTENT */}
+
+        <div
+          className="
+            flex-1
+            overflow-y-auto
+            px-4
+            pb-10
+            pt-5
+          "
+        >
+          {/* DATE */}
+
+          <button
+            type="button"
+            onClick={onDate}
+            className="
+              flex
+              min-h-[78px]
+              w-full
+              items-center
+              gap-4
+              rounded-[18px]
+              border
+              border-cyan-300/25
+              bg-[#061C30]
+              px-4
+              text-left
+            "
+          >
+            <span className="text-[27px] text-cyan-300">
+              ↗
+            </span>
+
+            <div className="min-w-0 flex-1">
+              <p className="text-[12px] text-cyan-200/60">
+                Date
+              </p>
+
+              <p className="mt-1 truncate text-[15px] font-bold">
+                {selectedDate}
+              </p>
+            </div>
+
+            <FaChevronDown className="text-cyan-300" />
+          </button>
+
+          {/* FILTERS */}
+
+          <div className="mt-5 grid grid-cols-5 gap-2">
+            {filters.map((item) => {
+              const active = filter === item.name;
+
+              return (
+                <button
+                  key={item.name}
+                  type="button"
+                  onClick={() =>
+                    setFilter(item.name)
+                  }
+                  className={`
+                    flex
+                    min-h-[72px]
+                    flex-col
+                    items-center
+                    justify-center
+                    gap-2
+                    rounded-[15px]
+                    border
+                    text-[11px]
+                    font-bold
+
+                    ${
+                      active
+                        ? `
+                          border-cyan-200
+                          bg-gradient-to-b
+                          from-[#0EA8F0]
+                          to-[#064A78]
+                          text-white
+                        `
+                        : `
+                          border-cyan-300/15
+                          bg-[#061C30]
+                          text-white/60
+                        `
+                    }
+                  `}
+                >
+                  <span className="text-[16px]">
+                    {item.icon}
+                  </span>
+
+                  {item.name}
+                </button>
+              );
+            })}
+          </div>
+
+          {/* EMPTY STATE */}
+
+          {data.length === 0 ? (
+            <div
+              className="
+                mt-8
+                flex
+                min-h-[360px]
+                flex-col
+                items-center
+                justify-center
+                rounded-[22px]
+                border
+                border-cyan-300/15
+                bg-[#061C30]/70
+                text-center
+              "
+            >
+              <div
+                className="
+                  flex
+                  h-[90px]
+                  w-[90px]
+                  items-center
+                  justify-center
+                  rounded-full
+                  border
+                  border-cyan-300/20
+                  bg-[#073154]
+                  text-[40px]
+                  text-cyan-300/50
+                "
+              >
+                <FaHistory />
+              </div>
+
+              <h3 className="mt-5 text-[20px] font-bold">
+                No Data
+              </h3>
+
+              <p className="mt-2 px-8 text-[14px] text-white/40">
+                No deposit records available for this
+                period.
+              </p>
+            </div>
+          ) : (
+            <div className="mt-5 space-y-3">
+              {data.map((item, index) => (
+                <HistoryCard
+                  key={index}
+                  item={item}
+                />
+              ))}
+            </div>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/* =========================================================
+   HISTORY CARD
+========================================================= */
+
+function HistoryCard({ item }) {
+  const statusClass =
+    item.status === "Complete"
+      ? "text-cyan-300 bg-cyan-400/10"
+      : item.status === "Cancel"
+      ? "text-red-300 bg-red-400/10"
+      : item.status === "Paid"
+      ? "text-green-300 bg-green-400/10"
+      : "text-yellow-300 bg-yellow-400/10";
+
+  return (
+    <div
+      className="
+        rounded-[18px]
+        border
+        border-cyan-300/20
+        bg-[#061C30]
+        p-4
+      "
+    >
+      <div className="flex items-center justify-between">
+        <span className="font-bold">
+          {item.method}
+        </span>
+
+        <span
+          className={`
+            rounded-full
+            px-3
+            py-1
+            text-[11px]
+            font-bold
+            ${statusClass}
+          `}
+        >
+          {item.status}
+        </span>
+      </div>
+
+      <div className="mt-4 flex justify-between">
+        <span className="text-white/50">
+          Amount
+        </span>
+
+        <span className="font-bold text-cyan-300">
+          Rs {item.amount}
+        </span>
+      </div>
+
+      <div className="mt-2 flex justify-between">
+        <span className="text-white/50">
+          Channel
+        </span>
+
+        <span>{item.channel}</span>
+      </div>
+    </div>
+  );
+}
+
+/* =========================================================
+   DATE MODAL
+========================================================= */
+
+function DatePickerModal({
+  dates,
+  selectedDate,
+  setSelectedDate,
+  onClose,
+}) {
+  return (
+    <div
+      className="
+        fixed
+        inset-0
+        z-[1100]
+        flex
+        items-end
+        justify-center
+        bg-black/65
+        backdrop-blur-sm
+      "
+    >
+      <div
+        className="
+          w-full
+          max-w-[540px]
+          overflow-hidden
+          rounded-t-[28px]
+          border
+          border-cyan-300/20
+          bg-gradient-to-b
+          from-[#082B49]
+          via-[#061C31]
+          to-[#020B18]
+        "
+      >
+        {/* HEADER */}
+
+        <div
+          className="
+            flex
+            h-[70px]
+            items-center
+            justify-center
+            border-b
+            border-cyan-300/15
+          "
+        >
+          <h2 className="text-[21px] font-bold">
+            Select Date
+          </h2>
+        </div>
+
+        {/* DATES */}
+
+        <div className="max-h-[400px] overflow-y-auto">
+          {dates.map((date) => {
+            const active = selectedDate === date;
+
+            return (
+              <button
+                key={date}
+                type="button"
+                onClick={() => {
+                  setSelectedDate(date);
+                  onClose();
+                }}
+                className={`
+                  flex
+                  min-h-[68px]
+                  w-full
+                  items-center
+                  justify-between
+                  border-b
+                  border-cyan-300/10
+                  px-5
+                  text-left
+
+                  ${
+                    active
+                      ? "bg-cyan-400/10 text-cyan-200"
+                      : "text-white"
+                  }
+                `}
+              >
+                <span
+                  className={
+                    active
+                      ? "font-bold"
+                      : ""
+                  }
+                >
+                  {date}
+                </span>
+
+                {active && (
+                  <FaCheckCircle className="text-cyan-300" />
+                )}
+              </button>
+            );
+          })}
+        </div>
+
+        {/* CLOSE */}
+
+        <div className="p-5">
+          <button
+            type="button"
+            onClick={onClose}
+            className="
+              h-[54px]
+              w-full
+              rounded-[15px]
+              bg-gradient-to-r
+              from-[#0EA8F0]
+              to-[#064A78]
+              font-bold
+              text-white
+            "
+          >
+            Close
+          </button>
+        </div>
+      </div>
     </div>
   );
 }
