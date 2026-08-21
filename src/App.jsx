@@ -2,24 +2,18 @@ import { useState } from "react";
 
 import Header from "./Header";
 import Sidebar from "./Sidebar";
-
 import HeroSectoin from "./HeroSectoin";
 import PromoCards from "./PromoCards";
 import AnnouncementBar from "./AnnouncementBar";
 import GameCategories from "./GameCategories";
 import HotGameHeader from "./HotGameHeader";
 import GameGridCard from "./GameGridCard";
-
 import BottomNavbar from "./BottomNavbar";
-
 import LoginModal from "./LoginModal";
 import SignupModal from "./SignupModal";
-
 import AgencyHeader from "./AgencyHeader";
-
 import Activity from "./Activity";
 import DepositPage from "./DepositPage";
-
 import JiliHeader from "./JiliHeader";
 import JiliFeatureCards from "./JiliFeatureCards";
 import PGHeader from "./PGHeader";
@@ -30,27 +24,26 @@ import PPGames from "./PPGames";
 import TopPlayer from "./TopPlayer";
 import DBGames from "./DBGames";
 import FishGames from "./FishGames";
-
 import Footer from "./Footer";
+
+// VIP PAGE
+import VipCurrentLevel from "./VipCurrentLevel";
 
 function App() {
   // =====================================================
   // SIDEBAR
   // =====================================================
-
   const [openMenu, setOpenMenu] = useState(false);
 
   // =====================================================
   // LOGIN / SIGNUP
   // =====================================================
-
   const [loginOpen, setLoginOpen] = useState(false);
   const [signupOpen, setSignupOpen] = useState(false);
 
   // =====================================================
   // PAGE
   // =====================================================
-
   const [currentPage, setCurrentPage] = useState("home");
 
   return (
@@ -74,7 +67,6 @@ function App() {
       {currentPage === "home" && (
         <>
           {/* HEADER */}
-
           <Header
             setOpenMenu={setOpenMenu}
             setLoginOpen={setLoginOpen}
@@ -82,7 +74,6 @@ function App() {
           />
 
           {/* SIDEBAR */}
-
           <Sidebar
             openMenu={openMenu}
             setOpenMenu={setOpenMenu}
@@ -102,13 +93,15 @@ function App() {
               overflow-x-hidden
               pb-32
               scrollbar-hide
-
               bg-[radial-gradient(circle_at_50%_0%,rgba(0,200,255,0.18),transparent_35%),linear-gradient(180deg,#061b3a_0%,#020617_35%,#01030b_100%)]
             "
           >
             <HeroSectoin />
 
-            <PromoCards />
+            {/* PROMO CARDS */}
+            <PromoCards
+              setCurrentPage={setCurrentPage}
+            />
 
             <AnnouncementBar />
 
@@ -139,9 +132,7 @@ function App() {
             <FishGames />
 
             {/* FOOTER */}
-
             <Footer />
-
           </main>
         </>
       )}
@@ -201,6 +192,26 @@ function App() {
           "
         >
           <AgencyHeader
+            setCurrentPage={setCurrentPage}
+          />
+        </div>
+      )}
+
+      {/* ================================================= */}
+      {/* VIP CURRENT LEVEL */}
+      {/* ================================================= */}
+
+      {currentPage === "vip-current-level" && (
+        <div
+          className="
+            w-full
+            h-full
+            overflow-y-auto
+            overflow-x-hidden
+            bg-[linear-gradient(180deg,#061b3a,#020617)]
+          "
+        >
+          <VipCurrentLevel
             setCurrentPage={setCurrentPage}
           />
         </div>

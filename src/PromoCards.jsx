@@ -7,7 +7,7 @@ import LuckyRoulete from "./assets/LuckyRoulete.png";
 import VipMonthlySallery from "./assets/VipMonthlySallery.png";
 
 // ================= COMPONENT =================
-export default function PPGamesFeatures() {
+export default function PromoCards({ setCurrentPage }) {
   // ================= FAVORITE STATE =================
   const [favorite, setFavorite] = useState([]);
 
@@ -68,6 +68,7 @@ export default function PPGamesFeatures() {
       {/* ================================================= */}
       {/* IMAGE ANIMATION */}
       {/* ================================================= */}
+
       <style>{`
         @keyframes ppGameImageFadeUp {
           0% {
@@ -98,6 +99,7 @@ export default function PPGamesFeatures() {
       {/* ================================================= */}
       {/* MAIN CONTAINER */}
       {/* ================================================= */}
+
       <div
         className="
           w-full
@@ -111,11 +113,13 @@ export default function PPGamesFeatures() {
         {/* ================================================= */}
         {/* SPACE BETWEEN BANNERS */}
         {/* ================================================= */}
+
         <div className="h-2" />
 
         {/* ================================================= */}
         {/* BANNER GRID */}
         {/* ================================================= */}
+
         <div
           className="
             grid
@@ -127,7 +131,11 @@ export default function PPGamesFeatures() {
           {/* ================================================= */}
           {/* VIP MONTHLY SALARY */}
           {/* ================================================= */}
+
           <div
+            onClick={() => {
+              setCurrentPage("vip-current-level");
+            }}
             className="
               relative
               h-[82px]
@@ -176,6 +184,7 @@ export default function PPGamesFeatures() {
             />
 
             {/* HEART */}
+
             <button
               type="button"
               onClick={(e) => {
@@ -218,8 +227,8 @@ export default function PPGamesFeatures() {
 
           {/* ================================================= */}
           {/* REWARD BONUS / INVITE REWARD */}
-          {/* FULL IMAGE + FULL DIV */}
           {/* ================================================= */}
+
           <div
             className="
               relative
@@ -270,6 +279,7 @@ export default function PPGamesFeatures() {
             />
 
             {/* HEART */}
+
             <button
               type="button"
               onClick={(e) => {
@@ -313,6 +323,7 @@ export default function PPGamesFeatures() {
           {/* ================================================= */}
           {/* LUCKY ROULETTE */}
           {/* ================================================= */}
+
           <div
             className="
               relative
@@ -362,6 +373,7 @@ export default function PPGamesFeatures() {
             />
 
             {/* HEART */}
+
             <button
               type="button"
               onClick={(e) => {
